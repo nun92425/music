@@ -186,6 +186,17 @@
       <div id="oshiSelectedChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
       <div id="oshiGrid" class="oshi-grid"></div>
       <p id="oshiHint" style="margin:12px 0 0;font-size:11px;color:#7a83a8;line-height:1.6"></p>
+      <div id="oshiRequestSection" style="margin-top:16px;padding:14px;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)">
+        <h4 style="margin:0 0 8px;font-size:12px;font-weight:800;color:#e4e6eb">にじさんじ以外をリクエスト</h4>
+        <p style="margin:0 0 10px;font-size:11px;color:#9aa3c0;line-height:1.6">リストにない推しは、名前とYouTubeリンクでリクエストできます。送信すると管理者が確認して追加します。</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <input id="oshiReqName" placeholder="名前 (例: Ado)" style="flex:1;min-width:120px;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);color:#e4e6eb;font-size:12px">
+          <input id="oshiReqUrl" placeholder="YouTubeリンク (例: https://www.youtube.com/@Ado1020)" style="flex:2;min-width:180px;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);color:#e4e6eb;font-size:12px">
+          <button id="oshiReqBtn" style="padding:10px 16px;border-radius:10px;border:none;background:linear-gradient(120deg,#4fc3f7,#b48cf2);color:#fff;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap">リクエスト送信</button>
+        </div>
+        <p id="oshiReqStatus" style="margin:8px 0 0;font-size:11px;color:#9aa3c0"></p>
+        <div id="oshiReqList" style="margin-top:10px;display:flex;flex-direction:column;gap:6px"></div>
+      </div>
     </div>
     <div class="oshi-modal-foot">
       <span id="oshiSyncStatus" style="margin-right:auto;font-size:11px;color:#9aa3c0"></span>

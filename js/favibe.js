@@ -1036,6 +1036,7 @@ const FavibeOshi = (function(){
     modal.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
     renderModal();
+    try{ renderRequests(); }catch(e){}
   }
   function close(){
     const modal = document.getElementById('oshiModal');
@@ -1094,9 +1095,158 @@ const FavibeOshi = (function(){
         if(m && m.classList.contains('open')) close();
       }
     });
+    // request handling
+    const reqBtn = document.getElementById('oshiReqBtn');
+    if(reqBtn) reqBtn.addEventListener('click', handleRequest);
+    const reqUrl = document.getElementById('oshiReqUrl');
+    if(reqUrl) reqUrl.addEventListener('keydown', e=>{ if(e.key==='Enter') handleRequest(); });
+    // auto render existing requests when modal opens (also on bind)
+    try{ renderRequests(); }catch(e){}
   }
 
-  return { initSelected, getSelected, setSelected, loadMaster, loadLocked, getLocked, isLocked, updateStatus, open, close, bind, listenFirebase };
+  const REQ_FB_PATH = 'favibe/requests';
+  const REQ_LS_KEY = 'favibe_requests';
+
+  function parseYouTubeInput(input){
+    const s = (input||'').trim();
+    if(!s) return null;
+    // handle @handle directly
+    if(s.startsWith('@') && s.length>=2) return {handle:s, raw:s};
+    try{
+      const u = new URL(s);
+      const host = u.hostname.replace(/^www\./,'');
+      if(host.includes('youtube.com') || host.includes('youtu.be')){
+        // /@handle
+        if(u.pathname.startsWith('/@')){
+          const handle = '/' + u.pathname.split('/')[1];
+          // handle includes @
+          return {handle: u.pathname.split('/')[1], raw:s};
+        }
+        if(u.pathname.startsWith('/channel/')){
+          const cid = u.pathname.split('/')[2];
+          if(cid && cid.startsWith('UC')) return {channelId:cid, raw:s};
+        }
+        if(u.pathname.startsWith('/c/') || u.pathname.startsWith('/user/')){
+          const h = u.pathname.split('/')[2];
+          return {handle:'@'+h, raw:s};
+        }
+        // watch?v= etc still considered valid youtube link
+        if(s.includes('youtube.com') || s.includes('youtu.be')) return {raw:s};
+      }
+    }catch(e){
+      // not a URL, check if contains youtube
+      if(s.includes('youtube.com') || s.includes('youtu.be')) return {raw:s};
+    }
+    // allow plain @handle without URL
+    if(s.includes('@')) return {handle:s.match(/@[^\s\/]+/)?.[0] || s, raw:s};
+    return null;
+  }
+
+  function loadRequestsLocal(){
+    try{
+      const v = JSON.parse(localStorage.getItem(REQ_LS_KEY)||'[]');
+      if(Array.isArray(v)) return v;
+    }catch(e){}
+    return [];
+  }
+  function saveRequestsLocal(arr){
+    try{ localStorage.setItem(REQ_LS_KEY, JSON.stringify(arr)); }catch(e){}
+  }
+
+  function renderRequests(){
+    const listEl = document.getElementById('oshiReqList');
+    const statusEl = document.getElementById('oshiReqStatus');
+    if(!listEl) return;
+    const local = loadRequestsLocal();
+    // also try to fetch from Firebase if available (async, will update later)
+    let html = '';
+    if(local.length){
+      html = local.map(r=> `<div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)"><span style="flex:1;min-width:0"><span style="font-size:12px;font-weight:800;color:#e4e6eb">${esc(r.name)}</span><br><span style="font-size:11px;color:#9aa3c0;word-break:break-all">${esc(r.url)}</span></span><span style="font-size:10px;padding:4px 8px;border-radius:999px;background:rgba(183,140,242,0.18);color:#cbb6ff;white-space:nowrap">${esc(r.status||'申請中')}</span></div>`).join('');
+    } else {
+      html = '<p style="font-size:11px;color:#7a83a8;margin:0">まだリクエストはありません。上から送信してください。</p>';
+    }
+    listEl.innerHTML = html;
+    // try Firebase fetch for shared view
+    try{
+      if(typeof firebase!=='undefined' && firebase.database && typeof firebaseConfig!=='undefined' && firebaseConfig.apiKey){
+        if(typeof initFirebase==='function') try{ initFirebase(); }catch(e){}
+        firebase.database().ref(REQ_FB_PATH).once('value').then(snap=>{
+          const val = snap.val();
+          if(!val) return;
+          const arr = Object.values(val);
+          if(arr.length){
+            const fbHtml = arr.slice(-10).reverse().map(r=> `<div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(79,195,247,0.08);border:1px solid rgba(79,195,247,0.15)"><span style="flex:1;min-width:0"><span style="font-size:12px;font-weight:800;color:#e4e6eb">${esc(r.name)}</span><br><span style="font-size:11px;color:#9aa3c0;word-break:break-all">${esc(r.url)}</span></span><span style="font-size:10px;padding:4px 8px;border-radius:999px;background:rgba(79,195,247,0.18);color:#8ecfff;white-space:nowrap">共有</span></div>`).join('');
+            if(fbHtml) listEl.innerHTML = fbHtml + (local.length? '<div style="height:8px"></div>'+html : '');
+          }
+        }).catch(()=>{});
+      }
+    }catch(e){}
+  }
+
+  async function handleRequest(){
+    const nameEl = document.getElementById('oshiReqName');
+    const urlEl = document.getElementById('oshiReqUrl');
+    const statusEl = document.getElementById('oshiReqStatus');
+    const btn = document.getElementById('oshiReqBtn');
+    if(!nameEl || !urlEl) return;
+    const name = nameEl.value.trim();
+    const url = urlEl.value.trim();
+    if(!name){
+      if(statusEl){ statusEl.textContent='名前を入力してください。'; statusEl.style.color='#f78fc0'; }
+      nameEl.focus();
+      return;
+    }
+    if(!url){
+      if(statusEl){ statusEl.textContent='YouTubeリンクを入力してください。'; statusEl.style.color='#f78fc0'; }
+      urlEl.focus();
+      return;
+    }
+    const parsed = parseYouTubeInput(url);
+    if(!parsed){
+      if(statusEl){ statusEl.textContent='YouTubeリンクの形式が正しくありません。例: https://www.youtube.com/@Ado1020'; statusEl.style.color='#f78fc0'; }
+      return;
+    }
+    if(btn){ btn.disabled=true; btn.textContent='送信中...'; }
+    const req = {
+      name,
+      url,
+      parsed,
+      at: Date.now(),
+      status: '申請中'
+    };
+    // local
+    const local = loadRequestsLocal();
+    local.push(req);
+    saveRequestsLocal(local);
+    // Firebase
+    let fbOk = false;
+    try{
+      if(typeof firebase!=='undefined' && firebase.database && typeof firebaseConfig!=='undefined' && firebaseConfig.apiKey){
+        if(typeof initFirebase==='function') try{ initFirebase(); }catch(e){}
+        if(typeof firebase.auth==='function' && !firebase.auth().currentUser){
+          try{ await firebase.auth().signInAnonymously(); }catch(e){}
+        }
+        await firebase.database().ref(REQ_FB_PATH).push({...req, at:Date.now()});
+        fbOk = true;
+      }
+    }catch(e){ console.warn('firebase request push failed', e); }
+    if(statusEl){
+      statusEl.textContent = fbOk ? 'リクエストを送信しました！管理者が確認して追加します。' : 'リクエストを保存しました（ローカル）。管理者に共有されます。';
+      statusEl.style.color='#8ecfff';
+    }
+    nameEl.value='';
+    urlEl.value='';
+    renderRequests();
+    if(btn){ btn.disabled=false; btn.textContent='リクエスト送信'; }
+    // also show toast
+    const t = document.createElement('div');
+    t.textContent = `「${name}」のリクエストを送信しました`;
+    t.style.cssText='position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:rgba(10,14,26,0.92);color:#fff;padding:10px 16px;border-radius:12px;font-size:12px;z-index:10001;box-shadow:0 8px 24px rgba(0,0,0,0.4)';
+    document.body.appendChild(t);
+    setTimeout(()=> t.remove(), 2500);
+  }
+
+  return { initSelected, getSelected, setSelected, loadMaster, loadLocked, getLocked, isLocked, updateStatus, open, close, bind, listenFirebase, renderRequests };
 })();
 
   // favibe oshi init wrapper
