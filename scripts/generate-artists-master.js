@@ -69,13 +69,21 @@ async function main(){
     const id = l.slug; // official slug
     const existingEntry = existingMap.get(id);
     // alias handling: tamanoinana -> nana-tamanoi
-    // if existing has tamanoinana but new is nana-tamanoi, keep channelId from old
     let channelId = existingEntry?.channelId || "";
-    // For kanae/kuzuha we have channelId, keep it
-    // For nana-tamanoi, map from tamanoinana
     if(id==='nana-tamanoi' && existingMap.has('tamanoinana')){
       channelId = existingMap.get('tamanoinana').channelId || channelId;
     }
+    // avatar: direct microCMS URL
+    let avatar = existingEntry?.avatar || "";
+    try{
+      const imgUrl = l.images?.head?.url || "";
+      const m = imgUrl.match(/url=([^&]+)/);
+      if(m){
+        avatar = decodeURIComponent(m[1]);
+      } else if(imgUrl.startsWith('https://')){
+        avatar = imgUrl;
+      }
+    }catch(e){}
     return {
       id,
       name: l.name,
@@ -84,6 +92,7 @@ async function main(){
       channelId,
       playlistId: existingEntry?.playlistId || "",
       color: existingEntry?.color || hashColor(id),
+      avatar,
       debutAt: l.profile.debutAt,
       subscriberCount: l.subscriberCount || 0
     };
