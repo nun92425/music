@@ -137,7 +137,8 @@ async function main(){
 
   const newMembers = [];
   for(const a of selArtists){
-    if(!a.playlistId){
+    const playlistIds = a.playlistIds ? a.playlistIds : (a.playlistId ? [a.playlistId] : []);
+    if(!playlistIds.length){
       console.warn(`[favibe] ${a.name} (${a.id}) has no playlistId, skip API, keep existing if any`);
       const existing = (data.members||[]).find(m=>m.id===a.id);
       if(existing) newMembers.push(existing);
@@ -150,7 +151,7 @@ async function main(){
           channelId: a.channelId || "",
           birthday: "",
           links: "[]",
-          avatar: "",
+          avatar: a.avatar || "",
           playlists: [{id: `PL_${a.id}_utamitai`, name:"歌ってみた", videos:[], channelId: a.channelId||""}],
           videos: [],
           scheduledStreams: []
@@ -158,40 +159,63 @@ async function main(){
       }
       continue;
     }
-    console.log(`[favibe] fetching playlist ${a.playlistId} for ${a.name}...`);
-    try{
-      const items = await ytPlaylistItems(a.playlistId, API_KEY);
-      console.log(`  -> ${items.length} videos`);
-      // optional: enrich via videos.list for viewCount etc (not needed for favibe but keep title/thumbnail)
-      const videos = items.map(it=> ({
-        id: it.id,
-        type: "regular",
-        cached: {
-          title: it.title,
-          thumbnail: it.thumbnail,
-          publishedAt: it.publishedAt,
-          channelId: it.channelId,
-          channelTitle: it.channelTitle
+    // support multiple playlists per artist (e.g., kanae 2 playlists)
+    const playlists = [];
+    let hasError = false;
+    for(let pi=0; pi<playlistIds.length; pi++){
+      const pid = playlistIds[pi];
+      console.log(`[favibe] fetching playlist ${pid} for ${a.name} (${pi+1}/${playlistIds.length})...`);
+      try{
+        const items = await ytPlaylistItems(pid, API_KEY);
+        console.log(`  -> ${items.length} videos`);
+        const videos = items.map(it=> ({
+          id: it.id,
+          type: "regular",
+          cached: {
+            title: it.title,
+            thumbnail: it.thumbnail,
+            publishedAt: it.publishedAt,
+            channelId: it.channelId,
+            channelTitle: it.channelTitle
+          }
+        }));
+        // try to keep original playlist name if exists in data.json
+        let plName = `歌ってみた${playlistIds.length>1 ? (pi+1) : ''}`;
+        const existing = (data.members||[]).find(m=>m.id===a.id);
+        if(existing){
+          const exPl = existing.playlists.find(p=>p.id===pid);
+          if(exPl) plName = exPl.name;
         }
-      }));
-      newMembers.push({
-        id: a.id,
-        name: a.name,
-        icon: "🎤",
-        channel: a.channelId ? `@${a.name}` : "",
-        channelId: a.channelId || "",
-        birthday: "",
-        links: "[]",
-        avatar: "",
-        playlists: [{id: a.playlistId, name:"歌ってみた", videos, channelId: a.channelId||""}],
-        videos: [],
-        scheduledStreams: []
-      });
-    }catch(e){
-      console.error(`  failed ${a.id}:`, e.message);
+        playlists.push({id: pid, name: plName, videos, channelId: a.channelId||""});
+      }catch(e){
+        console.error(`  failed ${a.id} ${pid}:`, e.message);
+        hasError = true;
+        const existing = (data.members||[]).find(m=>m.id===a.id);
+        if(existing){
+          const exPl = existing.playlists.find(p=>p.id===pid);
+          if(exPl) playlists.push(exPl);
+        }
+      }
+    }
+    if(!playlists.length){
+      console.warn(`[favibe] ${a.name} no playlists fetched, keep existing`);
       const existing = (data.members||[]).find(m=>m.id===a.id);
       if(existing) newMembers.push(existing);
+      continue;
     }
+    newMembers.push({
+      id: a.id,
+      name: a.name,
+      icon: "🎤",
+      channel: a.channelId ? `@${a.name}` : "",
+      channelId: a.channelId || "",
+      birthday: "",
+      links: "[]",
+      avatar: a.avatar || "",
+      playlists,
+      videos: [],
+      scheduledStreams: []
+    });
   }
 
   const out = {

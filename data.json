@@ -4,40 +4,485 @@
       "id": "kanae",
       "name": "叶",
       "icon": "🎤",
-      "channel": "@Kanae",
+      "channel": "@叶",
       "channelId": "UCspv01oxUFf_MTSipURRhkA",
       "birthday": "",
       "links": "[]",
-      "avatar": "",
+      "avatar": "https://images.microcms-assets.io/assets/5694fd90407444338a64d654e407cc0e/ba94d70307e344b083ca0b50fb733659/liver-face_Kanae.png",
       "playlists": [
         {
-          "id": "PL_kanae_utamitai",
-          "name": "歌ってみた",
+          "id": "PLXKMRoeWMiAllXl9hk855YWA5Xn9D0iQk",
+          "name": "歌ってみた1",
           "videos": [
             {
-              "id": "jNQXAC9IVRw",
+              "id": "QWItOSj0bEU",
               "type": "regular",
               "cached": {
-                "title": "叶 - サンプル 1 (Me at the zoo)",
-                "thumbnail": "https://i.ytimg.com/vi/jNQXAC9IVRw/hqdefault.jpg",
-                "publishedAt": "2024-06-01T12:00:00Z",
+                "title": "あいしていたのに / 叶 (cover)",
+                "thumbnail": "https://i.ytimg.com/vi/QWItOSj0bEU/hqdefault.jpg",
+                "publishedAt": "2026-07-06T15:00:06Z",
                 "channelId": "UCspv01oxUFf_MTSipURRhkA",
-                "channelTitle": "叶"
+                "channelTitle": "Kanae Channel"
               }
             },
             {
-              "id": "dQw4w9WgXcQ",
+              "id": "asJLdKtoueU",
               "type": "regular",
               "cached": {
-                "title": "叶 - サンプル 2 (Rick Astley)",
-                "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
-                "publishedAt": "2024-06-01T12:00:00Z",
+                "title": "モエチャッカファイア / 叶 (cover)",
+                "thumbnail": "https://i.ytimg.com/vi/asJLdKtoueU/hqdefault.jpg",
+                "publishedAt": "2026-05-10T13:00:07Z",
                 "channelId": "UCspv01oxUFf_MTSipURRhkA",
-                "channelTitle": "叶"
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "xOe3X5eJ5t0",
+              "type": "regular",
+              "cached": {
+                "title": "愛のうた / 叶 (cover)",
+                "thumbnail": "https://i.ytimg.com/vi/xOe3X5eJ5t0/hqdefault.jpg",
+                "publishedAt": "2026-04-01T13:00:06Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "6QYDZpCLfac",
+              "type": "regular",
+              "cached": {
+                "title": "ありがとう私立願ヶ丘高校",
+                "thumbnail": "https://i.ytimg.com/vi/6QYDZpCLfac/hqdefault.jpg",
+                "publishedAt": "2025-07-27T06:15:06Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "L2ZBGulIJrI",
+              "type": "regular",
+              "cached": {
+                "title": "キュートアグレッション / 叶 (cover)",
+                "thumbnail": "https://i.ytimg.com/vi/L2ZBGulIJrI/hqdefault.jpg",
+                "publishedAt": "2025-05-25T15:00:06Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "wTZWfO77M4U",
+              "type": "regular",
+              "cached": {
+                "title": "叶「愛My距離感」Music Video【1/29発売 樋口楓、叶「Yummy Yummy」c/w曲】",
+                "thumbnail": "https://i.ytimg.com/vi/wTZWfO77M4U/hqdefault.jpg",
+                "publishedAt": "2025-01-29T10:01:04Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "3zZ34hwXdxQ",
+              "type": "regular",
+              "cached": {
+                "title": "福音(Gospel) / 叶 (cover)",
+                "thumbnail": "https://i.ytimg.com/vi/3zZ34hwXdxQ/hqdefault.jpg",
+                "publishedAt": "2024-07-07T15:00:06Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "OPzbUoLxYyE",
+              "type": "regular",
+              "cached": {
+                "title": "心予報/歌わせていただきました。",
+                "thumbnail": "https://i.ytimg.com/vi/OPzbUoLxYyE/hqdefault.jpg",
+                "publishedAt": "2024-05-26T12:00:07Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "Y6QQk9Yukpg",
+              "type": "regular",
+              "cached": {
+                "title": "浴槽とネオンテトラ/歌わせていただきました。",
+                "thumbnail": "https://i.ytimg.com/vi/Y6QQk9Yukpg/hqdefault.jpg",
+                "publishedAt": "2024-05-02T11:45:07Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "sRjFLUOtB2c",
+              "type": "regular",
+              "cached": {
+                "title": "クィホーティ / 歌わせていただきました。",
+                "thumbnail": "https://i.ytimg.com/vi/sRjFLUOtB2c/hqdefault.jpg",
+                "publishedAt": "2023-10-30T15:00:08Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "28OUHpIKrsQ",
+              "type": "regular",
+              "cached": {
+                "title": "叶 「minority」Music Video",
+                "thumbnail": "https://i.ytimg.com/vi/28OUHpIKrsQ/hqdefault.jpg",
+                "publishedAt": "2023-09-16T09:00:01Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "tl7Zkg0FM2k",
+              "type": "regular",
+              "cached": {
+                "title": "叶 「How Much I Love You」Music Video",
+                "thumbnail": "https://i.ytimg.com/vi/tl7Zkg0FM2k/hqdefault.jpg",
+                "publishedAt": "2023-09-07T10:00:42Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "zZ7gBeLwHJ4",
+              "type": "regular",
+              "cached": {
+                "title": "叶 「わたしのリンゴ」Music Video",
+                "thumbnail": "https://i.ytimg.com/vi/zZ7gBeLwHJ4/hqdefault.jpg",
+                "publishedAt": "2023-08-30T10:00:56Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "sY1d31_EPoY",
+              "type": "regular",
+              "cached": {
+                "title": "Jam Jam ／ オリジナル曲",
+                "thumbnail": "https://i.ytimg.com/vi/sY1d31_EPoY/hqdefault.jpg",
+                "publishedAt": "2023-07-07T08:00:08Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "Z2LKsWDRiyE",
+              "type": "regular",
+              "cached": {
+                "title": "優しい人にならなければ / オリジナル曲",
+                "thumbnail": "https://i.ytimg.com/vi/Z2LKsWDRiyE/hqdefault.jpg",
+                "publishedAt": "2023-03-17T10:00:08Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "aOYP4RJBn30",
+              "type": "regular",
+              "cached": {
+                "title": "神様は死んだ、って /歌わせていただきました。",
+                "thumbnail": "https://i.ytimg.com/vi/aOYP4RJBn30/hqdefault.jpg",
+                "publishedAt": "2023-01-31T14:00:08Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "x55ncxjkJq0",
+              "type": "regular",
+              "cached": {
+                "title": "小悪魔だってかまわない！ /歌わせていただきました。",
+                "thumbnail": "https://i.ytimg.com/vi/x55ncxjkJq0/hqdefault.jpg",
+                "publishedAt": "2022-10-29T11:00:07Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "KQjH4UdwfaU",
+              "type": "regular",
+              "cached": {
+                "title": "花束の行方/オリジナル曲",
+                "thumbnail": "https://i.ytimg.com/vi/KQjH4UdwfaU/hqdefault.jpg",
+                "publishedAt": "2022-07-07T14:00:11Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "HnuIoErPCEo",
+              "type": "regular",
+              "cached": {
+                "title": "MIRA/歌わせていただきました。",
+                "thumbnail": "https://i.ytimg.com/vi/HnuIoErPCEo/hqdefault.jpg",
+                "publishedAt": "2021-09-19T10:00:18Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "k8jtzZws_xE",
+              "type": "regular",
+              "cached": {
+                "title": "死んでしまったのだろうか / 歌わせていただきました。",
+                "thumbnail": "https://i.ytimg.com/vi/k8jtzZws_xE/hqdefault.jpg",
+                "publishedAt": "2021-07-07T10:00:14Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "MAKB99pIX9w",
+              "type": "regular",
+              "cached": {
+                "title": "エンヴィーベイビー/歌わせていただきました。",
+                "thumbnail": "https://i.ytimg.com/vi/MAKB99pIX9w/hqdefault.jpg",
+                "publishedAt": "2021-06-13T10:00:11Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "xreoxgydC1M",
+              "type": "regular",
+              "cached": {
+                "title": "ダウナーウィッチ/歌わせていただきました。",
+                "thumbnail": "https://i.ytimg.com/vi/xreoxgydC1M/hqdefault.jpg",
+                "publishedAt": "2021-04-11T10:00:19Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "eWX-0Yweu4s",
+              "type": "regular",
+              "cached": {
+                "title": "馬鹿/歌わせていただきました。",
+                "thumbnail": "https://i.ytimg.com/vi/eWX-0Yweu4s/hqdefault.jpg",
+                "publishedAt": "2021-03-19T10:00:16Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "V_mi0Xka6sw",
+              "type": "regular",
+              "cached": {
+                "title": "ケッペキショウ/歌わせていただきました。",
+                "thumbnail": "https://i.ytimg.com/vi/V_mi0Xka6sw/hqdefault.jpg",
+                "publishedAt": "2020-10-22T11:00:12Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "ym20OM1p4vQ",
+              "type": "regular",
+              "cached": {
+                "title": "ベッドタイムヒーロー/歌わせていただきました",
+                "thumbnail": "https://i.ytimg.com/vi/ym20OM1p4vQ/hqdefault.jpg",
+                "publishedAt": "2020-05-02T12:00:13Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "Cpg8-xvhU_g",
+              "type": "regular",
+              "cached": {
+                "title": "懺悔参り / 歌わせていただきました。",
+                "thumbnail": "https://i.ytimg.com/vi/Cpg8-xvhU_g/hqdefault.jpg",
+                "publishedAt": "2020-04-10T11:00:15Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "0tpgZOv0i7U",
+              "type": "regular",
+              "cached": {
+                "title": "ホロン(Holon)/歌わせていただきました。",
+                "thumbnail": "https://i.ytimg.com/vi/0tpgZOv0i7U/hqdefault.jpg",
+                "publishedAt": "2019-11-02T09:00:10Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "_XJ5HHLsXk8",
+              "type": "regular",
+              "cached": {
+                "title": "野狗子/歌わせていただきました。",
+                "thumbnail": "https://i.ytimg.com/vi/_XJ5HHLsXk8/hqdefault.jpg",
+                "publishedAt": "2019-10-12T11:00:11Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "ucJCBFl9r9Y",
+              "type": "regular",
+              "cached": {
+                "title": "叶わないという事 / オリジナル曲",
+                "thumbnail": "https://i.ytimg.com/vi/ucJCBFl9r9Y/hqdefault.jpg",
+                "publishedAt": "2019-07-06T14:58:11Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
               }
             }
-          ],
-          "channelId": "UCspv01oxUFf_MTSipURRhkA"
+          ]
+        },
+        {
+          "id": "PLXKMRoeWMiAnLaLWuz9BwvPkIuxUKyA3L",
+          "name": "歌ってみた2",
+          "videos": [
+            {
+              "id": "h0WzG5X4_eU",
+              "type": "regular",
+              "cached": {
+                "title": "メメント - VACHSS Music Video",
+                "thumbnail": "https://i.ytimg.com/vi/h0WzG5X4_eU/hqdefault.jpg",
+                "publishedAt": "2024-06-01T12:00:43Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "lRTGADxT17g",
+              "type": "regular",
+              "cached": {
+                "title": "メメント - VACHSS Music Video",
+                "thumbnail": "https://i.ytimg.com/vi/lRTGADxT17g/hqdefault.jpg",
+                "publishedAt": "2024-06-01T12:00:07Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "J_56ZNzpFiw",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】 Happy Halloween / Junky 【叶＆魔界ノりりむ/にじさんじ】",
+                "thumbnail": "https://i.ytimg.com/vi/J_56ZNzpFiw/hqdefault.jpg",
+                "publishedAt": "2023-10-31T11:00:10Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "wKQh_6wOOV8",
+              "type": "regular",
+              "cached": {
+                "title": "イージーゲーム feat.和ぬか / natsumi  full covered by 叶 × 春茶",
+                "thumbnail": "https://i.ytimg.com/vi/wKQh_6wOOV8/hqdefault.jpg",
+                "publishedAt": "2022-04-29T10:00:13Z",
+                "channelId": "UChNxH3wxiElBSAdAyMfNhJQ",
+                "channelTitle": "春茶"
+              }
+            },
+            {
+              "id": "H4QruBg0cJ0",
+              "type": "regular",
+              "cached": {
+                "title": "Snow halation- μ's / cover",
+                "thumbnail": "https://i.ytimg.com/vi/H4QruBg0cJ0/hqdefault.jpg",
+                "publishedAt": "2022-03-13T11:01:04Z",
+                "channelId": "UC5ek2GWKvUKFgnKSHuuCFrw",
+                "channelTitle": "ナギ /  Nagi 【にじさんじ】"
+              }
+            },
+            {
+              "id": "dU0QM0LLKAw",
+              "type": "regular",
+              "cached": {
+                "title": "♚EYE♚ 歌ってみた【叶×キョウカ】",
+                "thumbnail": "https://i.ytimg.com/vi/dU0QM0LLKAw/hqdefault.jpg",
+                "publishedAt": "2021-11-11T10:00:15Z",
+                "channelId": "UCupCAZz1l52vV8m-dvaoBVQ",
+                "channelTitle": "Overidea公式/オーバーライディア"
+              }
+            },
+            {
+              "id": "U4gy7HcQ-Zg",
+              "type": "regular",
+              "cached": {
+                "title": "ディジーディジー / 三枝明那 × 叶 (cover)",
+                "thumbnail": "https://i.ytimg.com/vi/U4gy7HcQ-Zg/hqdefault.jpg",
+                "publishedAt": "2021-10-27T11:00:10Z",
+                "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ",
+                "channelTitle": "三枝明那 / Saegusa Akina"
+              }
+            },
+            {
+              "id": "6pCyiTzUsTw",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】かさねうた/CRカップテーマソング",
+                "thumbnail": "https://i.ytimg.com/vi/6pCyiTzUsTw/hqdefault.jpg",
+                "publishedAt": "2021-05-17T10:14:58Z",
+                "channelId": "UCV3h-YCXiKiMmVupdknm73Q",
+                "channelTitle": "Crazy Raccoon"
+              }
+            },
+            {
+              "id": "VFic9D2cEgI",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】 チューリングラブ ／ ナナヲアカリ 【叶＆星川サラ/にじさんじ】",
+                "thumbnail": "https://i.ytimg.com/vi/VFic9D2cEgI/hqdefault.jpg",
+                "publishedAt": "2020-08-19T10:00:13Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "LdzXm93GnAg",
+              "type": "regular",
+              "cached": {
+                "title": "ユアハイネス☆マイプリンセス / 緑仙×伏見ガク×夢追翔×叶 Cover",
+                "thumbnail": "https://i.ytimg.com/vi/LdzXm93GnAg/hqdefault.jpg",
+                "publishedAt": "2020-05-01T11:00:11Z",
+                "channelId": "UCt5-0i4AVHXaWJrL8Wql3mw",
+                "channelTitle": "緑仙 / Ryushen"
+              }
+            },
+            {
+              "id": "2vgwvF6eidI",
+              "type": "regular",
+              "cached": {
+                "title": "Virtual to LIVE（covered by ex Gamers）】Games Day【にじさんじ】",
+                "thumbnail": "https://i.ytimg.com/vi/2vgwvF6eidI/hqdefault.jpg",
+                "publishedAt": "2019-11-22T15:15:12Z",
+                "channelId": "UC0g1AE0DOjBYnLhkgoRWN1w",
+                "channelTitle": "本間ひまわり - Himawari Honma -"
+              }
+            },
+            {
+              "id": "xUPrlvoQPd4",
+              "type": "regular",
+              "cached": {
+                "title": "【桜ノ雨】みんなありがとうございました！【にじさんじゲーマーズ】",
+                "thumbnail": "https://i.ytimg.com/vi/xUPrlvoQPd4/hqdefault.jpg",
+                "publishedAt": "2018-11-15T13:00:10Z",
+                "channelId": "UCoztvTULBYd3WmStqYeoHcA",
+                "channelTitle": "笹木咲 / Sasaki Saku"
+              }
+            },
+            {
+              "id": "D5Cdf-iiuy8",
+              "type": "regular",
+              "cached": {
+                "title": "【初投稿】終末じゃない　歌ってみた【ChroNoiR】",
+                "thumbnail": "https://i.ytimg.com/vi/D5Cdf-iiuy8/hqdefault.jpg",
+                "publishedAt": "2018-08-23T06:25:22Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            }
+          ]
         }
       ],
       "videos": [],
@@ -46,41 +491,244 @@
     {
       "id": "kuzuha",
       "name": "葛葉",
-      "icon": "🎮",
-      "channel": "@Kuzuha",
+      "icon": "🎤",
+      "channel": "@葛葉",
       "channelId": "UCSFCh5NL4qXrAy9uB_Q4l2A",
       "birthday": "",
       "links": "[]",
-      "avatar": "",
+      "avatar": "https://images.microcms-assets.io/assets/5694fd90407444338a64d654e407cc0e/72c4d4d190f14fb2b865a24596118ba2/liver-face_Kuzuha.png",
       "playlists": [
         {
-          "id": "PL_kuzuha_utamitai",
-          "name": "歌ってみた",
+          "id": "PLwCa-x--ILnYjhfoyswMBJPOc5NAAHnoA",
+          "name": "歌ってみた1",
           "videos": [
             {
-              "id": "9bZkp7q19f0",
+              "id": "IND6zn6kTJY",
               "type": "regular",
               "cached": {
-                "title": "葛葉 - サンプル 1",
-                "thumbnail": "https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg",
-                "publishedAt": "2024-06-01T12:00:00Z",
-                "channelId": "UCSFCh5NL4qXrAy9uB_Q4l2A",
-                "channelTitle": "葛葉"
+                "title": "【MV】葛葉 / コントレイル",
+                "thumbnail": "https://i.ytimg.com/vi/IND6zn6kTJY/hqdefault.jpg",
+                "publishedAt": "2021-09-28T13:00:13Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
               }
             },
             {
-              "id": "kJQP7kiw5Fk",
+              "id": "7WQ9xnsv9kA",
               "type": "regular",
               "cached": {
-                "title": "葛葉 - サンプル 2",
-                "thumbnail": "https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg",
-                "publishedAt": "2024-06-01T12:00:00Z",
-                "channelId": "UCSFCh5NL4qXrAy9uB_Q4l2A",
-                "channelTitle": "葛葉"
+                "title": "【MV】甘噛み/葛葉",
+                "thumbnail": "https://i.ytimg.com/vi/7WQ9xnsv9kA/hqdefault.jpg",
+                "publishedAt": "2022-02-25T13:00:11Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "Gkab0PSw0IY",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】Bad Bitter/葛葉",
+                "thumbnail": "https://i.ytimg.com/vi/Gkab0PSw0IY/hqdefault.jpg",
+                "publishedAt": "2022-03-16T10:00:40Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "zKBpDP_QP6o",
+              "type": "regular",
+              "cached": {
+                "title": "【】クロウ【】",
+                "thumbnail": "https://i.ytimg.com/vi/zKBpDP_QP6o/hqdefault.jpg",
+                "publishedAt": "2022-03-31T10:00:15Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "tpSlJnFHv38",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】Black Crack/葛葉",
+                "thumbnail": "https://i.ytimg.com/vi/tpSlJnFHv38/hqdefault.jpg",
+                "publishedAt": "2023-10-12T15:00:42Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "wuFzJWVmccY",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】ONE SHOT/葛葉 feat.めいちゃん",
+                "thumbnail": "https://i.ytimg.com/vi/wuFzJWVmccY/hqdefault.jpg",
+                "publishedAt": "2024-08-05T11:00:07Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "MVNWw4UhG6o",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】ギミモ/葛葉",
+                "thumbnail": "https://i.ytimg.com/vi/MVNWw4UhG6o/hqdefault.jpg",
+                "publishedAt": "2025-09-28T14:45:06Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "X8njjHdF1go",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】王道/葛葉",
+                "thumbnail": "https://i.ytimg.com/vi/X8njjHdF1go/hqdefault.jpg",
+                "publishedAt": "2026-08-07T10:00:06Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
               }
             }
-          ],
-          "channelId": "UCSFCh5NL4qXrAy9uB_Q4l2A"
+          ]
+        },
+        {
+          "id": "PLwCa-x--ILnYzJaR8Igd6YyCjq-luCKq0",
+          "name": "歌ってみた2",
+          "videos": [
+            {
+              "id": "agdsLOXuY7k",
+              "type": "regular",
+              "cached": {
+                "title": "【】Casino / 歌ってみた 葛葉【】",
+                "thumbnail": "https://i.ytimg.com/vi/agdsLOXuY7k/hqdefault.jpg",
+                "publishedAt": "2025-03-08T14:45:06Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "Zq72ILc1IzQ",
+              "type": "regular",
+              "cached": {
+                "title": "さよーならまたいつか！　cover （3DLIVE ver.）by葛葉",
+                "thumbnail": "https://i.ytimg.com/vi/Zq72ILc1IzQ/hqdefault.jpg",
+                "publishedAt": "2024-10-27T13:35:37Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "fzlQ9lam_V4",
+              "type": "regular",
+              "cached": {
+                "title": "【】歌ってみた　ファイトソング (Fight Song)　by葛葉【】",
+                "thumbnail": "https://i.ytimg.com/vi/fzlQ9lam_V4/hqdefault.jpg",
+                "publishedAt": "2024-05-31T12:00:06Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "B-knvTjLj8U",
+              "type": "regular",
+              "cached": {
+                "title": "春を告げる / 葛葉【歌ってみた】",
+                "thumbnail": "https://i.ytimg.com/vi/B-knvTjLj8U/hqdefault.jpg",
+                "publishedAt": "2024-03-09T09:20:08Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "ITrFZkVGpzA",
+              "type": "regular",
+              "cached": {
+                "title": "GLAMOROUS SKY（cover）／葛葉",
+                "thumbnail": "https://i.ytimg.com/vi/ITrFZkVGpzA/hqdefault.jpg",
+                "publishedAt": "2023-12-15T13:15:01Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "GOXNIHylbOo",
+              "type": "regular",
+              "cached": {
+                "title": "【】fake face dance music カバードバイ歌ってみた by 葛葉【】",
+                "thumbnail": "https://i.ytimg.com/vi/GOXNIHylbOo/hqdefault.jpg",
+                "publishedAt": "2023-11-10T14:56:10Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "vRaifr5xKfM",
+              "type": "regular",
+              "cached": {
+                "title": "【】九龍レトロ 歌ってみた カバードバイ 葛葉【】",
+                "thumbnail": "https://i.ytimg.com/vi/vRaifr5xKfM/hqdefault.jpg",
+                "publishedAt": "2023-09-29T11:00:08Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "CaHX7RIHASw",
+              "type": "regular",
+              "cached": {
+                "title": "【】 カプリスキャスト 歌ってみた by 葛葉 【】",
+                "thumbnail": "https://i.ytimg.com/vi/CaHX7RIHASw/hqdefault.jpg",
+                "publishedAt": "2022-11-11T13:00:09Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "trlVHJTeQxk",
+              "type": "regular",
+              "cached": {
+                "title": "【】 ヴァンパイア／葛葉 歌ってみた 【】",
+                "thumbnail": "https://i.ytimg.com/vi/trlVHJTeQxk/hqdefault.jpg",
+                "publishedAt": "2021-10-31T11:00:12Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "4ifsnGEtX_E",
+              "type": "regular",
+              "cached": {
+                "title": "【】歌ってみた  悪魔の踊り方 葛葉【】",
+                "thumbnail": "https://i.ytimg.com/vi/4ifsnGEtX_E/hqdefault.jpg",
+                "publishedAt": "2020-07-26T09:15:11Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "z3tukOqkjyc",
+              "type": "regular",
+              "cached": {
+                "title": "【】歌ってみた 疑心暗鬼 葛葉 にじさん【】",
+                "thumbnail": "https://i.ytimg.com/vi/z3tukOqkjyc/hqdefault.jpg",
+                "publishedAt": "2019-09-28T12:00:17Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            },
+            {
+              "id": "oPAcjv__fbc",
+              "type": "regular",
+              "cached": {
+                "title": "【】歌ってみた KING 葛葉 【】",
+                "thumbnail": "https://i.ytimg.com/vi/oPAcjv__fbc/hqdefault.jpg",
+                "publishedAt": "2020-11-10T11:00:10Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
+            }
+          ]
         }
       ],
       "videos": [],
@@ -89,41 +737,337 @@
     {
       "id": "nana-tamanoi",
       "name": "珠乃井ナナ",
-      "icon": "🎨",
-      "channel": "@TamanouiNana",
+      "icon": "🎤",
+      "channel": "@珠乃井ナナ",
       "channelId": "UC1zFJrfEKgQlCYy30F3aOldA",
       "birthday": "",
       "links": "[]",
-      "avatar": "",
+      "avatar": "https://images.microcms-assets.io/assets/5694fd90407444338a64d654e407cc0e/f76ae3abb42440108fb75605bdd764e7/liver-face_Nana_Tamanoi.png",
       "playlists": [
         {
-          "id": "PL_nana-tamanoi_utamitai",
+          "id": "PLDKyRzlbU0cG-lfve8ZkcXl1sK1OgsHrd",
           "name": "歌ってみた",
           "videos": [
             {
-              "id": "C0DPdy98e4c",
+              "id": "x-__Ed5GTuk",
               "type": "regular",
               "cached": {
-                "title": "珠乃井ナナ - サンプル 1",
-                "thumbnail": "https://i.ytimg.com/vi/C0DPdy98e4c/hqdefault.jpg",
-                "publishedAt": "2024-06-01T12:00:00Z",
-                "channelId": "UC1zFJrfEKgQlCYy30F3aOldA",
-                "channelTitle": "珠乃井ナナ"
+                "title": "【歌ってみた】Henceforth / Orangestar【にじさんじ/珠乃井ナナ】",
+                "thumbnail": "https://i.ytimg.com/vi/x-__Ed5GTuk/hqdefault.jpg",
+                "publishedAt": "2026-08-17T12:00:06Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
               }
             },
             {
-              "id": "hT_nvWreIhg",
+              "id": "Nx5HVReW670",
               "type": "regular",
               "cached": {
-                "title": "珠乃井ナナ - サンプル 2",
-                "thumbnail": "https://i.ytimg.com/vi/hT_nvWreIhg/hqdefault.jpg",
-                "publishedAt": "2024-06-01T12:00:00Z",
-                "channelId": "UC1zFJrfEKgQlCYy30F3aOldA",
-                "channelTitle": "珠乃井ナナ"
+                "title": "【歌ってみた】海の幽霊 / 米津玄師【にじさんじ/珠乃井ナナ】",
+                "thumbnail": "https://i.ytimg.com/vi/Nx5HVReW670/hqdefault.jpg",
+                "publishedAt": "2026-06-20T14:00:06Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "Hfv8yhX2Gu4",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】かくれんぼ / AliA【にじさんじ/珠乃井ナナ】",
+                "thumbnail": "https://i.ytimg.com/vi/Hfv8yhX2Gu4/hqdefault.jpg",
+                "publishedAt": "2026-04-24T12:00:07Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "PQqWVMoq2Lc",
+              "type": "regular",
+              "cached": {
+                "title": "好き、お願い ／ covered by  小清水透 /倉持めると /栞葉るり /綺沙良 /司賀りこ /珠乃井ナナ /早乙女ベリー",
+                "thumbnail": "https://i.ytimg.com/vi/PQqWVMoq2Lc/hqdefault.jpg",
+                "publishedAt": "2026-02-14T09:00:06Z",
+                "channelId": "UCUP8TmlO7NNra88AMqGU_vQ",
+                "channelTitle": "小清水 透 / Koshimizu Toru【にじさんじ】"
+              }
+            },
+            {
+              "id": "iLyCy1sZfrc",
+              "type": "regular",
+              "cached": {
+                "title": "『君の夢(Music Video)』弦月藤士郎 feat. 珠乃井ナナ",
+                "thumbnail": "https://i.ytimg.com/vi/iLyCy1sZfrc/hqdefault.jpg",
+                "publishedAt": "2025-12-30T12:00:06Z",
+                "channelId": "UCGw7lrT-rVZCWHfdG9Frcgg",
+                "channelTitle": "弦月 藤士郎 / Genzuki Tojiro【にじさんじ】"
+              }
+            },
+            {
+              "id": "bKvfuA724Cc",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】ケセラセラ / Mrs. GREEN APPLE【にじさんじ/珠乃井ナナ】",
+                "thumbnail": "https://i.ytimg.com/vi/bKvfuA724Cc/hqdefault.jpg",
+                "publishedAt": "2025-12-27T10:00:07Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "lbOLI7qdhWU",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】KYAWAII♡5000%/ いずれ菖蒲か杜若",
+                "thumbnail": "https://i.ytimg.com/vi/lbOLI7qdhWU/hqdefault.jpg",
+                "publishedAt": "2025-12-26T10:00:07Z",
+                "channelId": "UCYjdP5F0ds2D6deMo5rpoyw",
+                "channelTitle": "いずれ菖蒲か杜若"
+              }
+            },
+            {
+              "id": "Z1Qu9CTUOQQ",
+              "type": "regular",
+              "cached": {
+                "title": "だいしきゅーだいしゅき【歌ってみた】【珠乃井ナナ＆司賀りこ/にじさんじ所属】",
+                "thumbnail": "https://i.ytimg.com/vi/Z1Qu9CTUOQQ/hqdefault.jpg",
+                "publishedAt": "2025-12-09T11:00:06Z",
+                "channelId": "UCzsCWYuvPUky3-DKzphYbEw",
+                "channelTitle": "司賀りこ / Shiga Riko【にじさんじ】"
+              }
+            },
+            {
+              "id": "oX1dmb928u0",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】Flyer!  covered by 珠乃井ナナ ＆ 七瀬すず菜 【にじさんじ】",
+                "thumbnail": "https://i.ytimg.com/vi/oX1dmb928u0/hqdefault.jpg",
+                "publishedAt": "2025-11-01T11:30:06Z",
+                "channelId": "UCtC3B1n4XMiJmrDtu1Ni5qw",
+                "channelTitle": "七瀬 すず菜 / Nanase Suzuna【にじさんじ】"
+              }
+            },
+            {
+              "id": "q-yy8a4Q1tE",
+              "type": "regular",
+              "cached": {
+                "title": "CR詠ZY(Cover）【立伝都々×北見遊征×珠乃井ナナ×早乙女ベリー×渚トラウト】",
+                "thumbnail": "https://i.ytimg.com/vi/q-yy8a4Q1tE/hqdefault.jpg",
+                "publishedAt": "2025-08-27T10:00:06Z",
+                "channelId": "UCnbJ8LTbHrsRgqkxwJXCU8w",
+                "channelTitle": "立伝都々 / Tachitsute Toto【にじさんじ】"
+              }
+            },
+            {
+              "id": "36z7u61z7oQ",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】Surges / Orangestar【珠乃井ナナ 伊波ライ / にじさんじ】",
+                "thumbnail": "https://i.ytimg.com/vi/36z7u61z7oQ/hqdefault.jpg",
+                "publishedAt": "2025-08-19T11:30:06Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "yCsHIezujbM",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】少女レイ / みきとP【珠乃井ナナ 七瀬すず菜 / にじさんじ】",
+                "thumbnail": "https://i.ytimg.com/vi/yCsHIezujbM/hqdefault.jpg",
+                "publishedAt": "2025-07-07T11:30:06Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "wKzRHpp0I8I",
+              "type": "regular",
+              "cached": {
+                "title": "【アニメ】シャオシャオ蘭々♪ / いずれ菖蒲か杜若【1周年記念スペシャルアニメ】",
+                "thumbnail": "https://i.ytimg.com/vi/wKzRHpp0I8I/hqdefault.jpg",
+                "publishedAt": "2025-06-20T12:10:06Z",
+                "channelId": "UCYjdP5F0ds2D6deMo5rpoyw",
+                "channelTitle": "いずれ菖蒲か杜若"
+              }
+            },
+            {
+              "id": "at3wL-_BFfU",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】無理すぎ♡オタクハート/ いずれ菖蒲か杜若",
+                "thumbnail": "https://i.ytimg.com/vi/at3wL-_BFfU/hqdefault.jpg",
+                "publishedAt": "2025-06-20T12:00:07Z",
+                "channelId": "UCYjdP5F0ds2D6deMo5rpoyw",
+                "channelTitle": "いずれ菖蒲か杜若"
+              }
+            },
+            {
+              "id": "GRTYdWyuzjM",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】DAYBREAK FRONTLINE / Orangestar【にじさんじ/珠乃井ナナ】",
+                "thumbnail": "https://i.ytimg.com/vi/GRTYdWyuzjM/hqdefault.jpg",
+                "publishedAt": "2025-06-20T11:20:07Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "CBlltFAZlNA",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】ジャックポットサッドガール【ぽとなる / にじさんじ】",
+                "thumbnail": "https://i.ytimg.com/vi/CBlltFAZlNA/hqdefault.jpg",
+                "publishedAt": "2025-05-15T11:00:07Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "roqpwYqNd-A",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】ライラック / Mrs. GREEN APPLE【にじさんじ/珠乃井ナナ】",
+                "thumbnail": "https://i.ytimg.com/vi/roqpwYqNd-A/hqdefault.jpg",
+                "publishedAt": "2025-04-24T10:00:06Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "HveKZhzR20Y",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】ボルテッカー / DECO*27【珠乃井ナナ ルンルン / にじさんじ】",
+                "thumbnail": "https://i.ytimg.com/vi/HveKZhzR20Y/hqdefault.jpg",
+                "publishedAt": "2025-04-16T11:30:07Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "H4oQ7Fb0k5Y",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】モエチャッカファイア【 いずれ菖蒲か杜若 / にじさんじ】",
+                "thumbnail": "https://i.ytimg.com/vi/H4oQ7Fb0k5Y/hqdefault.jpg",
+                "publishedAt": "2025-02-15T11:30:06Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "QmolRB6DfXY",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】マフィア(Mafia) / wotaku【珠乃井ナナ 司賀りこ / にじさんじ】",
+                "thumbnail": "https://i.ytimg.com/vi/QmolRB6DfXY/hqdefault.jpg",
+                "publishedAt": "2025-01-24T11:30:06Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "KBGGl0lKYZI",
+              "type": "regular",
+              "cached": {
+                "title": "Beyond the way【歌ってみた】【珠乃井ナナ×司賀りこ×綺沙良】",
+                "thumbnail": "https://i.ytimg.com/vi/KBGGl0lKYZI/hqdefault.jpg",
+                "publishedAt": "2024-12-28T11:00:06Z",
+                "channelId": "UCzsCWYuvPUky3-DKzphYbEw",
+                "channelTitle": "司賀りこ / Shiga Riko【にじさんじ】"
+              }
+            },
+            {
+              "id": "9P3kxfons2E",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】どきどきキュン!で大暴走♡ / いずれ菖蒲か杜若",
+                "thumbnail": "https://i.ytimg.com/vi/9P3kxfons2E/hqdefault.jpg",
+                "publishedAt": "2024-12-24T12:00:06Z",
+                "channelId": "UCYjdP5F0ds2D6deMo5rpoyw",
+                "channelTitle": "いずれ菖蒲か杜若"
+              }
+            },
+            {
+              "id": "xF2rJvcEFjE",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】ハオ feat. 初音ミク【にじさんじ/珠乃井ナナ】",
+                "thumbnail": "https://i.ytimg.com/vi/xF2rJvcEFjE/hqdefault.jpg",
+                "publishedAt": "2024-12-19T11:30:06Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "ioelbjJiY7I",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】青空のラプソディ / fhána【珠乃井ナナ ルンルン / にじさんじ】",
+                "thumbnail": "https://i.ytimg.com/vi/ioelbjJiY7I/hqdefault.jpg",
+                "publishedAt": "2024-10-11T11:00:06Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "wZkXIUq3i2Q",
+              "type": "regular",
+              "cached": {
+                "title": "夏色えがおで1,2,Jump! / いずれ菖蒲か杜若【歌ってみた】",
+                "thumbnail": "https://i.ytimg.com/vi/wZkXIUq3i2Q/hqdefault.jpg",
+                "publishedAt": "2024-08-24T10:30:07Z",
+                "channelId": "UCYjdP5F0ds2D6deMo5rpoyw",
+                "channelTitle": "いずれ菖蒲か杜若"
+              }
+            },
+            {
+              "id": "5V6nWeZLoNQ",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】夏影 ～Cornwall summer mix～ / Lia 「AIR」挿入歌【にじさんじ/珠乃井ナナ】",
+                "thumbnail": "https://i.ytimg.com/vi/5V6nWeZLoNQ/hqdefault.jpg",
+                "publishedAt": "2024-08-12T04:00:06Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "eZDgIUXw-QU",
+              "type": "regular",
+              "cached": {
+                "title": "ポジティブ☆ダンスタイム / 珠乃井ナナ×司賀りこ【歌ってみた】",
+                "thumbnail": "https://i.ytimg.com/vi/eZDgIUXw-QU/hqdefault.jpg",
+                "publishedAt": "2024-07-20T11:00:07Z",
+                "channelId": "UCzsCWYuvPUky3-DKzphYbEw",
+                "channelTitle": "司賀りこ / Shiga Riko【にじさんじ】"
+              }
+            },
+            {
+              "id": "6B_Qy_KP2_o",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】トンデモワンダーズ / sasakure.‌UK【にじさんじ/珠乃井ナナ】",
+                "thumbnail": "https://i.ytimg.com/vi/6B_Qy_KP2_o/hqdefault.jpg",
+                "publishedAt": "2024-06-22T12:50:06Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
+              "id": "Wuf5CLGgxJY",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】シャオシャオ蘭々♪ / いずれ菖蒲か杜若",
+                "thumbnail": "https://i.ytimg.com/vi/Wuf5CLGgxJY/hqdefault.jpg",
+                "publishedAt": "2024-06-19T09:00:33Z",
+                "channelId": "UCYjdP5F0ds2D6deMo5rpoyw",
+                "channelTitle": "いずれ菖蒲か杜若"
               }
             }
-          ],
-          "channelId": "UC1zFJrfEKgQlCYy30F3aOldA"
+          ]
         }
       ],
       "videos": [],
@@ -132,41 +1076,409 @@
     {
       "id": "chronoir",
       "name": "ChroNoiR",
-      "icon": "🌙",
-      "channel": "@ChroNoiR",
-      "channelId": "UC_chronoir",
+      "icon": "🎤",
+      "channel": "",
+      "channelId": "",
       "birthday": "",
       "links": "[]",
       "avatar": "",
       "playlists": [
         {
-          "id": "PL_chronoir_utamitai",
-          "name": "歌ってみた",
+          "id": "PLhMmjX5_vTJSlIeZKHkrCR4FQ8nIr9slU",
+          "name": "ChroNoiR1",
           "videos": [
             {
-              "id": "RgKAFK5djSk",
+              "id": "0VSgx7b8-LQ",
               "type": "regular",
               "cached": {
-                "title": "ChroNoiR - サンプル (Waka Waka)",
-                "thumbnail": "https://i.ytimg.com/vi/RgKAFK5djSk/hqdefault.jpg",
-                "publishedAt": "2024-06-01T12:00:00Z",
-                "channelId": "UC_chronoir",
+                "title": "【MV】Endless showtime / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/0VSgx7b8-LQ/hqdefault.jpg",
+                "publishedAt": "2026-07-17T12:00:06Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
                 "channelTitle": "ChroNoiR"
               }
             },
             {
-              "id": "fRh_vgS2dFE",
+              "id": "YJorGbmyPT8",
               "type": "regular",
               "cached": {
-                "title": "ChroNoiR - サンプル 2 (Sorry)",
-                "thumbnail": "https://i.ytimg.com/vi/fRh_vgS2dFE/hqdefault.jpg",
-                "publishedAt": "2024-06-01T12:00:00Z",
-                "channelId": "UC_chronoir",
+                "title": "【MV】リナリア / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/YJorGbmyPT8/hqdefault.jpg",
+                "publishedAt": "2025-12-24T12:00:06Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "IBw4bzyse0I",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】不可Boom / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/IBw4bzyse0I/hqdefault.jpg",
+                "publishedAt": "2025-12-24T11:00:06Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "7CtmlXCANhY",
+              "type": "regular",
+              "cached": {
+                "title": "ChroNoiR の7年間をたどろう！MV / カオティックライバー【#AndroidかこってMUSIC】",
+                "thumbnail": "https://i.ytimg.com/vi/7CtmlXCANhY/hqdefault.jpg",
+                "publishedAt": "2025-06-27T11:00:06Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "G_nTDFrZIqQ",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】Haru no yokan / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/G_nTDFrZIqQ/hqdefault.jpg",
+                "publishedAt": "2025-03-31T10:00:06Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "qpFqC-ZMYAc",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】深愛 / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/qpFqC-ZMYAc/hqdefault.jpg",
+                "publishedAt": "2024-12-17T15:00:06Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "TxvDGaoJcxk",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】Ctrl Z / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/TxvDGaoJcxk/hqdefault.jpg",
+                "publishedAt": "2024-11-17T15:00:08Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "OWOpRtAY0QI",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】Catch Fire / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/OWOpRtAY0QI/hqdefault.jpg",
+                "publishedAt": "2024-07-16T15:00:06Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "H5lhjD0_L0k",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】Twilight / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/H5lhjD0_L0k/hqdefault.jpg",
+                "publishedAt": "2024-02-07T11:00:11Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "yaG9KZD2tLo",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】Torpor / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/yaG9KZD2tLo/hqdefault.jpg",
+                "publishedAt": "2024-01-15T10:00:07Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "y0LVCGkjhmw",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】VVS / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/y0LVCGkjhmw/hqdefault.jpg",
+                "publishedAt": "2024-01-08T09:00:09Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "B1VgNyQGXpo",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】カオティックライバー / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/B1VgNyQGXpo/hqdefault.jpg",
+                "publishedAt": "2023-08-20T14:30:12Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "5r7m54XfxkQ",
+              "type": "regular",
+              "cached": {
+                "title": "ChroNoiR Episode.0",
+                "thumbnail": "https://i.ytimg.com/vi/5r7m54XfxkQ/hqdefault.jpg",
+                "publishedAt": "2023-07-28T10:00:10Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "TlZI83VuU3Y",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】スターブラックゲイザー / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/TlZI83VuU3Y/hqdefault.jpg",
+                "publishedAt": "2022-08-22T10:30:12Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "RGELbl63AQI",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】ブラッディ・グルービー / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/RGELbl63AQI/hqdefault.jpg",
+                "publishedAt": "2021-12-25T11:00:11Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "A7wT8CRUU_E",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】マグマグラグラ / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/A7wT8CRUU_E/hqdefault.jpg",
+                "publishedAt": "2021-11-06T11:00:11Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "l93ewtB1ipU",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】Geminids/ ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/l93ewtB1ipU/hqdefault.jpg",
+                "publishedAt": "2020-12-20T11:02:11Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "kkHLnRSCCec",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】LET IT BURN / ChroNoiR feat.加賀美ハヤト",
+                "thumbnail": "https://i.ytimg.com/vi/kkHLnRSCCec/hqdefault.jpg",
+                "publishedAt": "2020-10-30T10:00:11Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "bJD2wtXcIRA",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】常夏★スカイスクレイパー / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/bJD2wtXcIRA/hqdefault.jpg",
+                "publishedAt": "2020-09-13T13:00:12Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "sTcvNTQS86s",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】ヘテロスタシス / ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/sTcvNTQS86s/hqdefault.jpg",
+                "publishedAt": "2020-02-11T13:00:13Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
                 "channelTitle": "ChroNoiR"
               }
             }
-          ],
-          "channelId": "UC_chronoir"
+          ]
+        },
+        {
+          "id": "PLhMmjX5_vTJTqWiD2JWqInG8rJmz8DJeO",
+          "name": "ChroNoiR2",
+          "videos": [
+            {
+              "id": "SKQFauN1esg",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】Stormy / covered by ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/SKQFauN1esg/hqdefault.jpg",
+                "publishedAt": "2026-05-15T14:00:06Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "dxrt5cpdcF8",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】ホムンクルス / covered by ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/dxrt5cpdcF8/hqdefault.jpg",
+                "publishedAt": "2026-05-02T10:00:06Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "SAygNPjQo_U",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】AIZO / covered by ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/SAygNPjQo_U/hqdefault.jpg",
+                "publishedAt": "2026-04-14T13:00:06Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "9zC0dpFAGqQ",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】ダイダイダイダイダイキライ / covered by ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/9zC0dpFAGqQ/hqdefault.jpg",
+                "publishedAt": "2025-08-11T13:00:06Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "5sumwTVr-Kg",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】Plazma / covered by ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/5sumwTVr-Kg/hqdefault.jpg",
+                "publishedAt": "2025-07-17T12:00:06Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "EJInP72F4W4",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】SPECIALZ / covered by ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/EJInP72F4W4/hqdefault.jpg",
+                "publishedAt": "2024-10-31T10:00:06Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "ADsGN53MGc4",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】ヒアソビ / covered by ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/ADsGN53MGc4/hqdefault.jpg",
+                "publishedAt": "2023-06-30T09:00:09Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "45l-i4URN9M",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】再会 / covered by ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/45l-i4URN9M/hqdefault.jpg",
+                "publishedAt": "2023-04-08T10:00:08Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "k0olaw_WjlA",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】シネマ / covered by ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/k0olaw_WjlA/hqdefault.jpg",
+                "publishedAt": "2022-12-12T10:30:07Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "JaBTZit9cuo",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】CandyDance / covered by ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/JaBTZit9cuo/hqdefault.jpg",
+                "publishedAt": "2022-07-10T09:00:13Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "ElrslcJTaAk",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】アウトサイダー / covered by ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/ElrslcJTaAk/hqdefault.jpg",
+                "publishedAt": "2021-06-27T09:00:10Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "VNgVknQ69cc",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】シュガーヘイト / covered by ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/VNgVknQ69cc/hqdefault.jpg",
+                "publishedAt": "2021-05-28T10:00:11Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "dXduaq_QbdI",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】ChroNoiR HoneyWorks medley",
+                "thumbnail": "https://i.ytimg.com/vi/dXduaq_QbdI/hqdefault.jpg",
+                "publishedAt": "2021-02-21T11:00:18Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "uexq0h89LNs",
+              "type": "regular",
+              "cached": {
+                "title": "【歌ってみた】Ice breaker / covered by ChroNoiR",
+                "thumbnail": "https://i.ytimg.com/vi/uexq0h89LNs/hqdefault.jpg",
+                "publishedAt": "2020-05-24T11:00:13Z",
+                "channelId": "UCz6vnIbgiqFT9xUcD6Bp65Q",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "D5Cdf-iiuy8",
+              "type": "regular",
+              "cached": {
+                "title": "【初投稿】終末じゃない　歌ってみた【ChroNoiR】",
+                "thumbnail": "https://i.ytimg.com/vi/D5Cdf-iiuy8/hqdefault.jpg",
+                "publishedAt": "2018-08-23T06:25:22Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            }
+          ]
         }
       ],
       "videos": [],
@@ -175,7 +1487,16 @@
   ],
   "config": {
     "fetchTime": "6:00",
-    "lastFetch": "2026-09-01T00:09:31.615527+00:00"
+    "lastFetch": "2026-09-01T02:04:50.797Z",
+    "fetchedPlaylists": [
+      "PLXKMRoeWMiAllXl9hk855YWA5Xn9D0iQk",
+      "PLXKMRoeWMiAnLaLWuz9BwvPkIuxUKyA3L",
+      "PLwCa-x--ILnYjhfoyswMBJPOc5NAAHnoA",
+      "PLwCa-x--ILnYzJaR8Igd6YyCjq-luCKq0",
+      "PLDKyRzlbU0cG-lfve8ZkcXl1sK1OgsHrd",
+      "PLhMmjX5_vTJSlIeZKHkrCR4FQ8nIr9slU",
+      "PLhMmjX5_vTJTqWiD2JWqInG8rJmz8DJeO"
+    ]
   },
   "pointConfig": {
     "pointTypes": [],

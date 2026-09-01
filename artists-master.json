@@ -534,11 +534,15 @@
       "enName": "Kanae",
       "group": "にじさんじ",
       "channelId": "UCspv01oxUFf_MTSipURRhkA",
-      "playlistId": "PL_kanae_utamitai",
+      "playlistId": "PLXKMRoeWMiAllXl9hk855YWA5Xn9D0iQk",
       "color": "#7EB8DA",
       "avatar": "https://images.microcms-assets.io/assets/5694fd90407444338a64d654e407cc0e/ba94d70307e344b083ca0b50fb733659/liver-face_Kanae.png",
       "debutAt": "2018-05-01T15:00:00.000Z",
-      "subscriberCount": 1630000
+      "subscriberCount": 1630000,
+      "playlistIds": [
+        "PLXKMRoeWMiAllXl9hk855YWA5Xn9D0iQk",
+        "PLXKMRoeWMiAnLaLWuz9BwvPkIuxUKyA3L"
+      ]
     },
     {
       "id": "roco-kaburaki",
@@ -654,11 +658,15 @@
       "enName": "Kuzuha",
       "group": "にじさんじ",
       "channelId": "UCSFCh5NL4qXrAy9uB_Q4l2A",
-      "playlistId": "PL_kuzuha_utamitai",
+      "playlistId": "PLwCa-x--ILnYjhfoyswMBJPOc5NAAHnoA",
       "color": "#C9282D",
       "avatar": "https://images.microcms-assets.io/assets/5694fd90407444338a64d654e407cc0e/72c4d4d190f14fb2b865a24596118ba2/liver-face_Kuzuha.png",
       "debutAt": "2018-07-29T15:00:00.000Z",
-      "subscriberCount": 2210000
+      "subscriberCount": 2210000,
+      "playlistIds": [
+        "PLwCa-x--ILnYjhfoyswMBJPOc5NAAHnoA",
+        "PLwCa-x--ILnYzJaR8Igd6YyCjq-luCKq0"
+      ]
     },
     {
       "id": "meruto-kuramochi",
@@ -1278,11 +1286,14 @@
       "enName": "Tamanoi Nana",
       "group": "にじさんじ",
       "channelId": "UC1zFJrfEKgQlCYy30F3aOldA",
-      "playlistId": "",
+      "playlistId": "PLDKyRzlbU0cG-lfve8ZkcXl1sK1OgsHrd",
       "color": "hsl(232, 65%, 65%)",
       "avatar": "https://images.microcms-assets.io/assets/5694fd90407444338a64d654e407cc0e/f76ae3abb42440108fb75605bdd764e7/liver-face_Nana_Tamanoi.png",
       "debutAt": "2024-06-18T15:00:00.000Z",
-      "subscriberCount": 353000
+      "subscriberCount": 353000,
+      "playlistIds": [
+        "PLDKyRzlbU0cG-lfve8ZkcXl1sK1OgsHrd"
+      ]
     },
     {
       "id": "daichi-tsukahara",
@@ -2406,10 +2417,14 @@
       "enName": "ChroNoiR",
       "group": "にじさんじユニット",
       "channelId": "",
-      "playlistId": "PL_chronoir_utamitai",
+      "playlistId": "PLhMmjX5_vTJSlIeZKHkrCR4FQ8nIr9slU",
       "color": "#1a1a1a",
       "debutAt": "",
-      "subscriberCount": 0
+      "subscriberCount": 0,
+      "playlistIds": [
+        "PLhMmjX5_vTJSlIeZKHkrCR4FQ8nIr9slU",
+        "PLhMmjX5_vTJTqWiD2JWqInG8rJmz8DJeO"
+      ]
     }
   ]
 }
