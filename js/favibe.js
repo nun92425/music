@@ -227,10 +227,26 @@ const Millivibe = (function(){
       const s = JSON.parse(localStorage.getItem('favibe_settings')||'null');
       if(s){ autoNext = !!s.autoNext; shuffle = !!s.shuffle; repeat = s.repeat||'off'; automix = !!s.automix; }
     }catch(e){}
+    // 旧チェックボックス互換
     if($('autoNextToggle')) $('autoNextToggle').checked = autoNext;
+    // 新トグルボタン
+    if($('btnAutoNext')){
+      $('btnAutoNext').dataset.on = autoNext ? '1' : '0';
+      $('btnAutoNext').classList.toggle('active', autoNext);
+      $('btnAutoNext').style.background = autoNext ? 'linear-gradient(120deg,#4fc3f7,#b48cf2)' : 'rgba(255,255,255,0.06)';
+      $('btnAutoNext').style.color = autoNext ? '#fff' : '#9aa3c0';
+      $('btnAutoNext').style.borderColor = autoNext ? 'transparent' : 'rgba(255,255,255,0.12)';
+    }
     if($('btnShuffle')) $('btnShuffle').classList.toggle('active', shuffle);
     if($('btnRepeat')) { $('btnRepeat').dataset.mode = repeat; $('btnRepeat').classList.toggle('active', repeat!=='off'); $('btnRepeat').textContent = repeat==='one' ? 'ONE' : repeat==='all' ? 'ALL' : 'REP'; }
     if($('btnAutomix')) { $('btnAutomix').dataset.on = automix?'1':'0'; $('btnAutomix').classList.toggle('active', automix); }
+    // 音量表示
+    try{
+      const v = parseInt(localStorage.getItem('milpro_millivibe_volume')||'80',10);
+      if($('volSlider')) $('volSlider').value = String(v);
+      if($('volFill')) $('volFill').style.height = v + '%';
+      if($('volValue')) $('volValue').textContent = String(v);
+    }catch(e){}
   }
   function saveSettings(){
     try{ localStorage.setItem('favibe_settings', JSON.stringify({autoNext, shuffle, repeat, automix})); }catch(e){}
@@ -1489,6 +1505,50 @@ const Millivibe = (function(){
     if($('volSlider')) $('volSlider').addEventListener('input', e=>{
       const v = parseInt(e.target.value,10);
       if(player && player.setVolume) player.setVolume(v);
+    });
+    const volPopup = $('volPopup');
+    const volWrap = document.querySelector('.vol-popup-wrap');
+    let volPopupOpen = false;
+    function openVolPopup(){
+      if(!volPopup) return;
+      volPopup.style.display='flex';
+      requestAnimationFrame(()=> volPopup.classList.add('open'));
+      volPopupOpen = true;
+    }
+    function closeVolPopup(){
+      if(!volPopup) return;
+      volPopup.classList.remove('open');
+      volPopupOpen = false;
+      setTimeout(()=>{ if(!volPopupOpen) volPopup.style.display='none'; }, 150);
+    }
+    if($('volMuteBtn')) $('volMuteBtn').addEventListener('click', e=>{
+      e.stopPropagation();
+      if(volPopupOpen) closeVolPopup(); else openVolPopup();
+    });
+    // 外側タップで閉じる
+    document.addEventListener('click', e=>{
+      if(!volPopupOpen) return;
+      const popup = $('volPopup');
+      const btn = $('volMuteBtn');
+      if(!popup) return;
+      if(popup.contains(e.target) || (btn && btn.contains(e.target))) return;
+      closeVolPopup();
+    });
+    // 長押しでミュート切替（オプション）
+    if($('volMuteBtn')) $('volMuteBtn').addEventListener('contextmenu', e=>{
+      e.preventDefault();
+      if(!player || !player.isMuted) return;
+      try{
+        if(player.isMuted()){
+          player.unMute();
+          const v = parseInt($('volSlider')?.value || '80',10);
+          if(player.setVolume) player.setVolume(v);
+          updateVolUI(v);
+        }else{
+          player.mute();
+          updateVolUI(0);
+        }
+      }catch(e){}
     });
     if($('miniPrev')) $('miniPrev').addEventListener('click', playPrev);
     if($('miniNext')) $('miniNext').addEventListener('click', playNext);

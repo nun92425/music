@@ -135,6 +135,7 @@ body.millivibe .site-footer { color: #7a83a8; border-top-color: rgba(255,255,255
 }
 .vibe-record {
   width: 280px; height: 280px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: conic-gradient(from 0deg, #111, #333, #111, #222, #111);
   display: flex; align-items: center; justify-content: center;
@@ -143,10 +144,18 @@ body.millivibe .site-footer { color: #7a83a8; border-top-color: rgba(255,255,255
   animation: spin 4s linear infinite;
   animation-play-state: paused;
   will-change: transform;
+  flex-shrink: 0;
+}
+.vibe-record .record-vinyl {
+  aspect-ratio: 1 / 1;
 }
 @media (max-width: 900px) {
-  .vibe-record { width: min(70vw, 280px); height: min(70vw, 280px); }
-  .vibe-record .record-vinyl { width: min(65vw, 260px); height: min(65vw, 260px); }
+  .vibe-record { width: 200px; height: 200px; max-width: 58vw; max-height: 58vw; aspect-ratio: 1 / 1; }
+  .vibe-record .record-vinyl { width: 180px; height: 180px; max-width: 52vw; max-height: 52vw; aspect-ratio: 1 / 1; }
+  #recordThumb { width: 72px; height: 72px; aspect-ratio: 1 / 1; }
+  #nowTitle { font-size:16px !important; }
+  .vibe-record-wrap { padding:12px; gap:8px; }
+  .vibe-player-wrap.small { max-width: 220px; }
 }
 .vibe-record.playing { animation-play-state: running; }
 .vibe-record .record-vinyl {
@@ -248,7 +257,27 @@ body.millivibe .site-footer { color: #7a83a8; border-top-color: rgba(255,255,255
   border-radius: 999px;
   font-size: 11px;
 }
+#btnAutoNext.active {
+  background: linear-gradient(120deg,#4fc3f7,#b48cf2) !important;
+  color:#fff !important;
+  border-color:transparent !important;
+  box-shadow:0 4px 14px rgba(183,140,242,0.35);
+}
+#btnAutoNext.active .auto-icon { background:rgba(255,255,255,0.20) !important; }
 .vibe-controls input[type="range"] { accent-color: #b48cf2; }
+.vol-vertical { flex-shrink:0; }
+.vol-vertical input[type="range"] { touch-action: none; }
+.vol-popup-wrap { position:relative; }
+.vol-popup {
+  display:none;
+  opacity:0;
+  transform:translateX(-50%) translateY(6px) scale(0.98);
+  transition:opacity 0.16s ease, transform 0.16s ease;
+}
+.vol-popup.open {
+  opacity:1;
+  transform:translateX(-50%) translateY(0) scale(1);
+}
 
 /* キュー・リスト - より見やすく */
 .queue-wrap { background: rgba(255,255,255,0.06); border-radius: 14px; padding: 10px; border: 1px solid rgba(255,255,255,0.10); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06); }
@@ -476,6 +505,27 @@ body.millivibe .site-footer { color: #7a83a8; border-top-color: rgba(255,255,255
   .queue-wrap { max-height: calc(100svh - 120px); padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
   #miniPlayer { padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
   .vibe-now-grid { gap:12px; }
+  #queueList .queue-item { padding:6px 8px; gap:6px; border-radius:10px; }
+  #queueList .queue-item .song-thumb { width:40px; height:30px; border-radius:6px; }
+  #queueList .queue-item .song-meta .song-title { font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  #queueList .queue-item .qplay, #queueList .queue-item .qdel { padding:3px 7px; font-size:10px; border-radius:999px; }
+  #queueList .queue-item .drag-handle { width:16px; height:16px; font-size:12px; }
+  .vibe-controls { gap:6px; padding:8px 10px; }
+  .vibe-controls button { width:32px; height:32px; }
+  .vibe-controls button.play-main { width:42px; height:42px; }
+  .vol-vertical { padding:6px 4px !important; }
+  .vol-vertical > div { height:70px !important; }
+  /* 再生中タブをスマホで一画面に収める */
+  #vibeNowSec { max-height: calc(100svh - 72px); max-height: calc(100dvh - 72px); display:flex; flex-direction:column; overflow:hidden; }
+  .vibe-now-grid { flex:1; min-height:0; overflow:hidden; display:flex; flex-direction:column; gap:10px; }
+  .vibe-now-left { flex-shrink:0; max-height: 46vh; overflow-y:auto; scrollbar-width: thin; }
+  .vibe-now-right { flex:1; min-height:0; display:flex; flex-direction:column; overflow:hidden; }
+  #queueWrap { flex:1; min-height:0; max-height:none; display:flex; flex-direction:column; overflow:hidden; }
+  #queueList { flex:1; min-height:0; overflow-y:auto; overscroll-behavior:contain; }
+  #queueHistoryDetails { flex-shrink:0; }
+  #queueHistoryDetails[open] { max-height: 140px; display:flex; flex-direction:column; overflow:hidden; }
+  #queueHistoryDetails[open] #historyListInline { flex:1; min-height:0; overflow-x:auto; overflow-y:hidden; }
+  #queueHistoryDetails:not([open]) #historyListInline { display:none !important; }
 }
 #queueHistoryDetails { transition: background 0.15s; }
 #queueHistoryDetails[open] summary span:last-child { transform:rotate(180deg); }
