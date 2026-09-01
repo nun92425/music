@@ -1,14 +1,274 @@
-/* favibe - favorite vibe, extends millivibe.css */
-body.favibe header .header-logo {
+/* Millivibe - ダークでかっこいいディスコ */
+body.millivibe {
+  background: #0a0e1a;
+  background-image: radial-gradient(ellipse at 20% 20%, rgba(79,195,247,0.12), transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(183,140,242,0.10), transparent 60%), linear-gradient(180deg, #0a0e1a, #16102a);
+  color: #e4e6eb;
+  overflow-x: hidden;
+}
+body.millivibe header {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+body.millivibe .tab-item {
+  background: rgba(255,255,255,0.08);
+  color: #9aa3c0;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+body.millivibe .tab-item.active {
+  background: linear-gradient(120deg, #4fc3f7, #b48cf2, #f78fc0);
+  color: #fff;
+  border-color: transparent;
+}
+body.millivibe .vibe-section {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  will-change: transform, opacity;
+}
+body.millivibe .vibe-section:hover { transform: translateY(-1px); }
+body.millivibe .site-footer { color: #7a83a8; border-top-color: rgba(255,255,255,0.08); }
+
+/* レイアウト：左ナビ＋メイン */
+.vibe-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 16px auto 0;
+  padding: 0 16px;
+}
+.vibe-side-nav {
+  position: sticky;
+  top: 80px;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.vibe-nav-item {
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #9aa3c0;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, transform 0.15s;
+}
+.vibe-nav-item:hover { background: rgba(255,255,255,0.08); transform: translateX(2px); }
+.vibe-nav-item.active {
+  background: linear-gradient(120deg, #4fc3f7, #b48cf2, #f78fc0);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(183,140,242,0.35);
+}
+.vibe-main { min-width: 0; }
+.vibe-now-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 16px;
+}
+@media (max-width: 900px) {
+  .vibe-layout { grid-template-columns: 1fr; }
+  .vibe-side-nav { position: relative; top: 0; flex-direction: row; overflow-x: auto; scrollbar-width: none; }
+  .vibe-side-nav::-webkit-scrollbar { display: none; }
+  .vibe-nav-item { flex: 0 0 auto; white-space: nowrap; }
+  .vibe-now-grid { grid-template-columns: 1fr; }
+}
+
+/* レコード：大きく */
+.vibe-record-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 12px; }
+.vibe-record {
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #111, #333, #111, #222, #111);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.6), inset 0 0 0 2px rgba(255,255,255,0.08);
+  animation: spin 4s linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+@media (max-width: 900px) {
+  .vibe-record { width: min(70vw, 280px); height: min(70vw, 280px); }
+  .vibe-record .record-vinyl { width: min(65vw, 260px); height: min(65vw, 260px); }
+}
+.vibe-record.playing { animation-play-state: running; }
+.vibe-record .record-vinyl {
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #0e0e0e 60%, #000 100%);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.vibe-record .record-vinyl::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle at center, transparent 0 3px, rgba(255,255,255,0.04) 3px 4px);
+}
+#recordThumb {
+  width: 110px; height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,0.9);
+  box-shadow: 0 0 0 4px rgba(0,0,0,0.6);
+  z-index: 1;
+}
+.record-center {
+  position: absolute;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #333;
+  z-index: 2;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* プレイヤー：小さく（240x135） */
+.vibe-player-wrap {
+  position: relative;
+  background: #000;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+}
+.vibe-player-wrap.small {
+  max-width: 240px;
+  aspect-ratio: 16 / 9;
+}
+.vibe-player-wrap iframe, #vibePlayer {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+/* コントロールバー */
+.vibe-controls {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
 }
-.favibe-logo-text { /* defined inline in index.html as well */ }
-/* ensure oshi status blends */
-#oshiStatus {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
+.vibe-controls button {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.10);
+  color: #e4e6eb;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.vibe-controls button:hover { background: rgba(255,255,255,0.18); transform: translateY(-1px); }
+.vibe-controls button.play-main {
+  width: 48px; height: 48px;
+  background: linear-gradient(120deg, #4fc3f7, #b48cf2, #f78fc0);
+  color: #fff;
+  font-size: 18px;
+  box-shadow: 0 4px 14px rgba(183,140,242,0.4);
+}
+.vibe-controls button.active {
+  background: linear-gradient(120deg, #4fc3f7, #b48cf2);
+  color: #fff;
+}
+.vibe-controls #btnAutomix.active {
+  background: linear-gradient(120deg, #f78fc0, #b48cf2);
+  color: #fff;
+  font-weight: 800;
+  width: auto;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-size: 11px;
+}
+.vibe-controls input[type="range"] { accent-color: #b48cf2; }
+
+/* キュー・リスト */
+.queue-wrap { background: rgba(255,255,255,0.04); border-radius: 14px; padding: 8px; border: 1px solid rgba(255,255,255,0.06); }
+#queueList .queue-item, #allSongs .song-item, #rankingList .rank-item, #customPlaylists .pl-item, #presetPlaylists .preset-card, #searchResults .song-card, #libFavorites .song-card, #pinnedGrid .pin-card {
+  display: flex;
+  gap: 10px;
+  align-items: center;
   padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.15s, transform 0.2s, opacity 0.2s;
+  will-change: transform, opacity;
+}
+#queueList .queue-item.active { background: rgba(183,140,242,0.18); border-color: rgba(183,140,242,0.35); }
+#queueList .queue-item:hover, #allSongs .song-item:hover, #searchResults .song-card:hover { background: rgba(255,255,255,0.10); transform: translateY(-1px); }
+.drag-handle {
+  width: 20px; height: 20px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #7a83a8;
+  cursor: grab;
+  font-size: 14px;
+  flex-shrink: 0;
+  touch-action: none;
+}
+.drag-handle:active { cursor: grabbing; }
+.queue-item.dragging { opacity: 0.5; transform: scale(0.98); }
+.song-thumb { width: 56px; height: 42px; border-radius: 8px; object-fit: cover; flex-shrink: 0; background: #222; }
+.song-card .song-thumb { width: 100%; height: auto; aspect-ratio: 16/9; border-radius: 10px; }
+.song-card { flex-direction: column; align-items: stretch; padding: 0; overflow: hidden; cursor: pointer; }
+.song-card .song-meta { padding: 8px 10px; }
+.song-meta { flex: 1; min-width: 0; }
+.song-title { font-size: 12px; font-weight: 700; color: #e4e6eb; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.song-artist { font-size: 11px; color: #9aa3c0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.preset-card {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px;
+  cursor: pointer;
+  background: linear-gradient(135deg, rgba(79,195,247,0.12), rgba(183,140,242,0.12));
+}
+.preset-card:hover { transform: translateY(-2px); }
+.preset-title { font-size: 13px; font-weight: 800; color: #e4e6eb; }
+.preset-desc { font-size: 11px; color: #9aa3c0; margin-top: 4px; }
+.library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 12px; }
+#searchResults { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 12px; }
+#libFavorites { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 12px; }
+#pinnedGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 12px; }
+.flying-thumb {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  transition: transform 0.45s cubic-bezier(0.2,0,0,1), opacity 0.45s;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .vibe-record { animation: none !important; }
+  .vibe-section, #queueList .queue-item { transition: none !important; }
 }
