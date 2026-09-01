@@ -984,6 +984,7 @@ const FavibeOshi = (function(){
   let lockedIds = [];
   const ALIAS_MAP = {"tamanoinana":"nana-tamanoi"};
   let currentGroup = "";
+  let showAddedOnly = false;
   let _fbUnsub = null;
   async function loadLocked(){
     try{
@@ -1005,6 +1006,19 @@ const FavibeOshi = (function(){
   }
   function getLocked(){ return lockedIds.slice(); }
   function isLocked(id){ return lockedIds.includes(id); }
+  function isAdded(a){
+    if(!a) return false;
+    if(isLocked(a.id)) return true;
+    if(a.playlistId && a.playlistId.trim()) return true;
+    if(a.playlistIds && Array.isArray(a.playlistIds) && a.playlistIds.length) return true;
+    // also check if has data in data.json members (if loaded, but we can check via allSongs? fallback)
+    try{
+      if(typeof allSongs !== 'undefined' && Array.isArray(allSongs)){
+        if(allSongs.some(s=> s.memberId===a.id)) return true;
+      }
+    }catch(e){}
+    return false;
+  }
 
   function esc(s){ return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
   function normalizeIds(ids){
@@ -1165,6 +1179,9 @@ const FavibeOshi = (function(){
     if(!grid || !artistsMaster) return;
     const q = (document.getElementById('oshiSearch')?.value||'').toLowerCase().trim();
     let list = artistsMaster;
+    if(showAddedOnly){
+      list = list.filter(a=> isAdded(a));
+    }
     if(currentGroup){
       list = list.filter(a=> a.group===currentGroup);
     }
@@ -1175,9 +1192,16 @@ const FavibeOshi = (function(){
     try{
       document.querySelectorAll('.oshi-group-count').forEach(el=>{
         const g = el.dataset.group;
-        const cnt = g ? artistsMaster.filter(a=> a.group===g).length : artistsMaster.length;
+        let base = g ? artistsMaster.filter(a=> a.group===g) : artistsMaster;
+        if(showAddedOnly) base = base.filter(a=> isAdded(a));
+        const cnt = base.length;
         el.textContent = `(${cnt})`;
       });
+      const addedEl = document.getElementById('oshiAddedCount');
+      if(addedEl){
+        const addedTotal = artistsMaster.filter(a=> isAdded(a)).length;
+        addedEl.textContent = `(${addedTotal})`;
+      }
     }catch(e){}
     // update group button active state
     try{
@@ -1302,6 +1326,13 @@ const FavibeOshi = (function(){
         renderModal();
       });
     });
+    const addedChk = document.getElementById('oshiAddedOnly');
+    if(addedChk){
+      addedChk.addEventListener('change', e=>{
+        showAddedOnly = e.target.checked;
+        renderModal();
+      });
+    }
     const selAll = document.getElementById('oshiSelectAll');
     if(selAll) selAll.addEventListener('click', ()=>{ modalSelected = Array.from(new Set([...lockedIds, ...artistsMaster.map(a=>a.id)])); renderModal(); });
     const clrAll = document.getElementById('oshiClearAll');
