@@ -65,7 +65,10 @@ bash scripts/sync-upstream.sh
 ```json
 {
   "rules": {
-    "favibe": { ".read": true, ".write": true }
+    "favibe": {
+      "selectedArtists": { ".read": true, ".write": true },
+      "requests": { ".read": true, ".write": true }
+    }
   }
 }
 ```
@@ -73,6 +76,22 @@ bash scripts/sync-upstream.sh
 4. 匿名Authを有効化（共有に必要）
 
 未設定でもローカル動作は可能です。
+
+### リクエストの運用 (にじさんじ以外)
+
+* ユーザーはモーダル下部の「名前+YouTubeリンク」でリクエスト → Firebase `favibe/requests` に保存 (未設定時は `localStorage favibe_requests`)
+* 管理者は以下で一覧を確認できます:
+
+```bash
+# Firebase共有時 (推奨): 私が直接確認できます
+node scripts/list-requests.js
+node scripts/list-requests.js --json  # JSON出力
+
+# Firebase未設定時: 各自のブラウザで
+# 開発者ツール → Console → localStorage.getItem('favibe_requests')
+```
+
+* あなたが「このリクエストはこのプレイリスト」と提示 → 私が `artists-master.json` と `data.json` に反映してpushします。反映後は `scripts/list-requests.js --clear` の案内に従いFirebaseから削除できます。
 
 ## 構成
 
