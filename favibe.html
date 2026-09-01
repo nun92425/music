@@ -208,7 +208,10 @@
 
 <div class="vibe-layout">
   <nav class="vibe-side-nav" id="vibeSideNav" aria-label="favibeメニュー">
-    <button class="vibe-nav-item" data-tab="pinned">ピン留め</button>
+    <div id="pinnedBar" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;padding:8px;background:rgba(255,255,255,0.04);border-radius:12px;border:1px dashed rgba(255,255,255,0.12)">
+      <div style="grid-column:1/-1;font-size:11px;color:#9aa3c0;text-align:center">ピン留め（最大4つ）</div>
+    </div>
+    <div style="height:1px;background:rgba(255,255,255,0.08);margin:4px 0 8px"></div>
     <button class="vibe-nav-item active" data-tab="nowplaying">再生中</button>
     <button class="vibe-nav-item" data-tab="search">検索</button>
     <button class="vibe-nav-item" data-tab="library">ライブラリ</button>
@@ -252,10 +255,11 @@
             <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:#9aa3c0;white-space:nowrap"><input type="checkbox" id="autoNextToggle"> 自動連続再生</label>
           </div>
           <div id="oshiStatus" style="display:flex;align-items:center;gap:8px;margin:8px 0;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);font-size:11px;color:#9aa3c0"></div>
-          <div id="queueWrap" class="queue-wrap">
-            <div id="queueHistorySticky" style="display:none;position:sticky;top:0;background:rgba(10,14,26,0.92);backdrop-filter:blur(8px);padding:8px;border-radius:12px;margin-bottom:8px;z-index:2;border:1px solid rgba(255,255,255,0.08)">
-              <div style="font-size:11px;color:#9aa3c0;margin-bottom:6px">最近再生した曲</div>
-              <div id="historyListSticky" style="display:flex;flex-direction:column;gap:6px"></div>
+          <div id="queueWrap" class="queue-wrap" style="max-height:50vh;overflow-y:auto;scroll-behavior:smooth;padding-right:4px">
+            <div id="queueHistoryInline" style="display:none;margin-bottom:8px">
+              <div style="font-size:11px;color:#9aa3c0;margin-bottom:6px;display:flex;align-items:center;gap:6px">再生履歴 <span style="font-size:10px;border:1px solid rgba(255,255,255,0.12);border-radius:999px;padding:1px 6px">薄く表示</span></div>
+              <div id="historyListInline" style="display:flex;flex-direction:column;gap:6px;opacity:0.55"></div>
+              <div style="height:1px;background:linear-gradient(to right, transparent, rgba(183,140,242,0.5), transparent);margin:10px 0"></div>
             </div>
             <h3 style="font-size:13px;font-weight:800;margin:0 0 8px;display:flex;align-items:center;gap:8px">キュー <span id="queueCount" style="font-weight:400;color:#9aa3c0"></span><button id="btnClearQueue" style="margin-left:auto;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#e4e6eb;font-size:11px;cursor:pointer">クリア</button></h3>
             <div id="queueList" style="display:flex;flex-direction:column;gap:6px;max-height:360px;overflow-y:auto;scroll-behavior:smooth"></div>
@@ -263,21 +267,22 @@
         </div>
       </div>
     </section>
-
-    <!-- ピン留め -->
-    <section id="vibePinnedSec" class="vibe-section" data-tab="pinned" style="display:none">
-      <h3 style="font-size:14px;font-weight:800;margin:0 0 10px">ピン留め（最大4つ）</h3>
-      <div id="pinnedGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px"></div>
-      <p style="font-size:11px;color:#9aa3c0;margin-top:8px">曲やプレイリストの pin ボタンで追加できます。</p>
-    </section>
-
-    <!-- 検索 -->
+<!-- 検索 -->
     <section id="vibeSearchSec" class="vibe-section" data-tab="search" style="display:none">
-      <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px">
-        <input id="songSearch" placeholder="曲を検索" style="flex:1;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);color:#e4e6eb">
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px">
+        <input id="songSearch" placeholder="曲名・アーティスト・タグで検索" style="flex:1;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);color:#e4e6eb">
       </div>
+      <div id="searchSuggest" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px"></div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+        <select id="filterTalent" style="padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);color:#e4e6eb;font-size:12px"><option value="">全タレント</option></select>
+        <select id="filterPlaylist" style="padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);color:#e4e6eb;font-size:12px"><option value="">全プレイリスト</option></select>
+        <select id="sortSelect" style="padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);color:#e4e6eb;font-size:12px"><option value="new">新着</option><option value="popular">人気</option><option value="name">名前順</option><option value="plays">再生回数</option></select>
+        <label style="font-size:11px;color:#9aa3c0;display:flex;align-items:center;gap:4px"><input type="checkbox" id="filterFavorites"> お気に入りのみ</label>
+      </div>
+      <div id="searchTags" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px"></div>
       <div id="searchRecommend" style="margin-bottom:16px"></div>
       <div id="searchResults" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px"></div>
+      <button id="btnShowAllSongs" style="width:100%;margin-top:12px;padding:12px;border-radius:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);color:#e4e6eb;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3z"/><path d="M21 14v3"/><path d="M14 21h3v-3"/></svg> 曲一覧をすべて表示</button>
     </section>
 
     <!-- ライブラリ -->
@@ -306,11 +311,18 @@
 
     <!-- プレイリスト -->
     <section id="vibePlaylistsSec" class="vibe-section" data-tab="playlists" style="display:none">
+      <h3 style="font-size:12px;font-weight:800;color:#9aa3c0;margin:0 0 8px">タレント別（全曲）</h3>
+      <div id="talentPlaylists" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:18px"></div>
+      <h3 style="font-size:12px;font-weight:800;color:#9aa3c0;margin:0 0 8px">プリセット</h3>
       <div id="presetPlaylists" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px"></div>
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><h3 style="font-size:13px;font-weight:800;margin:0">自作プレイリスト</h3><button id="btnCreatePlaylist" style="margin-left:auto;padding:6px 12px;border-radius:999px;border:none;background:linear-gradient(120deg,#4fc3f7,#b48cf2,#f78fc0);color:#fff;font-size:12px;font-weight:800;cursor:pointer">新規作成</button></div>
       <div id="customPlaylists" style="display:flex;flex-direction:column;gap:8px"></div>
     </section>
   </main>
+<div id="miniPlayer" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:140;background:rgba(10,14,26,0.92);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,0.08);padding:8px 16px;align-items:center;gap:12px">
+  <img id="miniThumb" style="width:48px;height:48px;border-radius:8px;object-fit:cover;flex-shrink:0" src="" alt="">
+  <div style="flex:1;min-width:0">
+    <div id="miniTitle" style="font-size:12px;font-weight:800;color:#e4e6eb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
 </div>
 <footer class="site-footer">
   <p>favibeはクラス内で共有する音楽サービスです。楽曲の著作権は各権利者に帰属します。</p>
