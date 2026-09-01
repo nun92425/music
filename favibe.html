@@ -261,9 +261,12 @@
               <summary style="font-size:11px;color:#b8c0e0;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px">再生履歴 <span id="historyCount" style="font-size:10px;color:#9aa3c0"></span><span style="margin-left:auto;font-size:10px;color:#7a83a8">▼</span></summary>
               <div id="historyListInline" style="display:flex;flex-direction:column;gap:6px;margin-top:8px"></div>
             </details>
+            <div id="queueHistorySticky" style="display:none;position:sticky;top:0;background:rgba(10,14,26,0.92);backdrop-filter:blur(8px);padding:8px;border-radius:12px;margin-bottom:8px;z-index:2;border:1px solid rgba(255,255,255,0.08)">
+              <div style="font-size:11px;color:#9aa3c0;margin-bottom:6px">最近再生した曲</div>
+              <div id="historyListSticky" style="display:flex;flex-direction:column;gap:6px"></div>
             </div>
             <h3 style="font-size:13px;font-weight:800;margin:0 0 8px;display:flex;align-items:center;gap:8px">キュー <span id="queueCount" style="font-weight:400;color:#9aa3c0"></span><button id="btnClearQueue" style="margin-left:auto;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#e4e6eb;font-size:11px;cursor:pointer">クリア</button></h3>
-            <div id="queueList" style="display:flex;flex-direction:column;gap:6px;max-height:360px;overflow-y:auto;scroll-behavior:smooth"></div>
+            <div id="queueList" style="display:flex;flex-direction:column;gap:6px"></div>
           </div>
         </div>
       </div>
@@ -320,10 +323,18 @@
       <div id="customPlaylists" style="display:flex;flex-direction:column;gap:8px"></div>
     </section>
   </main>
+</div>
 <div id="miniPlayer" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:140;background:rgba(10,14,26,0.92);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,0.08);padding:8px 16px;align-items:center;gap:12px">
   <img id="miniThumb" style="width:48px;height:48px;border-radius:8px;object-fit:cover;flex-shrink:0" src="" alt="">
   <div style="flex:1;min-width:0">
     <div id="miniTitle" style="font-size:12px;font-weight:800;color:#e4e6eb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
+    <div id="miniArtist" style="font-size:11px;color:#9aa3c0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
+    <div style="height:3px;background:rgba(255,255,255,0.12);border-radius:999px;margin-top:4px"><div id="miniProgress" style="height:100%;width:0;background:linear-gradient(90deg,#4fc3f7,#b48cf2);border-radius:999px;transition:width 0.5s linear"></div></div>
+  </div>
+  <button id="miniPrev" aria-label="前へ" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;color:#e4e6eb;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5" style="stroke:currentColor;stroke-width:2"/></svg></button>
+  <button id="miniPlay" aria-label="再生" style="width:40px;height:40px;border-radius:50%;background:linear-gradient(120deg,#4fc3f7,#b48cf2,#f78fc0);color:#fff;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+  <button id="miniNext" aria-label="次へ" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;color:#e4e6eb;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19" style="stroke:currentColor;stroke-width:2"/></svg></button>
+  <button id="miniExpand" aria-label="拡大" style="width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid rgba(255,255,255,0.12);color:#9aa3c0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></button>
 </div>
 <footer class="site-footer">
   <p>favibeはクラス内で共有する音楽サービスです。楽曲の著作権は各権利者に帰属します。</p>
