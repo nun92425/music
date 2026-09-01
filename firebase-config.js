@@ -1,26 +1,11 @@
-// Firebase 設定 (favibe用)
-// 初期はダミー(匿名同期はローカルfallback)。後で正規プロジェクトを発行して差し替え。
-// Firebaseコンソール → プロジェクト設定 → ウェブアプリ の firebaseConfig を貼り付けると
-// 推し選択がクラス全員でリアルタイム共有されます。未設定でもローカル動作は可能。
+// Firebase 設定 (favibe用) - favibe-57c26
+// クラス全員の推し選択とリクエストを共有します
 const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
+  apiKey: "AIzaSyCKGNc3t20ffZ5p_ZboN8V44hMeN4NMIqM",
+  authDomain: "favibe-57c26.firebaseapp.com",
+  databaseURL: "https://favibe-57c26-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "favibe-57c26",
+  storageBucket: "favibe-57c26.firebasestorage.app",
+  messagingSenderId: "540086278925",
+  appId: "1:540086278925:web:e62e3f8e127c8a25872e44"
 };
-// 例(後で差し替え):
-// const firebaseConfig = {
-//   apiKey: "AIzaSy...",
-//   authDomain: "favibe-shared.firebaseapp.com",
-//   databaseURL: "https://favibe-shared-default-rtdb.firebaseio.com",
-//   projectId: "favibe-shared",
-//   storageBucket: "favibe-shared.appspot.com",
-//   messagingSenderId: "123456789",
-//   appId: "1:123456789:web:abc"
-// };
-
-// 共有バックエンドを使わない場合でも、推し選択は localStorage 'favibe_selected_artists' に保存され端末内では動作します。
-// クラス共有を有効化したい場合は上記を有効化してください。
