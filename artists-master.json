@@ -1,0 +1,40 @@
+{
+  "artists": [
+    {
+      "id": "kanae",
+      "name": "叶",
+      "group": "にじさんじ",
+      "channelId": "UCspv01oxUFf_MTSipURRhkA",
+      "playlistId": "PL_kanae_utamitai",
+      "color": "#7EB8DA"
+    },
+    {
+      "id": "kuzuha",
+      "name": "葛葉",
+      "group": "にじさんじ",
+      "channelId": "UCSFCh5NL4qXrAy9uB_Q4l2A",
+      "playlistId": "PL_kuzuha_utamitai",
+      "color": "#C9282D"
+    },
+    {
+      "id": "tamanoinana",
+      "name": "珠乃井ナナ",
+      "group": "にじさんじ",
+      "channelId": "UC1zFJrfEKgQlCYy30F3aOldA",
+      "playlistId": "PL_tamanoinana_utamitai",
+      "color": "#FF8FB1"
+    },
+    {
+      "id": "chronoir",
+      "name": "ChroNoiR",
+      "group": "にじさんじユニット",
+      "channelId": "",
+      "playlistId": "PL_chronoir_utamitai",
+      "color": "#1a1a1a",
+      "members": [
+        "kanae",
+        "kuzuha"
+      ]
+    }
+  ]
+}

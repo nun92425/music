@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: favibe
+    env: static
+    plan: free
+    buildCommand: ""
+    staticPublishPath: ./
+    headers:
+      - path: /*
+        name: X-Robots-Tag
+        value: noindex, nofollow, noarchive
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+    routes:
+      - type: rewrite
+        source: /millivibe
+        destination: /index.html
+      - type: rewrite
+        source: /millivibe.html
+        destination: /index.html

@@ -1,0 +1,32 @@
+{
+  "presets": [
+    {
+      "id": "aggressive",
+      "name": "アガる曲",
+      "desc": "テンション上げたいときに。BPM高めの盛り上がる曲。",
+      "bpm": 132,
+      "videoIds": []
+    },
+    {
+      "id": "chill",
+      "name": "落ち着く曲",
+      "desc": "夜や作業用に。しっとり聴けるバラード。",
+      "bpm": 85,
+      "videoIds": []
+    },
+    {
+      "id": "latest",
+      "name": "最新曲",
+      "desc": "最近投稿された歌みた。",
+      "bpm": 110,
+      "videoIds": []
+    },
+    {
+      "id": "oshiMix",
+      "name": "推しMIX",
+      "desc": "選んだ推しの曲を自動でMIX。",
+      "bpm": 120,
+      "videoIds": []
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+/* favibe - favorite vibe, extends millivibe.css */
+body.favibe header .header-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.favibe-logo-text { /* defined inline in index.html as well */ }
+/* ensure oshi status blends */
+#oshiStatus {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 8px 10px;
+}

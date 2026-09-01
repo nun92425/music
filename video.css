@@ -1,0 +1,2357 @@
+:root {
+  --grad-main: linear-gradient(120deg, #4fc3f7, #b48cf2, #f78fc0);
+  --card-bg: rgba(255, 255, 255, 0.78);
+  --card-border: rgba(255, 255, 255, 0.92);
+  --shadow: 0 8px 24px rgba(122, 131, 168, 0.12);
+  --ink: #3b4468;
+  --ink-muted: #7a83a8;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f8fbff;
+  background-image: linear-gradient(175deg, #f8fbff 0%, #f6f3ff 45%, #fff8fb 100%);
+  margin: 0;
+  padding: 0;
+  color: var(--ink);
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 20px;
+  background: linear-gradient(to bottom, rgba(248,251,255,0.92) 0%, rgba(248,251,255,0.55) 45%, transparent 100%);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+  z-index: 99;
+}
+html[data-theme="dark"] body::before {
+  background: linear-gradient(to bottom, rgba(16,18,26,0.85) 0%, transparent 100%);
+}
+@media (prefers-reduced-motion: reduce) { body::before { display: none; } }
+
+/* ── インラインアイコン ── */
+svg.ic {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
+}
+.member-avatar-fallback svg.ic { width: 24px; height: 24px; color: #999; }
+.member-icon {
+  height: 36px;
+  width: auto;
+  max-width: 120px;
+  border-radius: 4px;
+  vertical-align: middle;
+  object-fit: contain;
+  background: transparent;
+}
+
+header {
+  background: var(--card-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  padding: 10px 16px 8px;
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  margin: 12px auto 0;
+  max-width: 1200px;
+  position: sticky;
+  top: 12px;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-logo {
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.header-logo img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+/* ── ヘッダーのマイページボタン（デスクトップのみ） ── */
+.header-mypage-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #7a4fc4, #a06fd8);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(122, 79, 196, 0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+  touch-action: manipulation;
+}
+.header-mypage-btn::before {
+  content: '';
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='16' rx='2'/%3E%3Ccircle cx='9' cy='10' r='2'/%3E%3Cpath d='M15 8h2'/%3E%3Cpath d='M15 12h2'/%3E%3Cpath d='M7 16h10'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='16' rx='2'/%3E%3Ccircle cx='9' cy='10' r='2'/%3E%3Cpath d='M15 8h2'/%3E%3Cpath d='M15 12h2'/%3E%3Cpath d='M7 16h10'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.header-mypage-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(122, 79, 196, 0.45);
+}
+@media (max-width: 560px) {
+  .header-mypage-btn { display: none; }
+  .header-logo img { height: 28px; }
+  .header-logo { margin-bottom: 6px; }
+  header { padding: 8px 12px 4px; }
+  .header-top { gap: 8px; }
+}
+
+.stats-bar {
+  background: #e6f9fa;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12px;
+  color: #00878c;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 12px;
+  font-weight: bold;
+  flex-wrap: wrap;
+  vertical-align: middle;
+}
+.stats-bar .stat-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.stats-bar .stat-item .label { color: #555; }
+.stats-bar .level-badge {
+  background: #00bec4;
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+.stats-bar .exp-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.stats-bar .exp-bar-fill {
+  width: 60px;
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+}
+.stats-bar .exp-bar-fill-inner {
+  height: 100%;
+  background: #00bec4;
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+
+.tab-menu {
+  display: flex;
+  gap: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: #c9d4d2 transparent;
+}
+.tab-menu::-webkit-scrollbar { height: 6px; }
+.tab-menu::-webkit-scrollbar-track { background: transparent; }
+.tab-menu::-webkit-scrollbar-thumb { background: #c9d4d2; border-radius: 3px; }
+
+.tab-item {
+  background: rgba(255,255,255,0.75);
+  color: var(--ink-muted);
+  border: 1px solid var(--card-border);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  touch-action: manipulation;
+  box-shadow: 0 2px 8px rgba(122,131,168,0.08);
+}
+.tab-item.active {
+  background: var(--grad-main);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(183, 140, 242, 0.35);
+}
+
+.main-content {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+/* ── 検索バー ── */
+.search-bar {
+  margin: 14px 0 0;
+}
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 24px;
+  padding: 8px 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.search-field > svg.ic { width: 16px; height: 16px; color: #999; }
+.search-field input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+  min-width: 0;
+}
+.search-clear-btn {
+  background: #e8eceb;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  flex-shrink: 0;
+  touch-action: manipulation;
+}
+.search-clear-btn svg.ic { width: 12px; height: 12px; }
+.search-clear-btn:hover { background: #d5dddb; }
+.search-filters {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.sf-chip {
+  background: #e8eceb;
+  color: #555;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  touch-action: manipulation;
+}
+.sf-chip.active {
+  background: #00bec4;
+  color: #fff;
+}
+.sf-chip:hover { opacity: 0.85; }
+.sf-select {
+  background: #fff;
+  color: #555;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  max-width: 100%;
+  touch-action: manipulation;
+}
+.search-results { margin-top: 20px; }
+
+/* ── 他サイトカード ── */
+.sites-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.site-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.15s, box-shadow 0.15s;
+  touch-action: manipulation;
+}
+.site-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(122,131,168,0.18);
+}
+.site-card--soon {
+  opacity: 0.72;
+  background: #f6f7f8;
+  box-shadow: none;
+}
+.site-card--soon:hover {
+  transform: none;
+  box-shadow: none;
+  cursor: default;
+}
+.site-card-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: #e8e8ec;
+  color: #666;
+  font-size: 10px;
+  font-weight: normal;
+  vertical-align: 1px;
+}
+.site-card-icon {
+  width: 64px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.site-card-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.site-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.site-card-name {
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.site-card-desc {
+  font-size: 11px;
+  color: #888;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@media (max-width: 560px) {
+  .sites-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Milli Orbis 宣伝（ホーム） ── */
+.orbis-promo {
+  background: linear-gradient(135deg, #e6f9fa, #d7f0f4);
+  border: 1px solid rgba(0, 190, 196, 0.25);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+.orbis-promo-body {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.orbis-promo-icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.orbis-promo-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.orbis-promo-text {
+  min-width: 0;
+}
+.orbis-promo-title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #00878c;
+  margin-bottom: 4px;
+}
+.orbis-promo-desc {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: #555;
+  line-height: 1.6;
+}
+.orbis-promo-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.orbis-promo-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fff;
+  color: #00878c;
+  border: 1px solid rgba(0, 190, 196, 0.35);
+  border-radius: 20px;
+  padding: 6px 13px;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.15s;
+  touch-action: manipulation;
+}
+.orbis-promo-links a:hover {
+  background: #00bec4;
+  color: #fff;
+  transform: translateY(-1px);
+}
+@keyframes orbisPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 190, 196, 0.35); }
+  50% { box-shadow: 0 0 0 6px rgba(0, 190, 196, 0); }
+}
+.orbis-promo-links a:first-child {
+  animation: orbisPulse 2.4s ease-in-out infinite;
+}
+@media (max-width: 560px) {
+  .orbis-promo-body { flex-direction: column; text-align: center; }
+  .orbis-promo-links { justify-content: center; }
+}
+
+/* ── メンバータブのアクション行（Milli Orbis への導線） ── */
+.member-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 6px 0 14px;
+}
+.orbis-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  color: #00878c;
+  border: 1px solid rgba(0, 190, 196, 0.35);
+  border-radius: 20px;
+  padding: 7px 15px;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.15s;
+  touch-action: manipulation;
+}
+.orbis-link:hover {
+  background: #00bec4;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ── チャンネル行（YouTube風） ── */
+.video-channel-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 1px;
+}
+.video-channel-icon-wrap {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  border: 1px solid #eee;
+}
+.video-channel-icon {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+.video-channel-icon-wrap svg.ic { width: 13px; height: 13px; }
+.video-channel-name {
+  font-size: 11px;
+  color: #888;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.3s; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.playlist-section { margin-bottom: 20px; }
+
+.playlist-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.playlist-slider::-webkit-scrollbar { display: none; }
+.playlist-slider .video-card {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+}
+
+.type-nav {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0 16px;
+  flex-wrap: wrap;
+}
+.type-nav-btn {
+  background: #e8eceb;
+  color: #555;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  touch-action: manipulation;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.type-nav-btn:hover {
+  background: #00bec4;
+  color: #fff;
+}
+
+.video-section { margin-bottom: 24px; }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.section-header h3 {
+  margin: 0;
+  font-size: 16px;
+}
+.oshi-team-chips {
+  display: inline-flex;
+  gap: 6px;
+  margin-left: 10px;
+}
+.oshi-chip {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(122, 131, 168, 0.15);
+}
+.oshi-chip img { width: 100%; height: 100%; object-fit: cover; }
+.oshi-chip .ic { width: 16px; height: 16px; color: #5a6072; }
+.cooldown-badge {
+  font-size: 12px;
+  color: #ff4757;
+  font-weight: bold;
+}
+.cooldown-badge.ready { color: #2ed573; }
+
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (min-width: 1024px) {
+  .video-grid { grid-template-columns: repeat(4, 1fr); gap: 10px; }
+}
+@media (min-width: 681px) and (max-width: 1023px) {
+  .video-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.video-card {
+  background: var(--card-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.video-card:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(122,131,168,0.18); }
+
+.video-thumb-wrap {
+  position: relative;
+  padding-top: 56.25%;
+  background: #000;
+  cursor: pointer;
+}
+.video-thumb-wrap iframe {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  border: none;
+}
+.video-thumb-img {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover;
+}
+.play-overlay {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px; height: 52px;
+  background: rgba(0,0,0,0.65);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #fff;
+  pointer-events: none;
+  transition: background 0.2s;
+}
+.video-thumb-wrap:hover .play-overlay {
+  background: rgba(255,0,0,0.8);
+}
+
+.video-body {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.video-title {
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+.video-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+.fav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0;
+  line-height: 1;
+  color: #ccc;
+  flex-shrink: 0;
+  transition: color 0.15s;
+  touch-action: manipulation;
+}
+.fav-btn:hover { color: #ffa502; }
+.fav-btn.active { color: #ffa502; }
+/* 共有ボタンは常時ティールでお気に入り（星）と区別しやすく */
+.fav-btn.share-btn { color: #00bec4; }
+.fav-btn.share-btn:hover { color: #0ab8be; }
+/* タップ領域を少し広げて誤タップでカード側に漏れないように */
+.video-title-row .fav-btn {
+  padding: 6px 5px 4px;
+  display: inline-flex;
+  align-items: center;
+}
+.video-title-row .fav-btn .ic { width: 18px; height: 18px; }
+.fav-btn.share-btn:hover { color: #00bec4; }
+.fav-btn.share-btn.active { color: #00bec4; }
+
+/* メンバータブ見出し（タイトル + 共有ボタン） */
+.member-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.member-head h2 {
+  margin: 0;
+}
+
+.cheer-button {
+  background-color: #ff4757;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+  touch-action: manipulation;
+}
+.cheer-button:hover { background-color: #ff6b81; }
+.cheer-button:disabled { background-color: #a4b0be; cursor: not-allowed; }
+
+.cooldown-text {
+  font-size: 11px;
+  color: #747d8c;
+  text-align: center;
+  margin: 0;
+}
+
+.youtube-link {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #167ac6;
+  text-decoration: none;
+}
+.youtube-link:hover { text-decoration: underline; }
+
+/* ── 視聴ページ（YouTube風） ── */
+.watch-view {
+  padding-bottom: 24px;
+}
+.watch-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.watch-back-btn {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  touch-action: manipulation;
+}
+.watch-back-btn:hover {
+  background: #00bec4;
+  border-color: #00bec4;
+  color: #fff;
+}
+.watch-player-wrap {
+  position: sticky;
+  top: var(--watch-sticky-top, 64px);
+  z-index: 50;
+  padding-top: 56.25%;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+.watch-player-wrap iframe, #watchPlayer {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+/* 同時視聴グリッド（2-4分割） */
+.watch-grid {
+  display: grid;
+  gap: 12px;
+}
+.watch-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.watch-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.watch-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+.watch-grid-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.watch-grid-cell .watch-player-wrap {
+  position: relative;
+  top: auto;
+}
+.watch-grid-cell .watch-info { padding: 8px 0 0; }
+.watch-grid-cell .watch-title { font-size: 14px; line-height: 1.4; }
+.watch-split-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 5;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.watch-pip-btn:hover, .watch-back-btn:hover { opacity: 0.9; }
+.watch-collab { margin-bottom: 16px; }
+.watch-collab h3 { font-size: 13px; font-weight: 800; margin: 0 0 4px; }
+.watch-split-add-btn {
+  margin-top: 6px;
+  padding: 4px 10px;
+  border: 1px solid #00bec4;
+  border-radius: 999px;
+  background: #fff;
+  color: #00bec4;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.watch-split-add-btn:hover { background: #00bec4; color: #fff; }
+/* 分割時は画面ギリギリまで使う */
+.watch-view-split {
+  margin: 0 -16px;
+  padding: 0 4px;
+}
+.watch-view-split .watch-player-wrap {
+  border-radius: 8px;
+}
+.watch-iframe-grid {
+  display: grid;
+  gap: 8px;
+}
+.watch-iframe-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.watch-iframe-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+.watch-iframe-grid.cols-3 .watch-iframe-cell:nth-child(3) { grid-column: 1 / span 1; }
+.watch-iframe-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+.watch-title-grid {
+  display: grid;
+  gap: 8px;
+}
+.watch-title-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.watch-title-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+.watch-title-grid.cols-3 .watch-title-cell:nth-child(3) { grid-column: 1 / span 1; }
+.watch-title-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+.watch-title-cell .watch-info { padding: 8px 0 0; }
+.watch-title-cell .watch-title { font-size: 13px; }
+@media (max-width: 680px) {
+  .watch-view-split {
+    margin: 0 -16px;
+    padding: 0;
+  }
+  .watch-view-split .watch-player-wrap {
+    border-radius: 0;
+  }
+  .watch-view-split .watch-iframe-grid,
+  .watch-view-split .watch-title-grid {
+    gap: 2px;
+  }
+  .watch-iframe-grid.cols-3 .watch-iframe-cell:nth-child(3),
+  .watch-title-grid.cols-3 .watch-title-cell:nth-child(3) {
+    grid-column: 1;
+  }
+}
+@media (max-width: 680px) {
+  .watch-grid.cols-2, .watch-grid.cols-3, .watch-grid.cols-4 {
+    grid-template-columns: 1fr;
+  }
+  .watch-view .watch-bar {
+    position: sticky;
+    top: var(--watch-sticky-top, 64px);
+    z-index: 40;
+    background: #fff;
+    margin: 0 -8px;
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .watch-grid { gap: 8px; }
+  .watch-grid-cell .watch-player-wrap { border-radius: 8px; }
+  .watch-grid-cell .watch-info { padding: 6px 0 0; }
+  .watch-grid-cell .watch-title { font-size: 13px; }
+  html[data-theme="dark"] .watch-view .watch-bar { background: #1a1a1a; border-bottom-color: #2a2a2a; }
+}
+.watch-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #0f0f0f;
+  color: #aaa;
+  font-size: 13px;
+}
+.watch-spinner {
+  width: 34px;
+  height: 34px;
+  border: 3px solid rgba(255,255,255,0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: watchSpin 0.8s linear infinite;
+}
+@keyframes watchSpin {
+  to { transform: rotate(360deg); }
+}
+.watch-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.watch-main {
+  flex: 1;
+  min-width: 0;
+}
+.watch-side {
+  min-width: 0;
+}
+/* デスクトップ: YouTube風の2カラム（左固定: 動画+情報 / 右: 関連動画のみスクロール） */
+@media (min-width: 900px) {
+  .watch-view {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - var(--watch-sticky-top, 64px) - 40px);
+  }
+.watch-mute-hint {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 5;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(24, 24, 28, 0.8);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+.watch-mute-hint.show {
+  display: inline-flex;
+}
+.watch-layout {
+    flex: 1;
+    min-height: 0;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 20px;
+    overflow: hidden;
+  }
+  .watch-main {
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 0;
+  }
+  .watch-side {
+    width: 360px;
+    flex-shrink: 0;
+    overflow-y: auto;
+  }
+  .watch-player-wrap {
+    position: relative;
+    top: 0;
+    flex-shrink: 0;
+    padding-top: 0;
+    aspect-ratio: 16 / 9;
+    max-height: calc(100vh - var(--watch-sticky-top, 64px) - 260px);
+  }
+  .watch-side .watch-related {
+    margin-top: 0;
+  }
+}
+.watch-info {
+  margin-top: 14px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.watch-title {
+  font-size: 17px;
+  font-weight: bold;
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+.watch-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.watch-channel-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: #666;
+  min-width: 0;
+}
+.watch-channel-link {
+  cursor: pointer;
+  border-radius: 6px;
+}
+.watch-channel-link:hover .video-channel-name {
+  color: #00bec4;
+  text-decoration: underline;
+}
+.watch-channel-link:focus-visible {
+  outline: 2px solid #00bec4;
+  outline-offset: 2px;
+}
+.watch-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.watch-actions .fav-btn {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 18px;
+  padding: 9px 14px;
+  color: #ccc;
+  transition: color 0.15s, border-color 0.15s;
+}
+.watch-actions .fav-btn.active {
+  color: #ffa502;
+  border-color: #ffd7a1;
+}
+.watch-actions .fav-btn:hover { color: #ffa502; }
+.watch-actions .cheer-button {
+  width: auto;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+.watch-actions .cooldown-text {
+  font-size: 11px;
+  color: #747d8c;
+  margin: 0;
+  text-align: left;
+}
+.watch-actions .youtube-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 9px 16px;
+  border: 1px solid #d7e6ec;
+  border-radius: 10px;
+  background: #f6fafb;
+  color: #167ac6;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.15s;
+  touch-action: manipulation;
+}
+.watch-actions .youtube-link:hover {
+  background: #e6f4fa;
+  text-decoration: none;
+}
+.watch-related {
+  margin-top: 22px;
+}
+.rel-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.rel-tabs::-webkit-scrollbar { display: none; }
+.rel-tab {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #e5e5e5;
+  background: #f3f3f3;
+  font-size: 12px;
+  font-weight: 700;
+  color: #555;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.rel-tab.active {
+  background: #00bec4;
+  border-color: #00bec4;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,190,196,0.25);
+}
+.rel-tab:hover { border-color: #00bec4; }
+.watch-rel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.watch-rel-item {
+  display: flex;
+  gap: 12px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transition: transform 0.15s, box-shadow 0.15s, outline 0.15s;
+  touch-action: manipulation;
+  outline: 2px solid transparent;
+}
+.watch-rel-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+.watch-rel-item.active {
+  background: #e6f9fa;
+  outline-color: #00bec4;
+}
+.watch-rel-thumb {
+  width: 168px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.watch-rel-body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+.watch-rel-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.watch-rel-channel {
+  margin: 0;
+  font-size: 11px;
+  color: #888;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.watch-rel-channel:hover {
+  color: #00bec4;
+}
+@media (max-width: 560px) {
+  .watch-rel-thumb { width: 120px; }
+  .watch-title { font-size: 15px; }
+}
+
+@media (max-width: 680px) {
+  .video-grid { grid-template-columns: 1fr; gap: 8px; }
+  .video-card { flex-direction: row; gap: 0; align-items: flex-start; }
+  .video-thumb-wrap { width: 42%; flex-shrink: 0; }
+  .video-body { flex: 1; min-width: 0; padding: 8px 10px; gap: 4px; }
+  .video-title { font-size: 12px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .video-meta { font-size: 11px; }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+  font-size: 14px;
+}
+.load-more-btn {
+  width: 100%;
+  padding: 12px;
+  background: #e8eceb;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  margin-top: 8px;
+  touch-action: manipulation;
+  transition: background 0.15s;
+}
+.load-more-btn:hover { background: #d5dddb; }
+.load-more-btn:disabled { opacity: 0.6; cursor: default; }
+.archive-load-btn {
+  width: 100%;
+  padding: 14px;
+  background: #fff3e0;
+  border: 2px dashed #ffa502;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #e67e22;
+  cursor: pointer;
+  margin-top: 16px;
+  touch-action: manipulation;
+  transition: background 0.15s;
+}
+.archive-load-btn:hover { background: #ffe0b2; }
+.archive-load-btn:disabled { opacity: 0.6; cursor: default; }
+
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  z-index: 999;
+  animation: slideIn 0.3s;
+}
+.notification.success { background: #2ed573; }
+.notification.error { background: #ff4757; }
+.notification.info { background: #00bec4; }
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ── ヘッダー右（マイページ・テーマ・アカウント・ハンバーガー） ── */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  z-index: 110;
+  flex-shrink: 0;
+}
+.hamburger-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 2px 6px;
+  color: #333;
+  line-height: 1;
+  touch-action: manipulation;
+}
+.hamburger-btn:hover { opacity: 0.7; }
+
+/* ── アカウント連携（ヘッダー） ── */
+.acct-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 6px;
+  color: #333;
+  line-height: 1;
+  touch-action: manipulation;
+  margin-right: 4px;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.acct-btn:hover { opacity: 0.7; }
+.acct-btn-ico {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #f0eef7;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.acct-btn-ico img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.acct-btn-name {
+  font-size: 12px;
+  font-weight: bold;
+  color: #333;
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── アカウント連携モーダル（マイページ準拠・Glass） ── */
+.acct-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(59, 68, 104, 0.25);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  z-index: 300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+.acct-overlay.open { display: flex; animation: fadeUp 0.22s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.acct-box {
+  width: 100%;
+  max-width: 400px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: rgba(250, 250, 255, 0.94);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 26px;
+  box-shadow: 0 24px 70px rgba(59, 68, 104, 0.32);
+  overflow: hidden;
+  position: relative;
+  overflow-y: auto;
+}
+.acct-box h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 18px 22px 12px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+}
+.acct-box h3 .grad { background: var(--grad-main); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.acct-box .acct-body { padding: 0 22px 18px; overflow-y: auto; }
+.acct-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(122, 131, 168, 0.12);
+  color: var(--ink);
+  font-size: 15px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.acct-close:hover { background: rgba(122, 131, 168, 0.22); }
+.acct-box input {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(183, 140, 242, 0.35);
+  border-radius: 14px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.85);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.acct-box input:focus { border-color: #b48cf2; box-shadow: 0 0 0 3px rgba(183, 140, 242, 0.18); }
+.acct-box button {
+  border: none;
+  background: var(--grad-main);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 800;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+  box-shadow: 0 4px 14px rgba(183, 140, 242, 0.3);
+}
+.acct-box button:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(183, 140, 242, 0.35); }
+.acct-box button:active { transform: none; }
+.acct-box button[style*="background:#999"], .acct-box button.btn-ghost {
+  background: rgba(255,255,255,0.75) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: none !important;
+}
+.acct-msg { font-size: 12.5px; color: #c25282; margin: 8px 0 0; min-height: 1em; }
+.acct-msg.ok { color: #2b7fb0; }
+.acct-hint { font-size: 11.5px; color: var(--ink-muted); margin: 8px 0 10px; line-height: 1.6; }
+.acct-row { display: flex; gap: 8px; margin-bottom: 10px; }
+.acct-row button { flex: 1; }
+html[data-theme="dark"] .acct-box {
+  background: rgba(30, 33, 45, 0.96);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+}
+html[data-theme="dark"] .acct-box input {
+  background: rgba(255, 255, 255, 0.12);
+  color: #e4e6eb;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+html[data-theme="dark"] .acct-box h3 { color: #e4e6eb; }
+
+/* ── パスワード表示切替 ── */
+.acct-pw-wrap { position: relative; margin-bottom: 8px; }
+.acct-pw-wrap input { margin-bottom: 0; padding-right: 40px; }
+.acct-pw-wrap .acct-pw-btn {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px;
+  color: #888;
+}
+.acct-pw-wrap .acct-pw-btn:hover { opacity: 0.7; }
+
+/* ── プロフィール表示 ── */
+.acct-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.acct-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0eef7;
+  font-size: 26px;
+  line-height: 1;
+  overflow: hidden;
+}
+.acct-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+#mp-profile-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0eef7;
+  font-size: 26px;
+  line-height: 1;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+#mp-profile-icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+#mp-pid {
+  word-break: break-all;
+}
+.acct-picon-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.acct-picon-row .acct-avatar {
+  flex-shrink: 0;
+}
+.acct-picon-row input {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/* ── ホーム画面のアカウントカード ── */
+.home-acct-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #f5f2fb, #efe9fb);
+  border: 1px solid #e6e0f5;
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: transform 0.15s, box-shadow 0.15s;
+  touch-action: manipulation;
+}
+.home-acct-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+.home-acct-ico {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  line-height: 1;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid #e6e0f5;
+}
+.home-acct-ico img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.home-acct-info {
+  flex: 1;
+  min-width: 0;
+}
+.home-acct-name {
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.home-acct-sub {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.home-acct-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.home-acct-mypage {
+  background: linear-gradient(135deg, #7a4fc4, #a06fd8);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  touch-action: manipulation;
+  box-shadow: 0 2px 8px rgba(122, 79, 196, 0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.home-acct-mypage:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(122, 79, 196, 0.45);
+}
+.home-acct-chev {
+  font-size: 20px;
+  color: #b8a8e0;
+}
+
+/* ── ホーム画面のアカウントカード（スマホ） ── */
+@media (max-width: 560px) {
+  .home-acct-card { flex-wrap: wrap; }
+  .home-acct-info { flex: 1 1 auto; }
+  .home-acct-actions { width: 100%; justify-content: flex-end; }
+}
+
+/* ── マイページ ── */
+.mp-stat-grid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.mp-stat-card {
+  flex: 1;
+  min-width: 70px;
+  text-align: center;
+  padding: 10px 6px;
+  border-radius: 10px;
+  background: #f5f2fb;
+  border: 1px solid #e6e0f5;
+}
+.mp-stat-num {
+  font-size: 22px;
+  font-weight: bold;
+  color: #6a4fa3;
+}
+.mp-stat-cap {
+  font-size: 11px;
+  color: #888;
+  margin-top: 2px;
+}
+.mp-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 2px;
+  border-bottom: 1px dashed #eee;
+  font-size: 13px;
+}
+.mp-stat-row:last-child { border-bottom: none; }
+.mp-stat-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mp-stat-val {
+  flex-shrink: 0;
+  font-weight: bold;
+  color: #6a4fa3;
+}
+.mp-stat-col { flex-direction: column; align-items: flex-start; }
+.mp-stat-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+.mp-stat-sub {
+  font-size: 11px;
+  color: #999;
+}
+
+/* ── サイドパネル ── */
+.side-panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.25s, visibility 0.25s;
+}
+.side-panel-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 280px;
+  height: 100%;
+  background: #fff;
+  z-index: 210;
+  overflow-y: auto;
+  transition: right 0.25s;
+  box-shadow: -4px 0 12px rgba(0,0,0,0.12);
+  padding: 16px 18px 80px;
+}
+.side-panel.open { right: 0; }
+.side-panel h2 {
+  font-size: 15px;
+  margin: 0 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+/* ── 通知設定 ── */
+.notif-section { margin-bottom: 16px; }
+.notif-section h3 {
+  font-size: 13px;
+  margin: 0 0 8px;
+  color: #555;
+}
+.notif-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 13px;
+  gap: 8px;
+}
+.notif-row .member-icon {
+  height: 24px;
+  width: auto;
+  max-width: 60px;
+}
+.notif-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* Toggle switch */
+.toggle-wrap { flex-shrink: 0; }
+.toggle-checkbox { display: none; }
+.toggle-label {
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.toggle-label::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  transition: left 0.2s;
+}
+.toggle-checkbox:checked + .toggle-label { background: #00bec4; }
+.toggle-checkbox:checked + .toggle-label::after { left: 20px; }
+
+/* ── 配信予定 ── */
+.schedule-subtabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.schedule-subtab {
+  background: #e8eceb;
+  color: #555;
+  border: none;
+  padding: 5px 14px;
+  border-radius: 14px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+.schedule-subtab.active {
+  background: #00bec4;
+  color: #fff;
+}
+.schedule-time {
+  font-size: 11px;
+  color: #888;
+  margin: 0;
+  font-weight: bold;
+}
+
+/* ── フッター ── */
+.site-footer {
+  text-align: center;
+  padding: 20px 16px;
+  font-size: 10px;
+  color: #aaa;
+  border-top: 1px solid #eee;
+  margin-top: 32px;
+}
+.site-footer p { margin: 0; line-height: 1.6; }
+
+/* ── ホーム画面 ── */
+.home-section {
+  margin-bottom: 24px;
+}
+.home-hero {
+  background: linear-gradient(135deg, #e6f9fa, #cceff0);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+.home-hero h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #00878c;
+}
+.home-hero .hero-desc {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* News */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.news-item {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  font-size: 13px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.news-date {
+  flex-shrink: 0;
+  color: #00bec4;
+  font-weight: bold;
+  font-size: 12px;
+}
+.news-text {
+  color: #333;
+}
+
+/* Member slider */
+.member-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 14px;
+  padding: 4px 0 10px;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.member-slider::-webkit-scrollbar { display: none; }
+.member-card {
+  flex: 0 0 110px;
+  scroll-snap-align: start;
+  background: var(--card-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  padding: 14px 8px 10px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  touch-action: manipulation;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.member-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(122,131,168,0.18);
+}
+.member-avatar-wrap {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.member-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #f0f0f0;
+}
+.member-avatar-fallback {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: #f0f0f0;
+}
+.member-avatar-fallback img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.member-name {
+  margin: 4px 0 0;
+  font-size: 12px;
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.member-links {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 2px;
+}
+.member-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: color 0.15s;
+}
+.member-links a:hover { color: #00bec4; }
+
+/* Birthday */
+.birthday-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.birthday-item {
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.birthday-date {
+  font-weight: bold;
+  color: #e67e22;
+  margin-right: 6px;
+}
+
+/* Global links */
+.global-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.global-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #333;
+  text-decoration: none;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: box-shadow 0.15s, transform 0.15s;
+  touch-action: manipulation;
+}
+.global-link:hover {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transform: translateY(-1px);
+}
+
+/* ── ダークモード ── */
+html[data-theme="dark"] body {
+  background-color: #13151c;
+  color: #e4e6eb;
+}
+html[data-theme="dark"] header {
+  background-color: #1b1e27;
+  border-bottom-color: #2a2e3c;
+}
+html[data-theme="dark"] .tab-item,
+html[data-theme="dark"] .type-nav-btn,
+html[data-theme="dark"] .schedule-subtab,
+html[data-theme="dark"] .search-clear-btn,
+html[data-theme="dark"] .sf-chip,
+html[data-theme="dark"] .load-more-btn {
+  background-color: #2a2f3d;
+  color: #c9cdda;
+}
+html[data-theme="dark"] .tab-item.active,
+html[data-theme="dark"] .type-nav-btn:hover,
+html[data-theme="dark"] .schedule-subtab.active {
+  background-color: #00bec4;
+  color: #fff;
+}
+html[data-theme="dark"] .search-field {
+  background: #20242f;
+  border-color: #333a4c;
+  color: #e4e6eb;
+}
+html[data-theme="dark"] .search-field::placeholder { color: #7c8499; }
+html[data-theme="dark"] .sf-select {
+  background: #20242f;
+  border-color: #333a4c;
+  color: #e4e6eb;
+}
+html[data-theme="dark"] .video-card,
+html[data-theme="dark"] .site-card,
+html[data-theme="dark"] .watch-back-btn,
+html[data-theme="dark"] .watch-info,
+html[data-theme="dark"] .watch-actions .fav-btn,
+html[data-theme="dark"] .watch-rel-item,
+html[data-theme="dark"] .acct-box,
+html[data-theme="dark"] .side-panel,
+html[data-theme="dark"] .news-item,
+html[data-theme="dark"] .member-card,
+html[data-theme="dark"] .birthday-item,
+html[data-theme="dark"] .global-link {
+  background: #1d212c;
+  border-color: #2c3142;
+}
+html[data-theme="dark"] .site-card--soon {
+  background: #232836;
+}
+html[data-theme="dark"] .site-card-badge,
+html[data-theme="dark"] .member-avatar,
+html[data-theme="dark"] .member-avatar-fallback,
+html[data-theme="dark"] .acct-avatar,
+html[data-theme="dark"] #mp-profile-icon {
+  background: #2a2f3d;
+}
+html[data-theme="dark"] .site-card,
+html[data-theme="dark"] .global-link,
+html[data-theme="dark"] .member-name,
+html[data-theme="dark"] .news-text,
+html[data-theme="dark"] .acct-btn-name,
+html[data-theme="dark"] .acct-box h3,
+html[data-theme="dark"] .home-acct-name,
+html[data-theme="dark"] .watch-title,
+html[data-theme="dark"] .video-title {
+  color: #e4e6eb;
+}
+html[data-theme="dark"] .hamburger-btn,
+html[data-theme="dark"] .acct-btn {
+  color: #e4e6eb;
+}
+html[data-theme="dark"] .site-card-desc,
+html[data-theme="dark"] .empty-state,
+html[data-theme="dark"] .schedule-time,
+html[data-theme="dark"] .video-channel-name,
+html[data-theme="dark"] .cooldown-text,
+html[data-theme="dark"] .news-date,
+html[data-theme="dark"] .member-links,
+html[data-theme="dark"] .watched-tag {
+  color: #9aa2b5;
+}
+html[data-theme="dark"] .stats-bar {
+  background: #123134;
+  color: #4fd8dc;
+}
+html[data-theme="dark"] .stats-bar .stat-item .label { color: #93b8c0; }
+html[data-theme="dark"] .video-channel-icon-wrap,
+html[data-theme="dark"] .home-acct-ico,
+html[data-theme="dark"] .orbis-promo-icon,
+html[data-theme="dark"] .orbis-promo-links a,
+html[data-theme="dark"] .orbis-link {
+  background: #2a2f3d;
+}
+html[data-theme="dark"] .watch-actions .youtube-link {
+  background: #1a2e31;
+}
+html[data-theme="dark"] .watch-actions .youtube-link:hover,
+html[data-theme="dark"] .watch-rel-item.active {
+  background: #163a41;
+}
+html[data-theme="dark"] .mp-stat-card {
+  background: #22263a;
+}
+html[data-theme="dark"] .home-acct-card {
+  background: linear-gradient(135deg, #20242f, #262a3a);
+  border-color: #32384c;
+}
+html[data-theme="dark"] #mp-banner { background: #241d44; }
+html[data-theme="dark"] .site-footer {
+  border-top-color: #262b38;
+  color: #70798e;
+}
+html[data-theme="dark"] input[type="text"],
+html[data-theme="dark"] input[type="email"],
+html[data-theme="dark"] input[type="password"] {
+  background: #20242f;
+  color: #e4e6eb;
+  border-color: #333a4c;
+}
+html[data-theme="dark"] option { background: #1d212c; color: #e4e6eb; }
+html[data-theme="dark"] .notification {
+  background: #1d212c;
+  color: #e4e6eb;
+  border: 1px solid #2c3142;
+}
+html[data-theme="dark"] .notification.info { border-color: #2f6d74; }
+html[data-theme="dark"] .side-panel-overlay { background: rgba(0, 0, 0, 0.55); }
+
+/* ── 共有シート ── */
+.share-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 300;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+.share-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+.share-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  z-index: 310;
+  padding: 12px 16px calc(16px + env(safe-area-inset-bottom));
+  transform: translateY(105%);
+  transition: transform 0.25s;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.18);
+}
+.share-overlay.open .share-sheet { transform: translateY(0); }
+.share-sheet-title {
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+  margin: 2px 0 10px;
+}
+.share-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 13px 12px;
+  border: none;
+  background: none;
+  border-radius: 12px;
+  font-size: 15px;
+  color: #222;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+.share-item:hover { background: #f2f2f2; }
+.share-ic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+}
+.share-item-done { color: #16a34a; }
+.share-cancel {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 13px;
+  border: none;
+  border-top: 1px solid #eee;
+  border-radius: 0;
+  background: none;
+  font-size: 15px;
+  color: #666;
+  cursor: pointer;
+}
+html[data-theme="dark"] .share-sheet { background: #1d1d1f; }
+html[data-theme="dark"] .share-item { color: #eee; }
+html[data-theme="dark"] .share-item:hover { background: #2a2a2d; }
+html[data-theme="dark"] .share-cancel { color: #aaa; border-top-color: #333; }
+html[data-theme="dark"] .share-overlay { background: rgba(0, 0, 0, 0.55); }
+/* ── カスタムカーソル（サイドパネルで切替・タレント別） ── */
+html.cursor-custom * { cursor: url('/images/cursors/default.png') 8 8, auto !important; }
+html.cursor-custom.cursor-konomi * { cursor: url('/images/cursors/konomi.cur'), url('/images/cursors/konomi.png') 2 6, auto !important; }
+html.cursor-custom.cursor-nono * { cursor: url('/images/cursors/nono.cur'), url('/images/cursors/nono.png') 2 6, auto !important; }
+html.cursor-custom.cursor-akubi * { cursor: url('/images/cursors/akubi.cur'), url('/images/cursors/akubi.png') 2 6, auto !important; }
+html.cursor-custom.cursor-rako * { cursor: url('/images/cursors/rako.cur'), url('/images/cursors/rako.png') 1 6, auto !important; }
+html.cursor-custom.cursor-yura * { cursor: url('/images/cursors/yura.cur'), url('/images/cursors/yura.png') 2 6, auto !important; }
+html.cursor-custom.cursor-koma * { cursor: url('/images/cursors/koma.cur'), url('/images/cursors/koma.png') 2 6, auto !important; }
+html.cursor-custom.cursor-rizu * { cursor: url('/images/cursors/rizu.cur'), url('/images/cursors/rizu.png') 2 6, auto !important; }
+html.cursor-custom.cursor-tsukuri * { cursor: url('/images/cursors/tsukuri.cur'), url('/images/cursors/tsukuri.png') 2 6, auto !important; }
+html.cursor-custom.cursor-tukuri * { cursor: url('/images/cursors/tsukuri.cur'), url('/images/cursors/tsukuri.png') 2 6, auto !important; } /* 旧表記エイリアス */
+html.cursor-custom.cursor-nuhu * { cursor: url('/images/cursors/nuhu.cur'), url('/images/cursors/nuhu.png') 2 6, auto !important; }
+html.cursor-custom.cursor-rei * { cursor: url('/images/cursors/rei.cur'), url('/images/cursors/rei.png') 1 3, auto !important; }
+html.cursor-custom.cursor-mahoro * { cursor: url('/images/cursors/mahoro.cur'), url('/images/cursors/mahoro.png') 1 1, auto !important; }
+html.cursor-custom.cursor-milli-chan * { cursor: url('/images/cursors/milli-chan.cur'), url('/images/cursors/milli-chan.png') 2 6, auto !important; }
+html.cursor-custom.cursor-milpro * { cursor: url('/images/cursors/milli-chan.cur'), url('/images/cursors/milli-chan.png') 2 6, auto !important; } /* 互換 */
+html.cursor-custom.cursor-miri * { cursor: url('/images/cursors/milli-chan.cur'), url('/images/cursors/milli-chan.png') 2 6, auto !important; } /* 互換 */
+html.cursor-custom.cursor-default * { cursor: url('/images/cursors/default.png') 8 8, auto !important; }
+/* タレント別カーソルの差分活用（Hand/Beam/Wait） */
+html.cursor-custom.cursor-mahoro a:hover, html.cursor-custom.cursor-mahoro button:hover, html.cursor-custom.cursor-mahoro [role="button"]:hover, html.cursor-custom.cursor-mahoro [onclick]:hover, html.cursor-custom.cursor-mahoro .tab-item:hover, html.cursor-custom.cursor-mahoro .member-card:hover, html.cursor-custom.cursor-mahoro .site-card:hover, html.cursor-custom.cursor-mahoro .video-card:hover, html.cursor-custom.cursor-mahoro .watch-rel-item:hover, html.cursor-custom.cursor-mahoro .cursor-dropdown-item:hover, html.cursor-custom.cursor-mahoro .cursor-top-btn:hover, html.cursor-custom.cursor-mahoro .sf-chip:hover, html.cursor-custom.cursor-mahoro .type-nav-btn:hover, html.cursor-custom.cursor-mahoro .load-more-btn:hover, html.cursor-custom.cursor-mahoro .global-link:hover, html.cursor-custom.cursor-mahoro .orbis-link:hover { cursor: url('/images/cursors/mahoro/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-mahoro input:hover, html.cursor-custom.cursor-mahoro textarea:hover, html.cursor-custom.cursor-mahoro [contenteditable]:hover { cursor: url('/images/cursors/mahoro/beam.cur'), text !important; }
+html.cursor-custom.cursor-mahoro .watch-loading, html.cursor-custom.cursor-mahoro .loading, html.cursor-custom.cursor-mahoro .watch-spinner { cursor: url('/images/cursors/mahoro/wait.cur'), wait !important; }
+html.cursor-custom.cursor-rei a:hover, html.cursor-custom.cursor-rei button:hover, html.cursor-custom.cursor-rei [role="button"]:hover, html.cursor-custom.cursor-rei [onclick]:hover, html.cursor-custom.cursor-rei .tab-item:hover, html.cursor-custom.cursor-rei .member-card:hover, html.cursor-custom.cursor-rei .site-card:hover, html.cursor-custom.cursor-rei .video-card:hover, html.cursor-custom.cursor-rei .watch-rel-item:hover, html.cursor-custom.cursor-rei .cursor-dropdown-item:hover, html.cursor-custom.cursor-rei .cursor-top-btn:hover, html.cursor-custom.cursor-rei .sf-chip:hover, html.cursor-custom.cursor-rei .type-nav-btn:hover, html.cursor-custom.cursor-rei .load-more-btn:hover, html.cursor-custom.cursor-rei .global-link:hover, html.cursor-custom.cursor-rei .orbis-link:hover { cursor: url('/images/cursors/rei/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-rei input:hover, html.cursor-custom.cursor-rei textarea:hover { cursor: url('/images/cursors/rei/beam.cur'), text !important; }
+html.cursor-custom.cursor-rei .watch-loading, html.cursor-custom.cursor-rei .loading { cursor: url('/images/cursors/rei/wait.cur'), wait !important; }
+html.cursor-custom.cursor-nuhu a:hover, html.cursor-custom.cursor-nuhu button:hover, html.cursor-custom.cursor-nuhu [role="button"]:hover, html.cursor-custom.cursor-nuhu [onclick]:hover, html.cursor-custom.cursor-nuhu .tab-item:hover, html.cursor-custom.cursor-nuhu .member-card:hover, html.cursor-custom.cursor-nuhu .site-card:hover, html.cursor-custom.cursor-nuhu .video-card:hover, html.cursor-custom.cursor-nuhu .watch-rel-item:hover, html.cursor-custom.cursor-nuhu .cursor-dropdown-item:hover, html.cursor-custom.cursor-nuhu .cursor-top-btn:hover, html.cursor-custom.cursor-nuhu .sf-chip:hover, html.cursor-custom.cursor-nuhu .type-nav-btn:hover, html.cursor-custom.cursor-nuhu .load-more-btn:hover, html.cursor-custom.cursor-nuhu .global-link:hover, html.cursor-custom.cursor-nuhu .orbis-link:hover { cursor: url('/images/cursors/nuhu/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-nuhu input:hover, html.cursor-custom.cursor-nuhu textarea:hover { cursor: url('/images/cursors/nuhu/beam.cur'), text !important; }
+html.cursor-custom.cursor-nuhu .watch-loading, html.cursor-custom.cursor-nuhu .loading { cursor: url('/images/cursors/nuhu/wait.cur'), wait !important; }
+html.cursor-custom.cursor-rako a:hover, html.cursor-custom.cursor-rako button:hover, html.cursor-custom.cursor-rako [role="button"]:hover, html.cursor-custom.cursor-rako [onclick]:hover, html.cursor-custom.cursor-rako .tab-item:hover, html.cursor-custom.cursor-rako .member-card:hover, html.cursor-custom.cursor-rako .site-card:hover, html.cursor-custom.cursor-rako .video-card:hover, html.cursor-custom.cursor-rako .watch-rel-item:hover, html.cursor-custom.cursor-rako .cursor-dropdown-item:hover, html.cursor-custom.cursor-rako .cursor-top-btn:hover, html.cursor-custom.cursor-rako .sf-chip:hover, html.cursor-custom.cursor-rako .type-nav-btn:hover, html.cursor-custom.cursor-rako .load-more-btn:hover, html.cursor-custom.cursor-rako .global-link:hover, html.cursor-custom.cursor-rako .orbis-link:hover { cursor: url('/images/cursors/rako/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-rako input:hover, html.cursor-custom.cursor-rako textarea:hover { cursor: url('/images/cursors/rako/beam.cur'), text !important; }
+html.cursor-custom.cursor-rako .watch-loading, html.cursor-custom.cursor-rako .loading { cursor: url('/images/cursors/rako/wait.cur'), wait !important; }
+html.cursor-custom.cursor-yura a:hover, html.cursor-custom.cursor-yura button:hover, html.cursor-custom.cursor-yura [role="button"]:hover, html.cursor-custom.cursor-yura [onclick]:hover, html.cursor-custom.cursor-yura .tab-item:hover, html.cursor-custom.cursor-yura .member-card:hover, html.cursor-custom.cursor-yura .site-card:hover, html.cursor-custom.cursor-yura .video-card:hover, html.cursor-custom.cursor-yura .watch-rel-item:hover, html.cursor-custom.cursor-yura .cursor-dropdown-item:hover, html.cursor-custom.cursor-yura .cursor-top-btn:hover, html.cursor-custom.cursor-yura .sf-chip:hover, html.cursor-custom.cursor-yura .type-nav-btn:hover, html.cursor-custom.cursor-yura .load-more-btn:hover, html.cursor-custom.cursor-yura .global-link:hover, html.cursor-custom.cursor-yura .orbis-link:hover { cursor: url('/images/cursors/yura/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-yura input:hover, html.cursor-custom.cursor-yura textarea:hover { cursor: url('/images/cursors/yura/beam.cur'), text !important; }
+html.cursor-custom.cursor-yura .watch-loading, html.cursor-custom.cursor-yura .loading { cursor: url('/images/cursors/yura/wait.cur'), wait !important; }
+html.cursor-custom.cursor-konomi a:hover, html.cursor-custom.cursor-konomi button:hover, html.cursor-custom.cursor-konomi [role="button"]:hover, html.cursor-custom.cursor-konomi [onclick]:hover, html.cursor-custom.cursor-konomi .tab-item:hover, html.cursor-custom.cursor-konomi .member-card:hover, html.cursor-custom.cursor-konomi .site-card:hover, html.cursor-custom.cursor-konomi .video-card:hover, html.cursor-custom.cursor-konomi .watch-rel-item:hover, html.cursor-custom.cursor-konomi .cursor-dropdown-item:hover, html.cursor-custom.cursor-konomi .cursor-top-btn:hover, html.cursor-custom.cursor-konomi .sf-chip:hover, html.cursor-custom.cursor-konomi .type-nav-btn:hover, html.cursor-custom.cursor-konomi .load-more-btn:hover, html.cursor-custom.cursor-konomi .global-link:hover, html.cursor-custom.cursor-konomi .orbis-link:hover { cursor: url('/images/cursors/konomi/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-konomi input:hover, html.cursor-custom.cursor-konomi textarea:hover { cursor: url('/images/cursors/konomi/beam.cur'), text !important; }
+html.cursor-custom.cursor-konomi .watch-loading, html.cursor-custom.cursor-konomi .loading { cursor: url('/images/cursors/konomi/wait.cur'), wait !important; }
+html.cursor-custom.cursor-nono a:hover, html.cursor-custom.cursor-nono button:hover, html.cursor-custom.cursor-nono [role="button"]:hover, html.cursor-custom.cursor-nono [onclick]:hover, html.cursor-custom.cursor-nono .tab-item:hover, html.cursor-custom.cursor-nono .member-card:hover, html.cursor-custom.cursor-nono .site-card:hover, html.cursor-custom.cursor-nono .video-card:hover, html.cursor-custom.cursor-nono .watch-rel-item:hover, html.cursor-custom.cursor-nono .cursor-dropdown-item:hover, html.cursor-custom.cursor-nono .cursor-top-btn:hover, html.cursor-custom.cursor-nono .sf-chip:hover, html.cursor-custom.cursor-nono .type-nav-btn:hover, html.cursor-custom.cursor-nono .load-more-btn:hover, html.cursor-custom.cursor-nono .global-link:hover, html.cursor-custom.cursor-nono .orbis-link:hover { cursor: url('/images/cursors/nono/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-nono input:hover, html.cursor-custom.cursor-nono textarea:hover { cursor: url('/images/cursors/nono/beam.cur'), text !important; }
+html.cursor-custom.cursor-nono .watch-loading, html.cursor-custom.cursor-nono .loading { cursor: url('/images/cursors/nono/wait.cur'), wait !important; }
+html.cursor-custom.cursor-akubi a:hover, html.cursor-custom.cursor-akubi button:hover, html.cursor-custom.cursor-akubi [role="button"]:hover, html.cursor-custom.cursor-akubi [onclick]:hover, html.cursor-custom.cursor-akubi .tab-item:hover, html.cursor-custom.cursor-akubi .member-card:hover, html.cursor-custom.cursor-akubi .site-card:hover, html.cursor-custom.cursor-akubi .video-card:hover, html.cursor-custom.cursor-akubi .watch-rel-item:hover, html.cursor-custom.cursor-akubi .cursor-dropdown-item:hover, html.cursor-custom.cursor-akubi .cursor-top-btn:hover, html.cursor-custom.cursor-akubi .sf-chip:hover, html.cursor-custom.cursor-akubi .type-nav-btn:hover, html.cursor-custom.cursor-akubi .load-more-btn:hover, html.cursor-custom.cursor-akubi .global-link:hover, html.cursor-custom.cursor-akubi .orbis-link:hover { cursor: url('/images/cursors/akubi/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-akubi input:hover, html.cursor-custom.cursor-akubi textarea:hover { cursor: url('/images/cursors/akubi/beam.cur'), text !important; }
+html.cursor-custom.cursor-akubi .watch-loading, html.cursor-custom.cursor-akubi .loading { cursor: url('/images/cursors/akubi/wait.cur'), wait !important; }
+html.cursor-custom.cursor-koma a:hover, html.cursor-custom.cursor-koma button:hover, html.cursor-custom.cursor-koma [role="button"]:hover, html.cursor-custom.cursor-koma [onclick]:hover, html.cursor-custom.cursor-koma .tab-item:hover, html.cursor-custom.cursor-koma .member-card:hover, html.cursor-custom.cursor-koma .site-card:hover, html.cursor-custom.cursor-koma .video-card:hover, html.cursor-custom.cursor-koma .watch-rel-item:hover, html.cursor-custom.cursor-koma .cursor-dropdown-item:hover, html.cursor-custom.cursor-koma .cursor-top-btn:hover, html.cursor-custom.cursor-koma .sf-chip:hover, html.cursor-custom.cursor-koma .type-nav-btn:hover, html.cursor-custom.cursor-koma .load-more-btn:hover, html.cursor-custom.cursor-koma .global-link:hover, html.cursor-custom.cursor-koma .orbis-link:hover { cursor: url('/images/cursors/koma/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-koma input:hover, html.cursor-custom.cursor-koma textarea:hover { cursor: url('/images/cursors/koma/beam.cur'), text !important; }
+html.cursor-custom.cursor-koma .watch-loading, html.cursor-custom.cursor-koma .loading { cursor: url('/images/cursors/koma/wait.cur'), wait !important; }
+html.cursor-custom.cursor-rizu a:hover, html.cursor-custom.cursor-rizu button:hover, html.cursor-custom.cursor-rizu [role="button"]:hover, html.cursor-custom.cursor-rizu [onclick]:hover, html.cursor-custom.cursor-rizu .tab-item:hover, html.cursor-custom.cursor-rizu .member-card:hover, html.cursor-custom.cursor-rizu .site-card:hover, html.cursor-custom.cursor-rizu .video-card:hover, html.cursor-custom.cursor-rizu .watch-rel-item:hover, html.cursor-custom.cursor-rizu .cursor-dropdown-item:hover, html.cursor-custom.cursor-rizu .cursor-top-btn:hover, html.cursor-custom.cursor-rizu .sf-chip:hover, html.cursor-custom.cursor-rizu .type-nav-btn:hover, html.cursor-custom.cursor-rizu .load-more-btn:hover, html.cursor-custom.cursor-rizu .global-link:hover, html.cursor-custom.cursor-rizu .orbis-link:hover { cursor: url('/images/cursors/rizu/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-rizu input:hover, html.cursor-custom.cursor-rizu textarea:hover { cursor: url('/images/cursors/rizu/beam.cur'), text !important; }
+html.cursor-custom.cursor-rizu .watch-loading, html.cursor-custom.cursor-rizu .loading { cursor: url('/images/cursors/rizu/wait.cur'), wait !important; }
+html.cursor-custom.cursor-tsukuri a:hover, html.cursor-custom.cursor-tsukuri button:hover, html.cursor-custom.cursor-tsukuri [role="button"]:hover, html.cursor-custom.cursor-tsukuri [onclick]:hover, html.cursor-custom.cursor-tsukuri .tab-item:hover, html.cursor-custom.cursor-tsukuri .member-card:hover, html.cursor-custom.cursor-tsukuri .site-card:hover, html.cursor-custom.cursor-tsukuri .video-card:hover, html.cursor-custom.cursor-tsukuri .watch-rel-item:hover, html.cursor-custom.cursor-tsukuri .cursor-dropdown-item:hover, html.cursor-custom.cursor-tsukuri .cursor-top-btn:hover, html.cursor-custom.cursor-tsukuri .sf-chip:hover, html.cursor-custom.cursor-tsukuri .type-nav-btn:hover, html.cursor-custom.cursor-tsukuri .load-more-btn:hover, html.cursor-custom.cursor-tsukuri .global-link:hover, html.cursor-custom.cursor-tsukuri .orbis-link:hover { cursor: url('/images/cursors/tsukuri/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-tsukuri input:hover, html.cursor-custom.cursor-tsukuri textarea:hover { cursor: url('/images/cursors/tsukuri/beam.cur'), text !important; }
+html.cursor-custom.cursor-tsukuri .watch-loading, html.cursor-custom.cursor-tsukuri .loading { cursor: url('/images/cursors/tsukuri/wait.cur'), wait !important; }
+html.cursor-custom.cursor-tukuri a:hover, html.cursor-custom.cursor-tukuri button:hover, html.cursor-custom.cursor-tukuri [role="button"]:hover, html.cursor-custom.cursor-tukuri [onclick]:hover, html.cursor-custom.cursor-tukuri .tab-item:hover, html.cursor-custom.cursor-tukuri .member-card:hover, html.cursor-custom.cursor-tukuri .site-card:hover, html.cursor-custom.cursor-tukuri .video-card:hover, html.cursor-custom.cursor-tukuri .watch-rel-item:hover, html.cursor-custom.cursor-tukuri .cursor-dropdown-item:hover, html.cursor-custom.cursor-tukuri .cursor-top-btn:hover, html.cursor-custom.cursor-tukuri .sf-chip:hover, html.cursor-custom.cursor-tukuri .type-nav-btn:hover, html.cursor-custom.cursor-tukuri .load-more-btn:hover, html.cursor-custom.cursor-tukuri .global-link:hover, html.cursor-custom.cursor-tukuri .orbis-link:hover { cursor: url('/images/cursors/tsukuri/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-tukuri input:hover, html.cursor-custom.cursor-tukuri textarea:hover { cursor: url('/images/cursors/tsukuri/beam.cur'), text !important; }
+html.cursor-custom.cursor-tukuri .watch-loading, html.cursor-custom.cursor-tukuri .loading { cursor: url('/images/cursors/tsukuri/wait.cur'), wait !important; }
+html.cursor-custom.cursor-milli-chan a:hover, html.cursor-custom.cursor-milli-chan button:hover, html.cursor-custom.cursor-milli-chan [role="button"]:hover, html.cursor-custom.cursor-milli-chan [onclick]:hover, html.cursor-custom.cursor-milli-chan .tab-item:hover, html.cursor-custom.cursor-milli-chan .member-card:hover, html.cursor-custom.cursor-milli-chan .site-card:hover, html.cursor-custom.cursor-milli-chan .video-card:hover, html.cursor-custom.cursor-milli-chan .watch-rel-item:hover, html.cursor-custom.cursor-milli-chan .cursor-dropdown-item:hover, html.cursor-custom.cursor-milli-chan .cursor-top-btn:hover, html.cursor-custom.cursor-milli-chan .sf-chip:hover, html.cursor-custom.cursor-milli-chan .type-nav-btn:hover, html.cursor-custom.cursor-milli-chan .load-more-btn:hover, html.cursor-custom.cursor-milli-chan .global-link:hover, html.cursor-custom.cursor-milli-chan .orbis-link:hover { cursor: url('/images/cursors/milli-chan/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-milli-chan input:hover, html.cursor-custom.cursor-milli-chan textarea:hover { cursor: url('/images/cursors/milli-chan/beam.cur'), text !important; }
+html.cursor-custom.cursor-milli-chan .watch-loading, html.cursor-custom.cursor-milli-chan .loading { cursor: url('/images/cursors/milli-chan/wait.cur'), wait !important; }
+html.cursor-custom.cursor-milpro a:hover, html.cursor-custom.cursor-milpro button:hover, html.cursor-custom.cursor-milpro [role="button"]:hover, html.cursor-custom.cursor-milpro [onclick]:hover, html.cursor-custom.cursor-milpro .tab-item:hover, html.cursor-custom.cursor-milpro .member-card:hover, html.cursor-custom.cursor-milpro .site-card:hover, html.cursor-custom.cursor-milpro .video-card:hover, html.cursor-custom.cursor-milpro .watch-rel-item:hover, html.cursor-custom.cursor-milpro .cursor-dropdown-item:hover, html.cursor-custom.cursor-milpro .cursor-top-btn:hover, html.cursor-custom.cursor-milpro .sf-chip:hover, html.cursor-custom.cursor-milpro .type-nav-btn:hover, html.cursor-custom.cursor-milpro .load-more-btn:hover, html.cursor-custom.cursor-milpro .global-link:hover, html.cursor-custom.cursor-milpro .orbis-link:hover { cursor: url('/images/cursors/milli-chan/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-milpro input:hover, html.cursor-custom.cursor-milpro textarea:hover { cursor: url('/images/cursors/milli-chan/beam.cur'), text !important; }
+html.cursor-custom.cursor-milpro .watch-loading, html.cursor-custom.cursor-milpro .loading { cursor: url('/images/cursors/milli-chan/wait.cur'), wait !important; }
+html.cursor-custom.cursor-miri a:hover, html.cursor-custom.cursor-miri button:hover, html.cursor-custom.cursor-miri [role="button"]:hover, html.cursor-custom.cursor-miri [onclick]:hover, html.cursor-custom.cursor-miri .tab-item:hover, html.cursor-custom.cursor-miri .member-card:hover, html.cursor-custom.cursor-miri .site-card:hover, html.cursor-custom.cursor-miri .video-card:hover, html.cursor-custom.cursor-miri .watch-rel-item:hover, html.cursor-custom.cursor-miri .cursor-dropdown-item:hover, html.cursor-custom.cursor-miri .cursor-top-btn:hover, html.cursor-custom.cursor-miri .sf-chip:hover, html.cursor-custom.cursor-miri .type-nav-btn:hover, html.cursor-custom.cursor-miri .load-more-btn:hover, html.cursor-custom.cursor-miri .global-link:hover, html.cursor-custom.cursor-miri .orbis-link:hover { cursor: url('/images/cursors/milli-chan/hand.cur'), pointer !important; }
+html.cursor-custom.cursor-miri input:hover, html.cursor-custom.cursor-miri textarea:hover { cursor: url('/images/cursors/milli-chan/beam.cur'), text !important; }
+html.cursor-custom.cursor-miri .watch-loading, html.cursor-custom.cursor-miri .loading { cursor: url('/images/cursors/milli-chan/wait.cur'), wait !important; }
+@media (prefers-reduced-motion: reduce) {
+  html.cursor-custom * { cursor: auto !important; }
+}
+/* ── トップバーのカーソル選択（PC/タブレットのみ・オリジナルUI） ── */
+.cursor-top-wrap { position: relative; display: none; }
+@media (min-width: 768px) {
+  .cursor-top-wrap { display: block; }
+}
+.cursor-top-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid #e5e5e5;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+.cursor-top-btn:hover { border-color: #7a4fc4; box-shadow: 0 2px 8px rgba(122,79,196,0.15); }
+.cursor-top-btn[aria-expanded="true"] { border-color: #7a4fc4; background: #f8f2ff; }
+.cursor-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 220px;
+  max-height: 320px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  z-index: 100;
+  padding: 6px;
+  display: none;
+}
+.cursor-dropdown.open { display: block; }
+.cursor-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.cursor-dropdown-item:hover { background: #f3f0ff; }
+.cursor-dropdown-item.active { background: #ede7ff; }
+.cursor-dropdown-item img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #eee;
+  flex-shrink: 0;
+}
+.cursor-dropdown-item.active img { border-color: #7a4fc4; }
+.cursor-dropdown-item span { font-size: 12px; font-weight: 600; color: #333; flex: 1; }
+/* ── 視聴時のカーソル自動非表示（YouTubeの全画面時の挙動を再現） ── */
+.watch-player-wrap.hide-cursor,
+.watch-player-wrap.hide-cursor * { cursor: none !important; }
+html.hide-cursor-watch * { cursor: none !important; }
+.cursor-dropdown-item .check { width: 16px; height: 16px; color: #7a4fc4; opacity: 0; }
+.cursor-dropdown-item.active .check { opacity: 1; }

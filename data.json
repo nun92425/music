@@ -1,0 +1,188 @@
+{
+  "members": [
+    {
+      "id": "kanae",
+      "name": "叶",
+      "icon": "🎤",
+      "channel": "@Kanae",
+      "channelId": "UCspv01oxUFf_MTSipURRhkA",
+      "birthday": "",
+      "links": "[]",
+      "avatar": "",
+      "playlists": [
+        {
+          "id": "PL_kanae_utamitai",
+          "name": "歌ってみた",
+          "videos": [
+            {
+              "id": "jNQXAC9IVRw",
+              "type": "regular",
+              "cached": {
+                "title": "叶 - サンプル 1 (Me at the zoo)",
+                "thumbnail": "https://i.ytimg.com/vi/jNQXAC9IVRw/hqdefault.jpg",
+                "publishedAt": "2024-06-01T12:00:00Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "叶"
+              }
+            },
+            {
+              "id": "dQw4w9WgXcQ",
+              "type": "regular",
+              "cached": {
+                "title": "叶 - サンプル 2 (Rick Astley)",
+                "thumbnail": "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
+                "publishedAt": "2024-06-01T12:00:00Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "叶"
+              }
+            }
+          ],
+          "channelId": "UCspv01oxUFf_MTSipURRhkA"
+        }
+      ],
+      "videos": [],
+      "scheduledStreams": []
+    },
+    {
+      "id": "kuzuha",
+      "name": "葛葉",
+      "icon": "🎮",
+      "channel": "@Kuzuha",
+      "channelId": "UCSFCh5NL4qXrAy9uB_Q4l2A",
+      "birthday": "",
+      "links": "[]",
+      "avatar": "",
+      "playlists": [
+        {
+          "id": "PL_kuzuha_utamitai",
+          "name": "歌ってみた",
+          "videos": [
+            {
+              "id": "9bZkp7q19f0",
+              "type": "regular",
+              "cached": {
+                "title": "葛葉 - サンプル 1",
+                "thumbnail": "https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg",
+                "publishedAt": "2024-06-01T12:00:00Z",
+                "channelId": "UCSFCh5NL4qXrAy9uB_Q4l2A",
+                "channelTitle": "葛葉"
+              }
+            },
+            {
+              "id": "kJQP7kiw5Fk",
+              "type": "regular",
+              "cached": {
+                "title": "葛葉 - サンプル 2",
+                "thumbnail": "https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg",
+                "publishedAt": "2024-06-01T12:00:00Z",
+                "channelId": "UCSFCh5NL4qXrAy9uB_Q4l2A",
+                "channelTitle": "葛葉"
+              }
+            }
+          ],
+          "channelId": "UCSFCh5NL4qXrAy9uB_Q4l2A"
+        }
+      ],
+      "videos": [],
+      "scheduledStreams": []
+    },
+    {
+      "id": "tamanoinana",
+      "name": "珠乃井ナナ",
+      "icon": "🎨",
+      "channel": "@TamanouiNana",
+      "channelId": "UC1zFJrfEKgQlCYy30F3aOldA",
+      "birthday": "",
+      "links": "[]",
+      "avatar": "",
+      "playlists": [
+        {
+          "id": "PL_tamanoinana_utamitai",
+          "name": "歌ってみた",
+          "videos": [
+            {
+              "id": "C0DPdy98e4c",
+              "type": "regular",
+              "cached": {
+                "title": "珠乃井ナナ - サンプル 1",
+                "thumbnail": "https://i.ytimg.com/vi/C0DPdy98e4c/hqdefault.jpg",
+                "publishedAt": "2024-06-01T12:00:00Z",
+                "channelId": "UC1zFJrfEKgQlCYy30F3aOldA",
+                "channelTitle": "珠乃井ナナ"
+              }
+            },
+            {
+              "id": "hT_nvWreIhg",
+              "type": "regular",
+              "cached": {
+                "title": "珠乃井ナナ - サンプル 2",
+                "thumbnail": "https://i.ytimg.com/vi/hT_nvWreIhg/hqdefault.jpg",
+                "publishedAt": "2024-06-01T12:00:00Z",
+                "channelId": "UC1zFJrfEKgQlCYy30F3aOldA",
+                "channelTitle": "珠乃井ナナ"
+              }
+            }
+          ],
+          "channelId": "UC1zFJrfEKgQlCYy30F3aOldA"
+        }
+      ],
+      "videos": [],
+      "scheduledStreams": []
+    },
+    {
+      "id": "chronoir",
+      "name": "ChroNoiR",
+      "icon": "🌙",
+      "channel": "@ChroNoiR",
+      "channelId": "UC_chronoir",
+      "birthday": "",
+      "links": "[]",
+      "avatar": "",
+      "playlists": [
+        {
+          "id": "PL_chronoir_utamitai",
+          "name": "歌ってみた",
+          "videos": [
+            {
+              "id": "RgKAFK5djSk",
+              "type": "regular",
+              "cached": {
+                "title": "ChroNoiR - サンプル (Waka Waka)",
+                "thumbnail": "https://i.ytimg.com/vi/RgKAFK5djSk/hqdefault.jpg",
+                "publishedAt": "2024-06-01T12:00:00Z",
+                "channelId": "UC_chronoir",
+                "channelTitle": "ChroNoiR"
+              }
+            },
+            {
+              "id": "fRh_vgS2dFE",
+              "type": "regular",
+              "cached": {
+                "title": "ChroNoiR - サンプル 2 (Sorry)",
+                "thumbnail": "https://i.ytimg.com/vi/fRh_vgS2dFE/hqdefault.jpg",
+                "publishedAt": "2024-06-01T12:00:00Z",
+                "channelId": "UC_chronoir",
+                "channelTitle": "ChroNoiR"
+              }
+            }
+          ],
+          "channelId": "UC_chronoir"
+        }
+      ],
+      "videos": [],
+      "scheduledStreams": []
+    }
+  ],
+  "config": {
+    "fetchTime": "6:00",
+    "lastFetch": "2026-09-01T00:09:31.615527+00:00"
+  },
+  "pointConfig": {
+    "pointTypes": [],
+    "typeMapping": {}
+  },
+  "memoryGarden": {},
+  "encyclopedia": {},
+  "levelTable": {},
+  "jobs": {}
+}
