@@ -764,7 +764,28 @@ const FavibeOshi = (function(){
   const FB_PATH = 'favibe/selectedArtists';
   let artistsMaster = null;
   let selected = [];
+  let lockedIds = [];
   let _fbUnsub = null;
+  async function loadLocked(){
+    try{
+      const r = await fetch('./site-config.json');
+      const j = await r.json();
+      if(j.favibe && Array.isArray(j.favibe.initialArtists) && j.favibe.initialArtists.length){
+        lockedIds = j.favibe.initialArtists.slice();
+      }
+    }catch(e){}
+    if(!lockedIds.length){
+      try{
+        const r2 = await fetch('./data.json');
+        const d = await r2.json();
+        lockedIds = (d.members||[]).map(m=>m.id);
+      }catch(e){}
+    }
+    // fallback: if still empty, use all master later
+    return lockedIds;
+  }
+  function getLocked(){ return lockedIds.slice(); }
+  function isLocked(id){ return lockedIds.includes(id); }
 
   function esc(s){ return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
@@ -856,11 +877,28 @@ const FavibeOshi = (function(){
         saveToFirebase(selected);
       }
     }
+    // ensure locked artists are always included
+    if(lockedIds.length){
+      const set = new Set(selected);
+      for(const id of lockedIds) set.add(id);
+      // if selected was empty, default to locked
+      if(!selected.length) selected = lockedIds.slice();
+      else selected = Array.from(set);
+      // dedup & keep locked order first
+      selected = [...lockedIds, ...selected.filter(x=> !lockedIds.includes(x))];
+      // persist if we added locked
+      saveLocal(selected);
+      saveToFirebase(selected);
+    }
     return selected;
   }
 
   async function setSelected(ids){
-    selected = ids.slice();
+    // ensure locked always included
+    const set = new Set(ids);
+    for(const id of lockedIds) set.add(id);
+    selected = [...lockedIds, ...Array.from(set).filter(x=> !lockedIds.includes(x))];
+    if(!selected.length && lockedIds.length) selected = lockedIds.slice();
     saveLocal(selected);
     await saveToFirebase(selected);
     updateStatus();
@@ -871,6 +909,7 @@ const FavibeOshi = (function(){
     if(!el) return;
     const n = selected.length;
     const masterLen = artistsMaster ? artistsMaster.length : 0;
+    const lockedN = lockedIds.length;
     if(!n){
       el.innerHTML = '<span style="color:#f78fc0">推しが未選択です</span> <button id="oshiStatusBtn" style="margin-left:8px;padding:4px 10px;border-radius:999px;border:none;background:linear-gradient(120deg,#4fc3f7,#b48cf2);color:#fff;font-size:11px;font-weight:800;cursor:pointer">推しを選ぶ</button>';
       const b = el.querySelector('#oshiStatusBtn');
@@ -904,12 +943,14 @@ const FavibeOshi = (function(){
     }
     grid.innerHTML = list.map(a=>{
       const sel = modalSelected.includes(a.id);
+      const locked = isLocked(a.id);
       const color = a.color || '#9aa3c0';
-      return `<div class="oshi-card ${sel?'selected':''}" data-id="${esc(a.id)}"><span class="oshi-check" style="${sel?'':''}">${sel?'✓':''}</span><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:800;color:#e4e6eb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(a.name)}</div><div style="font-size:10px;color:#9aa3c0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(a.group||'')}</div></div><span style="width:8px;height:8px;border-radius:50%;background:${esc(color)};flex-shrink:0"></span></div>`;
+      return `<div class="oshi-card ${sel?'selected':''} ${locked?'locked':''}" data-id="${esc(a.id)}" ${locked?'title="配信中のため変更できません"':''} style="${locked?'opacity:0.92;cursor:default':''}"><span class="oshi-check" style="${sel?'':''}">${sel?'✓':''}</span><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:800;color:#e4e6eb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(a.name)}${locked?' <span style="font-size:10px;color:#4fc3f7;margin-left:4px">●選択済</span>':''}</div><div style="font-size:10px;color:#9aa3c0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(a.group||'')}${locked?' ・ロック中':''}</div></div><span style="width:8px;height:8px;border-radius:50%;background:${esc(color)};flex-shrink:0"></span>${locked?'<span style="font-size:12px;margin-left:4px">🔒</span>':''}</div>`;
     }).join('');
     grid.querySelectorAll('.oshi-card').forEach(el=>{
       el.addEventListener('click', ()=>{
         const id = el.dataset.id;
+        if(isLocked(id)) return;
         if(modalSelected.includes(id)) modalSelected = modalSelected.filter(x=>x!==id);
         else modalSelected.push(id);
         renderModal();
@@ -920,10 +961,12 @@ const FavibeOshi = (function(){
       if(!modalSelected.length) chips.innerHTML = '<span style="font-size:11px;color:#7a83a8">未選択です。推しを選んでください。</span>';
       else chips.innerHTML = modalSelected.map(id=>{
         const a = artistsMaster.find(x=>x.id===id) || {name:id};
-        return `<span class="oshi-chip">${esc(a.name)} <button data-id="${esc(id)}" class="oshi-chip-del" style="background:none;border:none;color:#e4e6eb;cursor:pointer;padding:0 0 0 2px">×</button></span>`;
+        const locked = isLocked(id);
+        return `<span class="oshi-chip" style="${locked?'opacity:0.95;border-color:rgba(79,195,247,0.35)':''}">${esc(a.name)}${locked?' 🔒':''} ${locked?'':`<button data-id="${esc(id)}" class="oshi-chip-del" style="background:none;border:none;color:#e4e6eb;cursor:pointer;padding:0 0 0 2px">×</button>`}</span>`;
       }).join('');
       chips.querySelectorAll('.oshi-chip-del').forEach(b=> b.addEventListener('click', (e)=>{
         e.stopPropagation();
+        if(isLocked(b.dataset.id)) return;
         modalSelected = modalSelected.filter(x=>x!==b.dataset.id);
         renderModal();
       }));
@@ -935,9 +978,10 @@ const FavibeOshi = (function(){
         return a && !a.playlistId;
       });
       let msg = '';
-      if(list.length===0) msg += '該当する推しが見つかりません。';
+      if(lockedIds.length) msg += `🔒 配信中の${lockedIds.length}件は選択済みで変更できません。`;
+      if(list.length===0) msg += ' 該当する推しが見つかりません。';
       if(missing.length) msg += ` ${missing.length}件はプレイリスト未登録です。選択後に管理者が登録すると次回更新で反映されます。`;
-      hint.textContent = msg;
+      hint.textContent = msg.trim();
     }
     const saveBtn = document.getElementById('oshiSave');
     if(saveBtn) saveBtn.disabled = false;
@@ -996,9 +1040,9 @@ const FavibeOshi = (function(){
     const search = document.getElementById('oshiSearch');
     if(search) search.addEventListener('input', renderModal);
     const selAll = document.getElementById('oshiSelectAll');
-    if(selAll) selAll.addEventListener('click', ()=>{ modalSelected = artistsMaster.map(a=>a.id); renderModal(); });
+    if(selAll) selAll.addEventListener('click', ()=>{ modalSelected = Array.from(new Set([...lockedIds, ...artistsMaster.map(a=>a.id)])); renderModal(); });
     const clrAll = document.getElementById('oshiClearAll');
-    if(clrAll) clrAll.addEventListener('click', ()=>{ modalSelected=[]; renderModal(); });
+    if(clrAll) clrAll.addEventListener('click', ()=>{ modalSelected = lockedIds.slice(); renderModal(); });
     document.addEventListener('keydown', e=>{
       if(e.key==='Escape'){
         const m = document.getElementById('oshiModal');
@@ -1007,13 +1051,14 @@ const FavibeOshi = (function(){
     });
   }
 
-  return { initSelected, getSelected, setSelected, loadMaster, updateStatus, open, close, bind, listenFirebase };
+  return { initSelected, getSelected, setSelected, loadMaster, loadLocked, getLocked, isLocked, updateStatus, open, close, bind, listenFirebase };
 })();
 
   // favibe oshi init wrapper
   const _origInit = init;
   init = async function(){
     try{ await FavibeOshi.loadMaster(); }catch(e){}
+    try{ await FavibeOshi.loadLocked(); }catch(e){}
     try{ await FavibeOshi.initSelected(); }catch(e){}
     FavibeOshi.bind();
     FavibeOshi.updateStatus();
