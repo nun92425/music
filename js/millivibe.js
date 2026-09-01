@@ -176,18 +176,20 @@ const Millivibe = (function(){
     const recCont = $('searchRecommend');
     if(!cont) return;
     const q = (filter||'').toLowerCase().trim();
-    const hasFilter = !!($('filterTalent') && $('filterTalent').value) || !!($('filterPlaylist') && $('filterPlaylist').value) || !!($('filterFavorites') && $('filterFavorites').checked) || (document.querySelectorAll('#searchTags .search-tag.active').length>0);
-    if(!q && !hasFilter){
+    if(!q){
+      // おすすめ: 再生上位3 + 傾向2 + お気に入り1 を混ぜる
       const plays = loadPlays();
       const counts = {};
       for(const k in plays){ if(k.includes('_')) continue; counts[k]=plays[k]; }
       const top = Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([id])=> allSongs.find(s=>s.id===id)).filter(Boolean);
       const favs = (()=>{ try{ return JSON.parse(localStorage.getItem('milpro_favorites')||'[]'); }catch(e){ return []; }})();
       const favSongs = favs.slice(0,3).map(id=> allSongs.find(s=>s.id===id)).filter(Boolean);
+      // 傾向: 最も再生したメンバーの曲
       let popularMember = null;
       if(top.length){ const m = top[0].memberId; popularMember = m; }
       const tendency = popularMember ? allSongs.filter(s=> s.memberId===popularMember && !top.some(t=>t.id===s.id)).slice(0,2) : allSongs.slice(0,2);
       const mix = [...top.slice(0,2), ...tendency.slice(0,2), ...favSongs.slice(0,2)].filter(Boolean);
+      // dedup and shuffle
       const seen = new Set();
       const uniq = mix.filter(s=>{ if(seen.has(s.id)) return false; seen.add(s.id); return true; }).slice(0,6);
       if(recCont){
@@ -203,21 +205,14 @@ const Millivibe = (function(){
           });
         }else recCont.innerHTML = '';
       }
-      const list = getFilteredSongs().slice(0,24);
+      // 検索結果は最新から
+      const list = allSongs.slice(0,24);
       cont.innerHTML = list.map(s=>songCard(s)).join('');
-      if($('btnShowAllSongs')){ $('btnShowAllSongs').style.display=''; $('btnShowAllSongs').textContent='曲一覧をすべて表示'; $('btnShowAllSongs').disabled=false; }
     }else{
       if(recCont) recCont.innerHTML = '';
-      const list = getFilteredSongs();
-      if(!list.length){ cont.innerHTML = '<p style="font-size:12px;color:#9aa3c0">該当する曲がありません。</p>'; if($('btnShowAllSongs')) $('btnShowAllSongs').style.display='none'; return; }
-      // 初回は100件のみ
-      const first = list.slice(0,100);
-      cont.innerHTML = first.map(s=>songCard(s)).join('');
-      if($('btnShowAllSongs')){
-        $('btnShowAllSongs').style.display='';
-        if(list.length>100) { $('btnShowAllSongs').textContent=`もっと見る (${first.length}/${list.length})`; $('btnShowAllSongs').disabled=false; }
-        else { $('btnShowAllSongs').textContent='すべて表示済み'; $('btnShowAllSongs').disabled=true; }
-      }
+      const list = allSongs.filter(s=> s.title.toLowerCase().includes(q) || s.memberName.toLowerCase().includes(q)).slice(0,30);
+      if(!list.length){ cont.innerHTML = '<p style="font-size:12px;color:#9aa3c0">該当する曲がありません。</p>'; return; }
+      cont.innerHTML = list.map(s=>songCard(s)).join('');
     }
     cont.querySelectorAll('.song-card').forEach(el=>{
       el.addEventListener('click', e=>{ if(e.target.closest('button')) return; playById(el.dataset.id); });
@@ -243,10 +238,10 @@ const Millivibe = (function(){
         setTimeout(()=> n.remove(), 1800);
       }
     }catch(e){}
-    // flying animation to 再生中 tab
+    // flying animation
     try{
       const thumb = cardEl.querySelector('img');
-      const target = document.querySelector('.vibe-side-nav [data-tab="nowplaying"]');
+      const target = document.querySelector('#queueList') || document.querySelector('#queueWrap');
       if(!thumb || !target) return;
       const r1 = thumb.getBoundingClientRect();
       const r2 = target.getBoundingClientRect();
@@ -257,14 +252,10 @@ const Millivibe = (function(){
       clone.style.width = r1.width+'px';
       clone.style.height = r1.height+'px';
       document.body.appendChild(clone);
-      const dx = r2.left + r2.width/2 - r1.left - r1.width/2;
-      const dy = r2.top + r2.height/2 - r1.top - r1.height/2;
-      requestAnimationFrame(()=>{ clone.style.transform = `translate(${dx}px, ${dy}px) scale(0.2)`; clone.style.opacity='0'; });
+      const dx = r2.left + 20 - r1.left;
+      const dy = r2.top - r1.top;
+      requestAnimationFrame(()=>{ clone.style.transform = `translate(${dx}px, ${dy}px) scale(0.3)`; clone.style.opacity='0.6'; });
       setTimeout(()=> clone.remove(), 500);
-      // tab pulse
-      target.style.transform = 'scale(1.1)';
-      target.style.transition = 'transform 0.2s';
-      setTimeout(()=> target.style.transform='', 250);
     }catch(e){}
   }
 
@@ -335,16 +326,15 @@ const Millivibe = (function(){
 
   function renderHistory(){
     const cont = $('historyListSticky');
-    const inlineCont = $('historyListInline');
     const libCont = $('libHistory');
-    const render = (el, thin)=>{
+    const render = (el)=>{
       if(!el) return;
       if(!history.length){ el.innerHTML = '<p style="font-size:11px;color:#9aa3c0">再生履歴はまだありません。</p>'; return; }
       el.innerHTML = history.slice(0,10).map(h=>{
         const s = allSongs.find(x=>x.id===h.id);
         const title = s ? s.title : h.id;
         const thumb = s ? s.thumbnail : `https://i.ytimg.com/vi/${h.id}/hqdefault.jpg`;
-        return `<div class="queue-item" data-id="${h.id}" style="${thin?'opacity:0.55;':''}cursor:pointer">
+        return `<div class="queue-item" data-id="${h.id}" style="opacity:0.7;cursor:pointer">
           <img class="song-thumb" src="${esc(thumb)}" alt="" style="width:48px;height:36px">
           <div class="song-meta"><div class="song-title">${esc(title)}</div><div style="font-size:10px;color:#9aa3c0">${new Date(h.at).toLocaleDateString()}</div></div>
           <button class="qplay-hist" data-id="${h.id}" style="padding:4px 8px;border-radius:999px;background:rgba(255,255,255,0.08);color:#e4e6eb;border:1px solid rgba(255,255,255,0.12);font-size:11px;cursor:pointer">再生</button>
@@ -353,23 +343,16 @@ const Millivibe = (function(){
       el.querySelectorAll('.qplay-hist').forEach(b=> b.addEventListener('click', ()=> playById(b.dataset.id)));
       el.querySelectorAll('.queue-item').forEach(div=> div.addEventListener('click', e=>{ if(e.target.closest('button')) return; playById(div.dataset.id); }));
     };
-    render(cont, true);
-    render(inlineCont, true);
-    render(libCont, false);
-    const histInlineWrap = $('queueHistoryInline');
-    if(histInlineWrap) histInlineWrap.style.display = history.length ? '' : 'none';
+    render(cont);
+    render(libCont);
   }
 
   function renderPinned(){
-    renderPinnedBar();
-  }
-  function renderPinnedBar(){
-    const cont = $('pinnedBar') || $('pinnedGrid');
+    const cont = $('pinnedGrid');
     if(!cont) return;
     const pins = loadPins();
-    const isBar = cont.id==='pinnedBar';
     if(!pins.length){
-      cont.innerHTML = isBar ? '<div style="grid-column:1/-1;font-size:11px;color:#9aa3c0;text-align:center;padding:4px">ピン留めはまだありません</div>' : '<p style="font-size:12px;color:#9aa3c0;grid-column:1/-1">ピン留めはまだありません。曲やプレイリストでPINを押してください。</p>';
+      cont.innerHTML = '<p style="font-size:12px;color:#9aa3c0;grid-column:1/-1">ピン留めはまだありません。曲やプレイリストでPINを押してください。</p>';
       return;
     }
     cont.innerHTML = pins.map(p=>{
@@ -468,26 +451,6 @@ const Millivibe = (function(){
       if(rec) rec.style.animationDuration = (60/bpm*4)+'s';
       switchTab('nowplaying');
     }));
-    // タレント別プレイリスト（各タレントの全曲、スプレッドシートと同内容、デビュー順）
-    const talentCont = document.getElementById('talentPlaylists');
-    if(talentCont){
-      const members = (data.members||[]);
-      // デビュー順はスプレッドシートの並び順をそのまま使用（既にallSongsはデビュー順ではないが、membersの順序がデビュー順）
-      talentCont.innerHTML = members.filter(m=> !['milpro','clip'].includes(m.id)).map(m=>{
-        const cnt = allSongs.filter(s=> s.memberId===m.id).length;
-        return `<div class="preset-card talent-card" data-id="${m.id}" style="cursor:pointer">
-          <div style="display:flex;align-items:center;gap:8px"><img src="${m.icon && m.icon.startsWith('/') ? m.icon : `/images/cursors/${m.id}.png`}" alt="" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,0.18)" onerror="this.style.display='none'"><span class="preset-title">${esc(m.name)}</span></div>
-          <div class="preset-desc" style="margin-top:6px">${cnt}曲</div>
-        </div>`;
-      }).join('');
-      talentCont.querySelectorAll('.talent-card').forEach(el=> el.addEventListener('click', ()=>{
-        const mid = el.dataset.id;
-        const ids = allSongs.filter(s=> s.memberId===mid).map(s=>s.id);
-        if(!ids.length) return;
-        queue = ids;
-        idx=-1; saveQueue(); renderQueue(); if(queue.length) play(0); switchTab('nowplaying');
-      }));
-    }
   }
 
   function renderCustomPlaylists(){
@@ -577,26 +540,6 @@ const Millivibe = (function(){
         else { queue.unshift(nxt); play(0); }
       }
     });
-    // mini player progress
-    setInterval(()=>{
-      const bar = $('miniProgress');
-      if(!bar || !player || !player.getCurrentTime || !player.getDuration) return;
-      try{
-        const cur = player.getCurrentTime()||0;
-        const dur = player.getDuration()||0;
-        const pct = dur ? (cur/dur*100) : 0;
-        bar.style.width = pct+'%';
-        // update mini player visibility
-        const mini = $('miniPlayer');
-        const wrap = $('vibePlayerWrap');
-        if(mini && wrap){
-          const r = wrap.getBoundingClientRect();
-          const isOut = r.bottom < 0 || r.top > window.innerHeight;
-          const shouldShow = playerReady && queue.length && (isOut || (player.getPlayerState && player.getPlayerState()===YT.PlayerState.PLAYING));
-          mini.style.display = shouldShow ? 'flex' : 'none';
-        }
-      }catch(e){}
-    }, 500);
   }
   function onStateChange(e){
     const rec = $('vibeRecord');
@@ -653,8 +596,6 @@ const Millivibe = (function(){
   }
   function play(i){
     if(i<0 || i>=queue.length) return;
-    // confirm if queue has items and new play is from outside queue? handled in playById, but also for direct index play we assume intentional
-    const prevIdx = idx;
     idx=i;
     const id = queue[i];
     const s = allSongs.find(x=>x.id===id);
@@ -662,20 +603,6 @@ const Millivibe = (function(){
       if($('nowTitle')) $('nowTitle').textContent = s.title;
       if($('nowArtist')) $('nowArtist').textContent = s.memberName;
       if($('recordThumb')){ $('recordThumb').src = s.thumbnail; $('recordThumb').style.display='block'; }
-      if($('miniTitle')) $('miniTitle').textContent = s.title;
-      if($('miniArtist')) $('miniArtist').textContent = s.memberName;
-      if($('miniThumb')){ $('miniThumb').src = s.thumbnail; }
-    }
-    // animate previous queue item upwards
-    if(prevIdx>=0 && prevIdx!==i){
-      try{
-        const prevEl = document.querySelector(`#queueList .queue-item[data-idx="${prevIdx}"]`);
-        if(prevEl){
-          prevEl.style.transition='transform 0.35s, opacity 0.35s, height 0.35s';
-          prevEl.style.transform='translateY(-24px) scale(0.96)';
-          prevEl.style.opacity='0';
-        }
-      }catch(e){}
     }
     if(!playerReady || !player || !player.loadVideoById){
       setTimeout(()=> play(i), 500);
@@ -774,14 +701,6 @@ const Millivibe = (function(){
       const v = parseInt(e.target.value,10);
       if(player && player.setVolume) player.setVolume(v);
     });
-    if($('miniPrev')) $('miniPrev').addEventListener('click', playPrev);
-    if($('miniNext')) $('miniNext').addEventListener('click', playNext);
-    if($('miniPlay')) $('miniPlay').addEventListener('click', ()=>{
-      if(!player) return;
-      const st = player.getPlayerState ? player.getPlayerState() : -1;
-      if(st===YT.PlayerState.PLAYING) player.pauseVideo(); else if(idx>=0) player.playVideo(); else if(queue.length) play(0);
-    });
-    if($('miniExpand')) $('miniExpand').addEventListener('click', ()=>{ switchTab('nowplaying'); document.querySelector('.vibe-now-grid')?.scrollIntoView({behavior:'smooth'}); });
     if($('songSearch')) $('songSearch').addEventListener('input', e=> renderSearch(e.target.value));
     if($('btnCreatePlaylist')) $('btnCreatePlaylist').addEventListener('click', ()=>{
       const name = prompt('プレイリスト名を入力');
@@ -815,7 +734,7 @@ const Millivibe = (function(){
   }
   function setupTabs(){
     const tabs = document.querySelectorAll('.vibe-side-nav .vibe-nav-item');
-    const map = { nowplaying: 'vibeNowSec', search: 'vibeSearchSec', library: 'vibeLibrarySec', ranking: 'vibeRankingSec', playlists: 'vibePlaylistsSec' };
+    const map = { pinned: 'vibePinnedSec', nowplaying: 'vibeNowSec', search: 'vibeSearchSec', library: 'vibeLibrarySec', ranking: 'vibeRankingSec', playlists: 'vibePlaylistsSec' };
     function switchTab(tab){
       tabs.forEach(b=> b.classList.toggle('active', b.dataset.tab===tab));
       Object.entries(map).forEach(([k, id])=>{
@@ -824,132 +743,18 @@ const Millivibe = (function(){
       });
       if(tab==='ranking') renderRanking();
       if(tab==='library') renderLibrary();
-      if(tab==='search') renderSearch($('songSearch')?$('songSearch').value:'');
+      if(tab==='pinned') renderPinned();
     }
     tabs.forEach(btn=> btn.addEventListener('click', ()=> switchTab(btn.dataset.tab)));
-    // fallback for old tabMenu
+    // fallback for old tabMenu (nowplaying etc)
     const oldTabs = document.querySelectorAll('#millivibeTabMenu .tab-item');
     oldTabs.forEach(btn=> btn.addEventListener('click', ()=> switchTab(btn.dataset.tab==='player'?'nowplaying':btn.dataset.tab)));
     switchTab('nowplaying');
     window.switchTab = switchTab;
-    // pinned bar always visible
-    renderPinnedBar();
   }
-  let searchOffset = 100;
   function setupSearch(){
-    // populate talent filter
-    const ft = $('filterTalent');
-    if(ft && data && data.members){
-      ft.innerHTML = '<option value="">全タレント</option>' + data.members.filter(m=> !['milpro','clip'].includes(m.id)).map(m=> `<option value="${m.id}">${esc(m.name)}</option>`).join('');
-    }
-    const fp = $('filterPlaylist');
-    if(fp){
-      const pls = presets.map(p=> `<option value="${p.id}">${esc(p.name)}</option>`).join('');
-      fp.innerHTML = '<option value="">全プレイリスト</option>' + pls;
-    }
-    const tags = $('searchTags');
-    if(tags){
-      tags.innerHTML = presets.map(p=> `<button class="search-tag" data-id="${p.id}" style="padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#9aa3c0;font-size:11px;cursor:pointer">#${esc(p.name)}</button>`).join('');
-      tags.querySelectorAll('.search-tag').forEach(b=> b.addEventListener('click', ()=>{
-        const id=b.dataset.id;
-        b.classList.toggle('active');
-        b.style.background = b.classList.contains('active') ? 'rgba(183,140,242,0.3)' : 'rgba(255,255,255,0.06)';
-        renderSearch($('songSearch')?$('songSearch').value:'');
-      }));
-    }
-    const favChk = $('filterFavorites');
-    if(favChk) favChk.addEventListener('change', ()=> renderSearch($('songSearch')?$('songSearch').value:''));
-    if(ft) ft.addEventListener('change', ()=> renderSearch($('songSearch')?$('songSearch').value:''));
-    if(fp) fp.addEventListener('change', ()=> renderSearch($('songSearch')?$('songSearch').value:''));
-    const sortSel = $('sortSelect');
-    if(sortSel) sortSel.addEventListener('change', ()=> renderSearch($('songSearch')?$('songSearch').value:''));
-    const sInput = $('songSearch');
-    if(sInput){
-      sInput.addEventListener('input', e=>{
-        const v=e.target.value;
-        // suggest
-        const sug = $('searchSuggest');
-        if(sug){
-          if(!v.trim()){ sug.innerHTML=''; }
-          else {
-            const low=v.toLowerCase();
-            const sugg = allSongs.filter(s=> s.title.toLowerCase().includes(low)).slice(0,5).map(s=> `<span class="suggest-chip" data-title="${esc(s.title)}" style="padding:4px 8px;border-radius:999px;background:rgba(255,255,255,0.08);color:#e4e6eb;font-size:11px;cursor:pointer">${esc(s.title.slice(0,20))}</span>`).join('');
-            sug.innerHTML = sugg;
-            sug.querySelectorAll('.suggest-chip').forEach(c=> c.addEventListener('click', ()=>{ sInput.value=c.dataset.title; renderSearch(c.dataset.title); }));
-          }
-        }
-        renderSearch(v);
-      });
-    }
-    const btnAll = $('btnShowAllSongs');
-    if(btnAll) btnAll.addEventListener('click', ()=>{
-      const filtered = getFilteredSongs();
-      const cont = $('searchResults');
-      if(!cont) return;
-      const current = cont.children.length;
-      const next = filtered.slice(current, current+100);
-      if(!next.length){ btnAll.textContent='すべて表示済み'; btnAll.disabled=true; return; }
-      const frag = document.createDocumentFragment();
-      next.forEach(s=>{
-        const div = document.createElement('div');
-        div.className='song-card';
-        div.dataset.id=s.id;
-        div.style.cursor='pointer';
-        div.innerHTML = `<img class="song-thumb" src="${esc(s.thumbnail)}" alt=""><div class="song-meta"><div class="song-title">${esc(s.title)}</div><div class="song-artist">${esc(s.memberName)}</div></div><div style="display:flex;gap:4px;padding:0 8px 8px"><button class="queue-add" data-id="${s.id}" style="flex:1;padding:6px;border-radius:999px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.08);color:#e4e6eb;font-size:11px;cursor:pointer">次へ</button><button class="queue-push" data-id="${s.id}" style="flex:1;padding:6px;border-radius:999px;border:none;background:linear-gradient(120deg,#4fc3f7,#b48cf2);color:#fff;font-size:11px;cursor:pointer">追加</button></div>`;
-        div.addEventListener('click', e=>{ if(e.target.closest('button')) return; playById(s.id); });
-        div.querySelectorAll('button').forEach(b=>{
-          if(b.classList.contains('queue-add')) b.addEventListener('click', ()=> addNextWithAnim(b.dataset.id, div));
-          else if(b.classList.contains('queue-push')) b.addEventListener('click', ()=> pushQueue(b.dataset.id));
-        });
-        frag.appendChild(div);
-      });
-      cont.appendChild(frag);
-      if(cont.children.length >= filtered.length){ btnAll.textContent='すべて表示済み'; btnAll.disabled=true; }
-      else btnAll.textContent=`もっと見る (${cont.children.length}/${filtered.length})`;
-    });
+    // initial recommend
     renderSearch('');
-  }
-  function getFilteredSongs(){
-    let list = allSongs.slice();
-    const q = ($('songSearch')?$('songSearch').value:'').toLowerCase().trim();
-    const ft = $('filterTalent')?$('filterTalent').value:'';
-    const fp = $('filterPlaylist')?$('filterPlaylist').value:'';
-    const favOnly = $('filterFavorites')?$('filterFavorites').checked:false;
-    const sort = $('sortSelect')?$('sortSelect').value:'new';
-    const activeTags = [...document.querySelectorAll('#searchTags .search-tag.active')].map(b=>b.dataset.id);
-    if(q){
-      const keys = q.split(/\s+/).filter(Boolean);
-      list = list.filter(s=>{
-        const hay = (s.title+' '+s.memberName+' '+s.playlistName).toLowerCase();
-        return keys.every(k=> hay.includes(k));
-      });
-    }
-    if(ft) list = list.filter(s=> s.memberId===ft);
-    if(fp){
-      const pre = presets.find(p=>p.id===fp);
-      if(pre && pre.videoIds && pre.videoIds.length) list = list.filter(s=> pre.videoIds.includes(s.id));
-    }
-    if(activeTags.length){
-      list = list.filter(s=> activeTags.some(tid=>{
-        const pre = presets.find(p=>p.id===tid);
-        return pre && pre.videoIds && pre.videoIds.includes(s.id);
-      }));
-    }
-    if(favOnly){
-      let favs=[]; try{ favs=JSON.parse(localStorage.getItem('milpro_favorites')||'[]'); }catch(e){}
-      list = list.filter(s=> favs.includes(s.id));
-    }
-    if(sort==='name') list.sort((a,b)=> a.title.localeCompare(b.title));
-    else if(sort==='popular'){
-      const plays=loadPlays(); const counts={}; for(const k in plays){ if(k.includes('_')) continue; counts[k]=plays[k]; }
-      list.sort((a,b)=> (counts[b.id]||0)-(counts[a.id]||0));
-    }else if(sort==='plays'){
-      const plays=loadPlays(); const counts={}; for(const k in plays){ if(k.includes('_')) continue; counts[k]=plays[k]; }
-      list.sort((a,b)=> (counts[b.id]||0)-(counts[a.id]||0));
-    }else{ // new
-      list.sort((a,b)=> new Date(b.publishedAt)-new Date(a.publishedAt));
-    }
-    return list;
   }
 
   document.addEventListener('DOMContentLoaded', init);
