@@ -765,6 +765,8 @@ const FavibeOshi = (function(){
   let artistsMaster = null;
   let selected = [];
   let lockedIds = [];
+  const ALIAS_MAP = {"tamanoinana":"nana-tamanoi"};
+  let currentGroup = "";
   let _fbUnsub = null;
   async function loadLocked(){
     try{
@@ -788,11 +790,14 @@ const FavibeOshi = (function(){
   function isLocked(id){ return lockedIds.includes(id); }
 
   function esc(s){ return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function normalizeIds(ids){
+    return (ids||[]).map(id=> ALIAS_MAP[id] || id);
+  }
 
   function loadLocal(){
     try{
       const v = JSON.parse(localStorage.getItem(LS_KEY)||'null');
-      if(Array.isArray(v)) return v;
+      if(Array.isArray(v)) return normalizeIds(v);
     }catch(e){}
     return [];
   }
@@ -840,8 +845,9 @@ const FavibeOshi = (function(){
       if(typeof firebaseConfig==='undefined' || !firebaseConfig.apiKey) return;
       const ref = firebase.database().ref(FB_PATH);
       const handler = ref.on('value', snap=>{
-        const v = snap.val();
+        let v = snap.val();
         if(Array.isArray(v)){
+          v = normalizeIds(v);
           selected = v.slice();
           saveLocal(selected);
           cb && cb(selected);
@@ -862,8 +868,9 @@ const FavibeOshi = (function(){
           try{ await firebase.auth().signInAnonymously(); }catch(e){}
         }
         const snap = await firebase.database().ref(FB_PATH).once('value');
-        const v = snap.val();
+        let v = snap.val();
         if(Array.isArray(v) && v.length){
+          v = normalizeIds(v);
           selected = v.slice();
           saveLocal(selected);
           fbLoaded = true;
@@ -877,7 +884,9 @@ const FavibeOshi = (function(){
         saveToFirebase(selected);
       }
     }
-    // ensure locked artists are always included
+    // ensure locked artists are always included and alias normalized
+    selected = normalizeIds(selected);
+    lockedIds = normalizeIds(lockedIds);
     if(lockedIds.length){
       const set = new Set(selected);
       for(const id of lockedIds) set.add(id);
@@ -894,7 +903,8 @@ const FavibeOshi = (function(){
   }
 
   async function setSelected(ids){
-    // ensure locked always included
+    // ensure locked always included and alias normalized
+    ids = normalizeIds(ids);
     const set = new Set(ids);
     for(const id of lockedIds) set.add(id);
     selected = [...lockedIds, ...Array.from(set).filter(x=> !lockedIds.includes(x))];
@@ -938,9 +948,36 @@ const FavibeOshi = (function(){
     if(!grid || !artistsMaster) return;
     const q = (document.getElementById('oshiSearch')?.value||'').toLowerCase().trim();
     let list = artistsMaster;
-    if(q){
-      list = list.filter(a=> (a.name+a.id+(a.group||'')).toLowerCase().includes(q));
+    if(currentGroup){
+      list = list.filter(a=> a.group===currentGroup);
     }
+    if(q){
+      list = list.filter(a=> (a.name+a.id+(a.enName||'')+(a.group||'')).toLowerCase().includes(q));
+    }
+    // update group counts
+    try{
+      document.querySelectorAll('.oshi-group-count').forEach(el=>{
+        const g = el.dataset.group;
+        const cnt = g ? artistsMaster.filter(a=> a.group===g).length : artistsMaster.length;
+        el.textContent = `(${cnt})`;
+      });
+    }catch(e){}
+    // update group button active state
+    try{
+      document.querySelectorAll('.oshi-group-btn').forEach(btn=>{
+        const active = btn.dataset.group===currentGroup;
+        btn.classList.toggle('active', active);
+        if(active){
+          btn.style.background='linear-gradient(120deg,#4fc3f7,#b48cf2)';
+          btn.style.color='#fff';
+          btn.style.border='none';
+        } else {
+          btn.style.background='rgba(255,255,255,0.06)';
+          btn.style.color='#e4e6eb';
+          btn.style.border='1px solid rgba(255,255,255,0.12)';
+        }
+      });
+    }catch(e){}
     grid.innerHTML = list.map(a=>{
       const sel = modalSelected.includes(a.id);
       const locked = isLocked(a.id);
@@ -1039,6 +1076,12 @@ const FavibeOshi = (function(){
     if(backdrop) backdrop.addEventListener('click', close);
     const search = document.getElementById('oshiSearch');
     if(search) search.addEventListener('input', renderModal);
+    document.querySelectorAll('.oshi-group-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        currentGroup = btn.dataset.group;
+        renderModal();
+      });
+    });
     const selAll = document.getElementById('oshiSelectAll');
     if(selAll) selAll.addEventListener('click', ()=>{ modalSelected = Array.from(new Set([...lockedIds, ...artistsMaster.map(a=>a.id)])); renderModal(); });
     const clrAll = document.getElementById('oshiClearAll');

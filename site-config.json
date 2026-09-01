@@ -4,9 +4,16 @@
     "description": "にじさんじの歌みたを連続で聴く音楽サービス。好きな推しを選んで自動更新、止まらずに。favibeはクラス内で共有するfavorite vibeです。"
   },
   "ogService": "",
-  "news": ["favibe v0.1 - 珠乃井ナナ / 叶 / 葛葉 / ChroNoiR でスタート。プレイリストは後で追加可能です。"],
+  "news": [
+    "favibe v0.1 - 珠乃井ナナ / 叶 / 葛葉 / ChroNoiR でスタート。プレイリストは後で追加可能です。"
+  ],
   "favibe": {
-    "initialArtists": ["kanae", "kuzuha", "tamanoinana", "chronoir"],
+    "initialArtists": [
+      "kanae",
+      "kuzuha",
+      "nana-tamanoi",
+      "chronoir"
+    ],
     "sharing": "firebase+local",
     "updateCron": "0 21 * * *"
   }

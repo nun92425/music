@@ -166,16 +166,22 @@
     <div class="oshi-modal-head">
       <div>
         <h2 id="oshiModalTitle" style="margin:0;font-size:16px;font-weight:900;color:#e4e6eb">あなたの好きな推しを選んでください</h2>
-        <p style="margin:6px 0 0;font-size:11px;color:#9aa3c0;line-height:1.6">複数選択できます。にじさんじ + ChroNoiR から選んでください。<br>1人が選んだ推しはクラス全員に共有され、自動更新されます。後から追加もできます。</p>
+        <p style="margin:6px 0 0;font-size:11px;color:#9aa3c0;line-height:1.6">複数選択できます。にじさんじ全員(172) + EN(28) + ChroNoiR から選べます。<br>1人が選んだ推しはクラス全員に共有され、自動更新されます。後から追加もできます。🔒は配信中のため変更不可。</p>
       </div>
       <button id="oshiModalClose" aria-label="閉じる" style="width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#9aa3c0;cursor:pointer">×</button>
     </div>
     <div class="oshi-modal-body">
-      <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap">
         <input id="oshiSearch" placeholder="推しを検索 (例: 叶)" style="flex:1;min-width:140px;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);color:#e4e6eb;font-size:13px">
         <span id="oshiCount" style="font-size:11px;color:#9aa3c0;white-space:nowrap">0件選択中</span>
         <button id="oshiSelectAll" style="padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#e4e6eb;font-size:11px;cursor:pointer">全選択</button>
         <button id="oshiClearAll" style="padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:#9aa3c0;font-size:11px;cursor:pointer">クリア</button>
+      </div>
+      <div id="oshiGroupFilter" style="display:flex;gap:6px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
+        <button class="oshi-group-btn active" data-group="" style="padding:6px 12px;border-radius:999px;border:none;background:linear-gradient(120deg,#4fc3f7,#b48cf2);color:#fff;font-size:11px;font-weight:800;cursor:pointer">全て <span class="oshi-group-count" data-group="" style="opacity:0.85;margin-left:4px"></span></button>
+        <button class="oshi-group-btn" data-group="にじさんじ" style="padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#e4e6eb;font-size:11px;font-weight:700;cursor:pointer">にじさんじ <span class="oshi-group-count" data-group="にじさんじ" style="opacity:0.7;margin-left:4px"></span></button>
+        <button class="oshi-group-btn" data-group="NIJISANJI EN" style="padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#e4e6eb;font-size:11px;font-weight:700;cursor:pointer">EN <span class="oshi-group-count" data-group="NIJISANJI EN" style="opacity:0.7;margin-left:4px"></span></button>
+        <button class="oshi-group-btn" data-group="にじさんじユニット" style="padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#e4e6eb;font-size:11px;font-weight:700;cursor:pointer">ユニット <span class="oshi-group-count" data-group="にじさんじユニット" style="opacity:0.7;margin-left:4px"></span></button>
       </div>
       <div id="oshiSelectedChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
       <div id="oshiGrid" class="oshi-grid"></div>
