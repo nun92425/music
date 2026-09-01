@@ -21,7 +21,6 @@
 <link rel="stylesheet" href="/video.css">
 <link rel="stylesheet" href="/millivibe.css">
 <link rel="stylesheet" href="/favibe.css">
-<script>try{ document.documentElement.setAttribute('data-theme','dark'); }catch(e){}</script>
 <style>
 /* favibe oshi modal additions */
 .favibe-logo-text {
@@ -131,6 +130,7 @@
   font-weight: 700;
 }
 </style>
+<script>try{ document.documentElement.setAttribute('data-theme','dark'); }catch(e){}</script>
 </head>
 <body class="millivibe favibe">
 <header>
@@ -208,16 +208,18 @@
 </div>
 
 <div class="vibe-layout">
-  <nav class="vibe-side-nav" id="vibeSideNav" aria-label="favibeメニュー">
-    <div id="pinnedBar" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;padding:8px;background:rgba(255,255,255,0.04);border-radius:12px;border:1px dashed rgba(255,255,255,0.12)">
-      <div style="grid-column:1/-1;font-size:11px;color:#9aa3c0;text-align:center">ピン留め（最大4つ）</div>
-    </div>
-    <div style="height:1px;background:rgba(255,255,255,0.08);margin:4px 0 8px"></div>
-    <button class="vibe-nav-item active" data-tab="nowplaying">再生中</button>
-    <button class="vibe-nav-item" data-tab="search">検索</button>
-    <button class="vibe-nav-item" data-tab="library">ライブラリ</button>
-    <button class="vibe-nav-item" data-tab="ranking">ランキング</button>
-    <button class="vibe-nav-item" data-tab="playlists">プレイリスト</button>
+    <nav class="vibe-side-nav" id="vibeSideNav" aria-label="Millivibeメニュー">
+    <button id="pinnedBarBtn" class="vibe-nav-item pinned-trigger" aria-label="ピン留め" aria-expanded="false" title="ピン留め">
+      <span class="nav-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+      <span class="nav-label">ピン留め</span>
+      <span id="pinnedBadge" class="pinned-badge" style="display:none"></span>
+    </button>
+    <div style="height:1px;background:rgba(255,255,255,0.08);margin:4px 0 8px" class="nav-divider"></div>
+    <button class="vibe-nav-item active" data-tab="nowplaying"><span class="nav-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.2 19.1 19.1"/></svg></span><span class="nav-label">再生中</span></button>
+    <button class="vibe-nav-item" data-tab="search"><span class="nav-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span><span class="nav-label">検索</span></button>
+    <button class="vibe-nav-item" data-tab="library"><span class="nav-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span><span class="nav-label">ライブラリ</span></button>
+    <button class="vibe-nav-item" data-tab="ranking"><span class="nav-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></span><span class="nav-label">ランキング</span></button>
+    <button class="vibe-nav-item" data-tab="playlists"><span class="nav-ico"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h.01"/><path d="M3 18h.01"/><path d="M3 6h.01"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M8 6h13"/></svg></span><span class="nav-label">プレイリスト</span></button>
   </nav>
   <main class="vibe-main">
     <!-- 再生中 -->
@@ -256,7 +258,7 @@
             <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:#9aa3c0;white-space:nowrap"><input type="checkbox" id="autoNextToggle"> 自動連続再生</label>
           </div>
           <div id="oshiStatus" style="display:flex;align-items:center;gap:8px;margin:8px 0;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);font-size:11px;color:#9aa3c0"></div>
-          <div id="queueWrap" class="queue-wrap" style="max-height:50vh;overflow-y:auto;scroll-behavior:smooth;padding-right:4px">
+          <div id="queueWrap" class="queue-wrap" style="overflow-y:auto;scroll-behavior:smooth;padding-right:4px">
             <details id="queueHistoryDetails" style="margin-bottom:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:8px">
               <summary style="font-size:11px;color:#b8c0e0;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px">再生履歴 <span id="historyCount" style="font-size:10px;color:#9aa3c0"></span><span style="margin-left:auto;font-size:10px;color:#7a83a8">▼</span></summary>
               <div id="historyListInline" style="display:flex;flex-direction:column;gap:6px;margin-top:8px"></div>
@@ -271,7 +273,8 @@
         </div>
       </div>
     </section>
-<!-- 検索 -->
+
+    <!-- 検索 -->
     <section id="vibeSearchSec" class="vibe-section" data-tab="search" style="display:none">
       <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px">
         <input id="songSearch" placeholder="曲名・アーティスト・タグで検索" style="flex:1;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);color:#e4e6eb">
@@ -310,7 +313,7 @@
     <section id="vibeRankingSec" class="vibe-section" data-tab="ranking" style="display:none">
       <h3 style="font-size:14px;font-weight:800;margin:0 0 10px">人気ランキング</h3>
       <div id="rankingList" style="display:flex;flex-direction:column;gap:8px"></div>
-      <p style="font-size:11px;color:#9aa3c0;margin-top:8px">YouTube再生数とfavibe内再生回数を併記しています。</p>
+      <p style="font-size:11px;color:#9aa3c0;margin-top:8px">YouTube再生数とUnishare内再生回数を併記しています。</p>
     </section>
 
     <!-- プレイリスト -->
@@ -324,6 +327,63 @@
     </section>
   </main>
 </div>
+<!-- ピン留めポップオーバー -->
+<div id="pinnedPopover" class="pinned-popover" aria-hidden="true" style="display:none">
+  <div class="pinned-popover-head" style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.08)">
+    <span style="font-size:12px;font-weight:800;color:#e4e6eb">ピン留め</span>
+    <button id="pinnedPopoverClose" aria-label="閉じる" style="width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#9aa3c0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center">×</button>
+  </div>
+  <div id="pinnedPopoverContent" style="padding:10px;max-height:60vh;overflow-y:auto"></div>
+</div>
+<div id="pinnedOverlay" class="pinned-overlay" style="display:none"></div>
+<!-- ハンバーガードロワー -->
+<div id="vibeDrawerOverlay" class="vibe-drawer-overlay" style="display:none"></div>
+<nav id="vibeDrawer" class="vibe-drawer" aria-label="メニュー" aria-hidden="true" style="display:none">
+  <div class="vibe-drawer-head" style="display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid rgba(255,255,255,0.08)">
+    <span style="font-size:14px;font-weight:900;color:#e4e6eb">メニュー</span>
+    <button id="vibeDrawerClose" aria-label="閉じる" style="width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#e4e6eb;cursor:pointer">×</button>
+  </div>
+  <div class="vibe-drawer-section" style="padding:12px">
+    <div style="font-size:11px;font-weight:800;color:#7a83a8;letter-spacing:0.08em;margin:8px 0 8px">サービス切替</div>
+    <a href="/" class="vibe-drawer-link" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;text-decoration:none;color:#e4e6eb;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);margin-bottom:8px">
+      <span style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.10);display:inline-flex;align-items:center;justify-content:center"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></span>
+      <span style="font-size:13px;font-weight:800">Millivis</span>
+      <span style="margin-left:auto;font-size:11px;color:#9aa3c0">動画一覧</span>
+    </a>
+    <a href="/millivibe.html" class="vibe-drawer-link active" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;text-decoration:none;color:#fff;background:linear-gradient(120deg,#4fc3f7,#b48cf2,#f78fc0);border:none;margin-bottom:8px">
+      <span style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.20);display:inline-flex;align-items:center;justify-content:center"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.2 19.1 19.1"/></svg></span>
+      <span style="font-size:13px;font-weight:800">Millivibe</span>
+      <span style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.85)">音楽</span>
+    </a>
+  </div>
+  <div class="vibe-drawer-section" style="padding:12px;border-top:1px solid rgba(255,255,255,0.06)">
+    <div style="font-size:11px;font-weight:800;color:#7a83a8;letter-spacing:0.08em;margin:8px 0 8px">アカウント / 表示</div>
+    <button id="drawerMypageBtn" style="width:100%;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.06);color:#e4e6eb;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:8px">
+      <span style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.10);display:inline-flex;align-items:center;justify-content:center"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      マイページ
+    </button>
+    <button id="drawerThemeBtn" style="width:100%;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.06);color:#e4e6eb;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:8px">
+      <span style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.10);display:inline-flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
+      テーマ切替
+    </button>
+  </div>
+</nav>
+<!-- キュー上書き確認モーダル -->
+<div id="queueConfirmOverlay" class="queue-confirm-overlay" style="display:none"></div>
+<div id="queueConfirmModal" class="queue-confirm-modal" role="dialog" aria-modal="true" aria-hidden="true" style="display:none">
+  <div class="queue-confirm-card" style="background:rgba(16,20,36,0.98);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.10);border-radius:18px;padding:18px;max-width:360px;width:92%;box-shadow:0 16px 40px rgba(0,0,0,0.45)">
+    <h3 style="margin:0 0 6px;font-size:14px;font-weight:900;color:#e4e6eb">キューに曲があります</h3>
+    <p id="queueConfirmText" style="margin:0 0 16px;font-size:12px;line-height:1.5;color:#9aa3c0"></p>
+    <div style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap">
+      <button id="queueConfirmCancel" style="padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:#e4e6eb;font-size:12px;font-weight:700;cursor:pointer">キャンセル</button>
+      <button id="queueConfirmNext" style="padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.08);color:#e4e6eb;font-size:12px;font-weight:700;cursor:pointer">次に追加</button>
+      <button id="queueConfirmReplace" style="padding:8px 14px;border-radius:999px;border:none;background:linear-gradient(120deg,#4fc3f7,#b48cf2);color:#fff;font-size:12px;font-weight:800;cursor:pointer">置き換えて再生</button>
+    </div>
+  </div>
+</div>
+<!-- カード ︙ メニュー -->
+<div id="cardMenu" class="card-menu" aria-hidden="true" style="display:none"></div>
+<div id="cardMenuOverlay" class="card-menu-overlay" style="display:none"></div>
 <div id="miniPlayer" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:140;background:rgba(10,14,26,0.92);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,0.08);padding:8px 16px;align-items:center;gap:12px">
   <img id="miniThumb" style="width:48px;height:48px;border-radius:8px;object-fit:cover;flex-shrink:0" src="" alt="">
   <div style="flex:1;min-width:0">
