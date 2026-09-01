@@ -12,7 +12,8 @@
       "kanae",
       "kuzuha",
       "nana-tamanoi",
-      "chronoir"
+      "chronoir",
+      "akina-saegusa"
     ],
     "sharing": "firebase+local",
     "updateCron": "0 21 * * *"

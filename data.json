@@ -1483,11 +1483,149 @@
       ],
       "videos": [],
       "scheduledStreams": []
+    },
+    {
+      "id": "akina-saegusa",
+      "name": "三枝明那",
+      "icon": "🎤",
+      "channel": "@akina-saegusa",
+      "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ",
+      "birthday": "",
+      "links": "[]",
+      "avatar": "https://images.microcms-assets.io/assets/5694fd90407444338a64d654e407cc0e/110c847a4d9a4dc389758a66a408370b/liver-face_Akina_Saegusa.png.webp",
+      "playlists": [
+        {
+          "id": "PLOxD25o7teF0g-yvJx8ug6FOqpeoCipU3",
+          "name": "歌ってみた1",
+          "videos": [
+            {
+              "id": "vRw48T2EfNs",
+              "type": "regular",
+              "cached": {
+                "title": "(Music Video) はんぶんこ / 三枝明那",
+                "thumbnail": "https://i.ytimg.com/vi/vRw48T2EfNs/hqdefault.jpg",
+                "publishedAt": "2021-09-01T11:00:17Z",
+                "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ",
+                "channelTitle": "三枝明那 / Saegusa Akina"
+              }
+            }
+          ],
+          "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ"
+        },
+        {
+          "id": "PLOxD25o7teF3DLrz6v_uBH6-qghFcVE0V",
+          "name": "歌ってみた2",
+          "videos": [
+            {
+              "id": "C5T0u9fWYLw",
+              "type": "regular",
+              "cached": {
+                "title": "白と嘘 / Rain Drops - 三枝明那(cover)",
+                "thumbnail": "https://i.ytimg.com/vi/C5T0u9fWYLw/hqdefault.jpg",
+                "publishedAt": "2022-01-28T10:00:32Z",
+                "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ",
+                "channelTitle": "三枝明那 / Saegusa Akina"
+              }
+            },
+            {
+              "id": "bbQwTi25_o0",
+              "type": "regular",
+              "cached": {
+                "title": "エゴロック(long ver.) - 三枝明那 cover",
+                "thumbnail": "https://i.ytimg.com/vi/bbQwTi25_o0/hqdefault.jpg",
+                "publishedAt": "2021-12-16T11:00:09Z",
+                "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ",
+                "channelTitle": "三枝明那 / Saegusa Akina"
+              }
+            },
+            {
+              "id": "Qc-j7L7tXYg",
+              "type": "regular",
+              "cached": {
+                "title": "マーシャル・マキシマイザー (cover) - 三枝明那",
+                "thumbnail": "https://i.ytimg.com/vi/Qc-j7L7tXYg/hqdefault.jpg",
+                "publishedAt": "2021-10-01T12:00:11Z",
+                "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ",
+                "channelTitle": "三枝明那 / Saegusa Akina"
+              }
+            },
+            {
+              "id": "PiftBi_PZ_k",
+              "type": "regular",
+              "cached": {
+                "title": "リテラシー (cover) / wotaku - 三枝明那",
+                "thumbnail": "https://i.ytimg.com/vi/PiftBi_PZ_k/hqdefault.jpg",
+                "publishedAt": "2021-08-23T11:00:12Z",
+                "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ",
+                "channelTitle": "三枝明那 / Saegusa Akina"
+              }
+            },
+            {
+              "id": "Jz7di6_ubTw",
+              "type": "regular",
+              "cached": {
+                "title": "ミュウ / Rain Drops - 三枝明那(cover)",
+                "thumbnail": "https://i.ytimg.com/vi/Jz7di6_ubTw/hqdefault.jpg",
+                "publishedAt": "2020-12-21T11:00:10Z",
+                "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ",
+                "channelTitle": "三枝明那 / Saegusa Akina"
+              }
+            },
+            {
+              "id": "7kGGhprf064",
+              "type": "regular",
+              "cached": {
+                "title": "テレキャスタービーボーイ(cover) - 三枝明那",
+                "thumbnail": "https://i.ytimg.com/vi/7kGGhprf064/hqdefault.jpg",
+                "publishedAt": "2020-12-16T10:00:12Z",
+                "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ",
+                "channelTitle": "三枝明那 / Saegusa Akina"
+              }
+            },
+            {
+              "id": "Svh7zl8PTTo",
+              "type": "regular",
+              "cached": {
+                "title": "心做し(cover) - 三枝明那",
+                "thumbnail": "https://i.ytimg.com/vi/Svh7zl8PTTo/hqdefault.jpg",
+                "publishedAt": "2020-01-31T11:00:25Z",
+                "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ",
+                "channelTitle": "三枝明那 / Saegusa Akina"
+              }
+            },
+            {
+              "id": "Xn8vVasKDOs",
+              "type": "regular",
+              "cached": {
+                "title": "蜜ノ味 / Rain Drops - 三枝明那(cover)",
+                "thumbnail": "https://i.ytimg.com/vi/Xn8vVasKDOs/hqdefault.jpg",
+                "publishedAt": "2020-05-27T11:00:13Z",
+                "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ",
+                "channelTitle": "三枝明那 / Saegusa Akina"
+              }
+            },
+            {
+              "id": "YWpZY4mMfLY",
+              "type": "regular",
+              "cached": {
+                "title": "セレナーデ - 三枝明那 cover",
+                "thumbnail": "https://i.ytimg.com/vi/YWpZY4mMfLY/hqdefault.jpg",
+                "publishedAt": "2026-04-19T11:00:06Z",
+                "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ",
+                "channelTitle": "三枝明那 / Saegusa Akina"
+              }
+            }
+          ],
+          "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ"
+        }
+      ],
+      "videos": [],
+      "scheduledStreams": []
     }
   ],
   "config": {
     "fetchTime": "6:00",
-    "lastFetch": "2026-09-01T02:04:50.797Z",
+    "lastFetch": "2026-09-01T06:01:56.678813+00:00",
     "fetchedPlaylists": [
       "PLXKMRoeWMiAllXl9hk855YWA5Xn9D0iQk",
       "PLXKMRoeWMiAnLaLWuz9BwvPkIuxUKyA3L",
@@ -1495,7 +1633,9 @@
       "PLwCa-x--ILnYzJaR8Igd6YyCjq-luCKq0",
       "PLDKyRzlbU0cG-lfve8ZkcXl1sK1OgsHrd",
       "PLhMmjX5_vTJSlIeZKHkrCR4FQ8nIr9slU",
-      "PLhMmjX5_vTJTqWiD2JWqInG8rJmz8DJeO"
+      "PLhMmjX5_vTJTqWiD2JWqInG8rJmz8DJeO",
+      "PLOxD25o7teF0g-yvJx8ug6FOqpeoCipU3",
+      "PLOxD25o7teF3DLrz6v_uBH6-qghFcVE0V"
     ]
   },
   "pointConfig": {

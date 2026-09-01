@@ -360,27 +360,50 @@ const Millivibe = (function(){
     const cont = $('historyListSticky');
     const inlineCont = $('historyListInline');
     const libCont = $('libHistory');
-    const render = (el, thin)=>{
+    const countEl = $('historyCount');
+    const libCountEl = $('libHistoryCount');
+    if(countEl) countEl.textContent = history.length ? `(${history.length})` : '';
+    if(libCountEl) libCountEl.textContent = history.length ? `(${history.length})` : '';
+    // 邪魔にならないよう再生履歴は折り畳みの中に薄く表示（インラインはdetails内で薄く、ライブラリは通常）
+    const render = (el, thin, limit)=>{
       if(!el) return;
       if(!history.length){ el.innerHTML = '<p style="font-size:11px;color:#9aa3c0">再生履歴はまだありません。</p>'; return; }
-      el.innerHTML = history.slice(0,10).map(h=>{
+      const slice = history.slice(0, limit||6);
+      el.innerHTML = slice.map(h=>{
         const s = allSongs.find(x=>x.id===h.id);
         const title = s ? s.title : h.id;
         const thumb = s ? s.thumbnail : `https://i.ytimg.com/vi/${h.id}/hqdefault.jpg`;
-        return `<div class="queue-item" data-id="${h.id}" style="${thin?'opacity:0.55;':''}cursor:pointer">
-          <img class="song-thumb" src="${esc(thumb)}" alt="" style="width:48px;height:36px">
-          <div class="song-meta"><div class="song-title">${esc(title)}</div><div style="font-size:10px;color:#9aa3c0">${new Date(h.at).toLocaleDateString()}</div></div>
+        const artist = s ? s.memberName : '';
+        return `<div class="queue-item" data-id="${h.id}" style="${thin?'opacity:0.7;':''}cursor:pointer;padding:6px 8px">
+          <img class="song-thumb" src="${esc(thumb)}" alt="" style="width:36px;height:36px;border-radius:6px">
+          <div class="song-meta" style="min-width:0"><div class="song-title" style="font-size:11px">${esc(title)}</div><div style="font-size:10px;color:#9aa3c0">${esc(artist)}</div></div>
           <button class="qplay-hist" data-id="${h.id}" style="padding:4px 8px;border-radius:999px;background:rgba(255,255,255,0.08);color:#e4e6eb;border:1px solid rgba(255,255,255,0.12);font-size:11px;cursor:pointer">再生</button>
         </div>`;
       }).join('');
+      // 折りたたみ内はスクロール不要、天面の履歴は横スクロールでコンパクトに
+      if(thin && el===inlineCont){
+        el.style.display = 'flex';
+        el.style.flexDirection = 'row';
+        el.style.overflowX = 'auto';
+        el.style.gap = '8px';
+        el.style.paddingBottom = '4px';
+        el.querySelectorAll('.queue-item').forEach(div=>{
+          div.style.flex='0 0 160px';
+          div.style.flexDirection='column';
+          div.style.alignItems='stretch';
+          const img=div.querySelector('img'); if(img){ img.style.width='100%'; img.style.height='auto'; img.style.aspectRatio='16/9'; }
+        });
+      }
       el.querySelectorAll('.qplay-hist').forEach(b=> b.addEventListener('click', ()=> playById(b.dataset.id)));
       el.querySelectorAll('.queue-item').forEach(div=> div.addEventListener('click', e=>{ if(e.target.closest('button')) return; playById(div.dataset.id); }));
     };
-    render(cont, true);
-    render(inlineCont, true);
-    render(libCont, false);
+    // キュー上の履歴はStickyを非表示にしてインラインのdetailsに統合（邪魔にならない）
+    if(cont && cont.parentElement) cont.parentElement.style.display='none';
+    render(inlineCont, true, 6);
+    render(libCont, false, 10);
     const histInlineWrap = $('queueHistoryInline');
-    if(histInlineWrap) histInlineWrap.style.display = history.length ? '' : 'none';
+    // detailsは閉じていると見えないので、履歴がある時はdetailsを開かない（ユーザーが開くまで非表示）
+    // ただし最近再生が3件以上あるときはdetailsを開いた状態で薄く表示するより、閉じたままの方がすっきり
   }
 
   function renderPinned(){

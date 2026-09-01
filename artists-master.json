@@ -841,12 +841,16 @@
       "name": "三枝明那",
       "enName": "Saegusa Akina",
       "group": "にじさんじ",
-      "channelId": "",
-      "playlistId": "",
+      "channelId": "UCNW1Ex0r6HsWRD4LCtPwvoQ",
+      "playlistId": "PLOxD25o7teF0g-yvJx8ug6FOqpeoCipU3",
       "color": "hsl(224, 65%, 65%)",
       "avatar": "https://images.microcms-assets.io/assets/5694fd90407444338a64d654e407cc0e/110c847a4d9a4dc389758a66a408370b/liver-face_Akina_Saegusa.png.webp",
       "debutAt": "2019-04-01T15:00:00.000Z",
-      "subscriberCount": 737000
+      "subscriberCount": 737000,
+      "playlistIds": [
+        "PLOxD25o7teF0g-yvJx8ug6FOqpeoCipU3",
+        "PLOxD25o7teF3DLrz6v_uBH6-qghFcVE0V"
+      ]
     },
     {
       "id": "berry-saotome",
