@@ -591,6 +591,17 @@
                 "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
                 "channelTitle": "Kuzuha Channel"
               }
+            },
+            {
+              "id": "2e_RIgqczc8",
+              "type": "regular",
+              "cached": {
+                "title": "【MV】テキトーリョク/葛葉",
+                "thumbnail": "https://i.ytimg.com/vi/2e_RIgqczc8/hqdefault.jpg",
+                "publishedAt": "2026-09-28T15:00:07Z",
+                "channelId": "UCSFCh5NL4qXrAy9u-u2lX3g",
+                "channelTitle": "Kuzuha Channel"
+              }
             }
           ],
           "channelId": "UCSFCh5NL4qXrAy9uB_Q4l2A"
@@ -1632,7 +1643,7 @@
   ],
   "config": {
     "fetchTime": "6:00",
-    "lastFetch": "2026-10-03T00:02:15.473Z",
+    "lastFetch": "2026-10-03T23:24:59.612Z",
     "fetchedArtists": [
       "kanae",
       "kuzuha",
