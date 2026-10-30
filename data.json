@@ -935,6 +935,17 @@
               }
             },
             {
+              "id": "t7HlVWkKnWI",
+              "type": "regular",
+              "cached": {
+                "title": "Gimme×Gimme／covered by 戌亥とこ、珠乃井ナナ",
+                "thumbnail": "https://i.ytimg.com/vi/t7HlVWkKnWI/hqdefault.jpg",
+                "publishedAt": "2026-02-27T11:30:06Z",
+                "channelId": "UCkhViRjLUKgIcVpar9JiNrw",
+                "channelTitle": "珠乃井ナナ / Tamanoi Nana【にじさんじ】"
+              }
+            },
+            {
               "id": "PQqWVMoq2Lc",
               "type": "regular",
               "cached": {
@@ -1643,7 +1654,7 @@
   ],
   "config": {
     "fetchTime": "6:00",
-    "lastFetch": "2026-10-29T00:29:16.617Z",
+    "lastFetch": "2026-10-30T00:28:47.512Z",
     "fetchedArtists": [
       "kanae",
       "kuzuha",
