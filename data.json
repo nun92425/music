@@ -332,6 +332,28 @@
                 "channelId": "UCspv01oxUFf_MTSipURRhkA",
                 "channelTitle": "Kanae Channel"
               }
+            },
+            {
+              "id": "Q1LuTBDbaeQ",
+              "type": "regular",
+              "cached": {
+                "title": "Private video",
+                "thumbnail": "https://i.ytimg.com/vi/Q1LuTBDbaeQ/hqdefault.jpg",
+                "publishedAt": "2026-11-20T11:02:25Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
+              "id": "tjROC5CQmAo",
+              "type": "regular",
+              "cached": {
+                "title": "????? / 叶 (cover)",
+                "thumbnail": "https://i.ytimg.com/vi/tjROC5CQmAo/hqdefault.jpg",
+                "publishedAt": "2026-11-20T12:02:34Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
             }
           ],
           "channelId": "UCspv01oxUFf_MTSipURRhkA"
@@ -1654,7 +1676,7 @@
   ],
   "config": {
     "fetchTime": "6:00",
-    "lastFetch": "2026-11-20T01:55:34.083Z",
+    "lastFetch": "2026-11-21T01:50:51.033Z",
     "fetchedArtists": [
       "kanae",
       "kuzuha",
