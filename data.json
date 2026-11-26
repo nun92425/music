@@ -15,6 +15,17 @@
           "name": "歌ってみた1",
           "videos": [
             {
+              "id": "tjROC5CQmAo",
+              "type": "regular",
+              "cached": {
+                "title": "プロポーズ / 叶 (cover)",
+                "thumbnail": "https://i.ytimg.com/vi/tjROC5CQmAo/hqdefault.jpg",
+                "publishedAt": "2026-11-25T14:00:07Z",
+                "channelId": "UCspv01oxUFf_MTSipURRhkA",
+                "channelTitle": "Kanae Channel"
+              }
+            },
+            {
               "id": "QWItOSj0bEU",
               "type": "regular",
               "cached": {
@@ -340,17 +351,6 @@
                 "title": "Private video",
                 "thumbnail": "https://i.ytimg.com/vi/Q1LuTBDbaeQ/hqdefault.jpg",
                 "publishedAt": "2026-11-20T11:02:25Z",
-                "channelId": "UCspv01oxUFf_MTSipURRhkA",
-                "channelTitle": "Kanae Channel"
-              }
-            },
-            {
-              "id": "tjROC5CQmAo",
-              "type": "regular",
-              "cached": {
-                "title": "????? / 叶 (cover)",
-                "thumbnail": "https://i.ytimg.com/vi/tjROC5CQmAo/hqdefault.jpg",
-                "publishedAt": "2026-11-20T12:02:34Z",
                 "channelId": "UCspv01oxUFf_MTSipURRhkA",
                 "channelTitle": "Kanae Channel"
               }
@@ -1676,7 +1676,7 @@
   ],
   "config": {
     "fetchTime": "6:00",
-    "lastFetch": "2026-11-25T03:50:27.359Z",
+    "lastFetch": "2026-11-26T03:15:26.293Z",
     "fetchedArtists": [
       "kanae",
       "kuzuha",
